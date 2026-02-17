@@ -1,0 +1,11 @@
+{
+  "rules": {
+    "require-name": "error",
+    "require-version": "error",
+    "require-license": "error",
+    "no-tilde-version-dependencies": "error",
+    "no-tilde-version-devDependencies": "error",
+    "no-caret-version-dependencies": "error",
+    "no-caret-version-devDependencies": "error"
+  }
+}
