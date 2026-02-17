@@ -4,6 +4,7 @@ import { FastifyRequest } from 'fastify';
 import { FindAllMusicQueryRequest, FindAllMusicResponse } from '@modules/music/schemas/FindAllMusicSchema'
 import { FindAllMusicInputDTO } from "@modules/music/dto/FindAllMusicInputDTO";
 import { FindAllMusicOutputDTO } from '../dto/FindAllMusicOutputDTO';
+import { FindAllMusicItemsItemDTO } from '../dto/FindAllMusicItemsItemDTO';
 
 
 //TODO: Validação opcional usar apenas quando necessário para validações mais complexas.
@@ -35,9 +36,9 @@ export class FindAllMusicTransformer {
     };
   }
 
-  public toDto(outputDTO: FindAllMusicOutputDTO): FindAllMusicResponse {
+  public toDto(entity: FindAllMusicItemsItemDTO[]): FindAllMusicOutputDTO {
     return {
-      items: Array.isArray(outputDTO?.items) ? outputDTO.items.map(f => ({
+      items: Array.isArray(entity) ? entity.map(f => ({
         id: f?.id ?? '',
         name: f?.name ?? '',
         category: f?.category ?? '',
