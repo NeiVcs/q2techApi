@@ -1,14 +1,14 @@
 import { FastifyReply } from "fastify";
 import { mock } from "jest-mock-extended";
 
-import { ListAllMusicsController } from "../../../../src/modules/musics/controllers/ListAllMusicsController";
-import { ListAllMusicsTransformer } from "../../../../src/modules/musics/transformers/ListAllMusicsTransformer";
-import { ListAllMusicsService } from "../../../../src/modules/musics/services/ListAllMusicsService";
+import { FindAllMusicController } from "../../../../src/modules/music/controllers/FindAllMusicController";
+import { FindAllMusicTransformer } from "../../../../src/modules/music/transformers/FindAllMusicTransformer";
+import { FindAllMusicService } from "../../../../src/modules/music/services/FindAllMusicService";
 
-describe("ListAllMusicsController", () => {
-  let controller: ListAllMusicsController;
-  let transformer: jest.Mocked<ListAllMusicsTransformer>;
-  let service: jest.Mocked<ListAllMusicsService>;
+describe("FindMusicsController", () => {
+  let controller: FindAllMusicController;
+  let transformer: jest.Mocked<FindAllMusicTransformer>;
+  let service: jest.Mocked<FindAllMusicService>;
   let reply: jest.Mocked<FastifyReply>;
 
   beforeEach(() => {
@@ -16,28 +16,28 @@ describe("ListAllMusicsController", () => {
     transformer = { fromApi: jest.fn(), toApi: jest.fn() } as any;
     service = { execute: jest.fn() } as any;
     reply = mock<FastifyReply>();
-    controller = new ListAllMusicsController(transformer, service);
+    controller = new FindAllMusicController(transformer, service);
   });
-  
+
   it("deve chamar service e transformer corretamente", async () => {
     const inputDTO = {
-  "status": "fakeString"
-};
+      "status": "fakeString"
+    };
     const outputDTO = {
-  "items": [
-    {}
-  ]
-};
+      "items": [
+        {}
+      ]
+    };
 
     transformer.fromApi.mockReturnValue(inputDTO);
     service.execute.mockResolvedValue(outputDTO);
     transformer.toApi.mockReturnValue(outputDTO);
 
     const result = await controller.handler({
-  query: {
-  "status": "fakeString"
-}
-} as any, reply);
+      query: {
+        "status": "fakeString"
+      }
+    } as any, reply);
 
     expect(transformer.fromApi).toHaveBeenCalled();
     expect(service.execute).toHaveBeenCalledWith(inputDTO);

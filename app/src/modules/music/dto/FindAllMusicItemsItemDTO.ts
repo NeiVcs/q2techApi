@@ -1,4 +1,4 @@
-export interface ListAllMusicsItemsItemDTO {
+export interface FindAllMusicItemsItemDTO {
   id?: string;
   name?: string;
   category?: string;

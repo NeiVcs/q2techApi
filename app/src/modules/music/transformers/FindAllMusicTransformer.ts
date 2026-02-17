@@ -1,9 +1,9 @@
 import { singleton } from 'tsyringe';
 import { z } from 'zod/v4';
 import { FastifyRequest } from 'fastify';
-import { ListAllMusicsQueryRequest, ListAllMusicsResponse } from '@modules/musics/schemas/ListAllMusicsSchema'
-import { ListAllMusicsInputDTO } from "@modules/musics/dto/ListAllMusicsInputDTO";
-import { ListAllMusicsOutputDTO } from "@modules/musics/dto/ListAllMusicsOutputDTO";
+import { FindAllMusicQueryRequest, FindAllMusicResponse } from '@modules/music/schemas/FindAllMusicSchema'
+import { FindAllMusicInputDTO } from "@modules/music/dto/FindAllMusicInputDTO";
+import { FindAllMusicOutputDTO } from '../dto/FindAllMusicOutputDTO';
 
 
 //TODO: Validação opcional usar apenas quando necessário para validações mais complexas.
@@ -11,8 +11,8 @@ import { ListAllMusicsOutputDTO } from "@modules/musics/dto/ListAllMusicsOutputD
 const requestQuerySchema = z.object({});
 
 @singleton()
-export class ListAllMusicsTransformer {
-  public fromApi(request?: FastifyRequest<{ Querystring: ListAllMusicsQueryRequest }>): ListAllMusicsInputDTO {
+export class FindAllMusicTransformer {
+  public fromApi(request?: FastifyRequest<{ Querystring: FindAllMusicQueryRequest }>): FindAllMusicInputDTO {
     const { query } = request;
 
     //validateRequest(requestParamsSchema, query); //TODO: Validação opcional usar apenas quando necessário para validações mais complexas.
@@ -22,7 +22,7 @@ export class ListAllMusicsTransformer {
     };
   }
 
-  public toApi(outputDTO: ListAllMusicsOutputDTO): ListAllMusicsResponse {
+  public toApi(outputDTO: FindAllMusicOutputDTO): FindAllMusicResponse {
     return {
       items: Array.isArray(outputDTO?.items) ? outputDTO.items.map(f => ({
         id: f?.id ?? '',
@@ -35,7 +35,7 @@ export class ListAllMusicsTransformer {
     };
   }
 
-  public toDto(outputDTO: ListAllMusicsOutputDTO): ListAllMusicsResponse {
+  public toDto(outputDTO: FindAllMusicOutputDTO): FindAllMusicResponse {
     return {
       items: Array.isArray(outputDTO?.items) ? outputDTO.items.map(f => ({
         id: f?.id ?? '',

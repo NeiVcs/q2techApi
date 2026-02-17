@@ -4,7 +4,7 @@ import { createSchema } from '@shared/schemas/define';
 const schema = createSchema({
   description: 'Query a music.',
   summary: 'Query a music.',
-  tags: ['Musics'],
+  tags: ['Music'],
   security: [{ ApiKeyAuth: [] }],
   querystring: {
     type: 'object',
@@ -67,6 +67,6 @@ const schema = createSchema({
   }
 });
 
-export const ListAllMusicsSchema = schema.raw;
-export type ListAllMusicsQueryRequest = typeof schema.types.querystring;
-export type ListAllMusicsResponse = (typeof schema.types.response)[200];
+export const FindAllMusicSchema = schema.raw;
+export type FindAllMusicQueryRequest = typeof schema.types.querystring;
+export type FindAllMusicResponse = (typeof schema.types.response)[200];

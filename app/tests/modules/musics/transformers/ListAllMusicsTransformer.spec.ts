@@ -1,34 +1,34 @@
-import { ListAllMusicsTransformer } from "../../../../src/modules/musics/transformers/ListAllMusicsTransformer";
+import { FindAllMusicTransformer } from "../../../../src/modules/music/transformers/FindAllMusicTransformer";
 
-describe("ListAllMusicsTransformer", () => {
-  let transformer: ListAllMusicsTransformer;
+describe("FindAllMusicTransformer", () => {
+  let transformer: FindAllMusicTransformer;
 
   beforeEach(() => {
-    transformer = new ListAllMusicsTransformer();
+    transformer = new FindAllMusicTransformer();
   });
-  
+
   it("deve mapear corretamente fromApi", () => {
     const request: any = {
-  query: {
-  "status": "fakeString"
-}
-};
+      query: {
+        "status": "fakeString"
+      }
+    };
     const dto = transformer.fromApi(request);
     expect(dto).toMatchObject({
-  "status": "fakeString"
-});
+      "status": "fakeString"
+    });
   });
   it("deve mapear corretamente toApi", () => {
     const outputDTO: any = {
-  "items": [
-    {}
-  ]
-};
+      "items": [
+        {}
+      ]
+    };
     const result = transformer.toApi(outputDTO);
     expect(result).toMatchObject({
-  "items": [
-    {}
-  ]
-});
+      "items": [
+        {}
+      ]
+    });
   });
 });
