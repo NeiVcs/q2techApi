@@ -9,9 +9,9 @@ export const RegisterSwaggerDoc = async (fastifyInstance: FastifyInstance) => {
     openapi: {
       openapi: '3.1.1',
       info: {
-        title: 'ms-boleto',
+        title: 'API-q2tech',
         description:
-          'This bill payment (**MS-BOLETO**) exposes services for managing and processing bill payments, with routes organized by business context for Legal Entities (`PJ`) and Individuals (`PF`). It uses supports an API Key (**x-api-key**) for access control.',
+          '(**API-Q2TECH**) tests. It uses supports an API Key (**x-api-key**) for access control.',
         version: '1.0.0'
       },
       servers: [
@@ -20,11 +20,11 @@ export const RegisterSwaggerDoc = async (fastifyInstance: FastifyInstance) => {
           description: 'Local development server.'
         },
         {
-          url: `https://ms-boleto-hmg.piudev.com.br${prefix}`,
+          url: `https://q2tech-hmg.piudev.com.br${prefix}`,
           description: 'Homologation development server.'
         },
         {
-          url: `https://ms-boleto.bepay.tech${prefix}`,
+          url: `https://q2tech.tech${prefix}`,
           description: 'Production development server.'
         }
       ],

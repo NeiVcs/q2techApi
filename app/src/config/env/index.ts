@@ -8,7 +8,7 @@ import { logger } from '@shared/logger';
  * */
 const envSchema = z
   .object({
-    APPLICATION_NAME: z.string().optional().default('ms-boleto'),
+    APPLICATION_NAME: z.string().optional().default('api-q2tech'),
 
     NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
 
@@ -26,7 +26,7 @@ const envSchema = z
       .optional()
       .describe('Upload file size limit. Default: 10MB')
       .default(10 * 1024 * 1024),
-    API_PREFIX_ROUTE: z.string().optional().default('/ms-boleto'),
+    API_PREFIX_ROUTE: z.string().optional().default('/api-q2tech'),
 
     ENABLED_SWAGGER: z.string().optional(),
 

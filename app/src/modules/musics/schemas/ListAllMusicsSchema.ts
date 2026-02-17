@@ -67,6 +67,6 @@ const schema = createSchema({
   }
 });
 
-export const FindBillPaymentsListSchema = schema.raw;
-export type FindBillPaymentsListQueryRequest = typeof schema.types.querystring;
-export type FindBillPaymentsListResponse = (typeof schema.types.response)[200];
+export const ListAllMusicsSchema = schema.raw;
+export type ListAllMusicsQueryRequest = typeof schema.types.querystring;
+export type ListAllMusicsResponse = (typeof schema.types.response)[200];

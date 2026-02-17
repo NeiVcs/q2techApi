@@ -17,13 +17,13 @@ install:
 	$(DOCKER_CLI) yarn install
 
 dev:
-	docker compose up ms-boleto
+	docker compose up q2tech
 
 hmg:
-	ENV_FILE=.env_hmg docker compose up ms-boleto
+	ENV_FILE=.env_hmg docker compose up q2tech
 
 prod:
-	ENV_FILE=.env_prod docker compose up ms-boleto
+	ENV_FILE=.env_prod docker compose up q2tech
 
 test:
 	$(DOCKER_CLI) yarn test
