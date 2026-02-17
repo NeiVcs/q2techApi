@@ -7,7 +7,7 @@ import { ListAllMusicsService } from '@modules/musics/services/ListAllMusicsServ
 @singleton()
 export class ListAllMusicsController {
   constructor(private readonly transformer: ListAllMusicsTransformer,
-              private readonly service: ListAllMusicsService) {}
+    private readonly service: ListAllMusicsService) { }
 
   handler = async (request: FastifyRequest<{ Querystring: ListAllMusicsQueryRequest }>, reply: FastifyReply): Promise<ListAllMusicsResponse> => {
     const inputDTO = this.transformer.fromApi(request);
@@ -15,5 +15,5 @@ export class ListAllMusicsController {
     reply.code(200);
     return this.transformer.toApi(outputDTO);
   }
-  
+
 }

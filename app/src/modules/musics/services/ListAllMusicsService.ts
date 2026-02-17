@@ -1,14 +1,16 @@
 import { singleton } from 'tsyringe';
-import { ListAllMusicsInputDTO } from "@modules/musics/dto/ListAllMusicsInputDTO";
-import { ListAllMusicsOutputDTO } from "@modules/musics/dto/ListAllMusicsOutputDTO";
+import { MusicStorage } from '../repositories/MusicStorage';
+import { ListAllMusicsTransformer } from '../transformers/ListAllMusicsTransformer';
+import { ListAllMusicsInputDTO } from '../dto/ListAllMusicsInputDTO';
+import { ListAllMusicsOutputDTO } from '../dto/ListAllMusicsOutputDTO';
 
 @singleton()
 export class ListAllMusicsService {
-  constructor() {}
-  
-  public async execute(inputDTO: ListAllMusicsInputDTO): Promise<ListAllMusicsOutputDTO> {
-    // TODO: implementar regra de negócio
-    return {} as unknown as ListAllMusicsOutputDTO;
+  constructor(private transformer: ListAllMusicsTransformer, private storage: MusicStorage) { }
+
+  public async execute(dto?: ListAllMusicsInputDTO): Promise<ListAllMusicsOutputDTO> {
+    const entities = await this.storage.findAll();
+
+    return this.transformer.toDto({ items: entities });
   }
-  
 }

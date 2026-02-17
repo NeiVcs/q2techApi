@@ -34,4 +34,17 @@ export class ListAllMusicsTransformer {
       })) : [],
     };
   }
+
+  public toDto(outputDTO: ListAllMusicsOutputDTO): ListAllMusicsResponse {
+    return {
+      items: Array.isArray(outputDTO?.items) ? outputDTO.items.map(f => ({
+        id: f?.id ?? '',
+        name: f?.name ?? '',
+        category: f?.category ?? '',
+        artist: f?.artist ?? '',
+        gender: f?.gender ?? '',
+        link: f?.link ?? '',
+      })) : [],
+    };
+  }
 }
