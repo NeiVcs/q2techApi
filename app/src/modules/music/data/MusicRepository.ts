@@ -4,6 +4,8 @@ import { IMusicRepository } from './IMusicRepository';
 import MusicSchema from './MusicModel';
 import { CreateMusicInputDTO } from '@modules/music/dto/CreateMusicInputDTO';
 import { CreateMusicOutputDTO } from '@modules/music/dto/CreateMusicOutputDTO';
+import { UpdateMusicInputDTO } from '../dto/UpdateMusicInputDTO';
+import { UpdateMusicOutputDTO } from '../dto/UpdateMusicOutputDTO';
 
 export class MusicRepository implements IMusicRepository {
   public async findAll(): Promise<IMusic[]> {
@@ -38,13 +40,9 @@ export class MusicRepository implements IMusicRepository {
     }
   }
 
-  public async update(entity: Partial<IMusic>): Promise<IMusic | null> {
+  public async update(entity: UpdateMusicInputDTO): Promise<UpdateMusicOutputDTO> {
     try {
-      const updatedEntity = await entity.updateOne(entity);
-
-      //const updatedEntity = await MusicSchema.findByIdAndUpdate(entity.id, entity, { new: true });
-
-      return Promise.resolve(updatedEntity);
+      return await MusicSchema.findByIdAndUpdate(entity.id, entity, { new: true });
     } catch (e) {
       throw new MongoDbErrorException(e);
     }
