@@ -1,6 +1,7 @@
 import { FastifyInstance, FastifyPluginAsync, RouteHandlerMethod } from "fastify";
 import { FindAllMusicSchema } from "./schemas/FindAllMusicSchema";
-import { findAllMusicController } from ".";
+import { createMusicController, findAllMusicController } from ".";
+import { CreateMusicSchema } from "./schemas/CreateMusicSchema";
 
 
 /**
@@ -10,4 +11,5 @@ import { findAllMusicController } from ".";
  */
 export const privateMusicRoutesV1: FastifyPluginAsync = async (fastifyInstance: FastifyInstance) => {
     fastifyInstance.get('/v1/musics', { schema: FindAllMusicSchema }, findAllMusicController().handler as RouteHandlerMethod);
+    fastifyInstance.post('/v1/musics', { schema: CreateMusicSchema }, createMusicController().handler as RouteHandlerMethod);
 };
