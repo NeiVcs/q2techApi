@@ -30,7 +30,6 @@ export class CreateMusicTransformer {
   public toApi(outputDTO: CreateMusicOutputDTO): CreateMusicResponse {
     return {
       id: outputDTO?.id ?? '',
-  createdAt: outputDTO?.createdAt ?? '',
     };
   }
 }

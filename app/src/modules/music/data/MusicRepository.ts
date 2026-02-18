@@ -2,6 +2,8 @@ import { MongoDbErrorException } from '@database/MongoDbErrorException';
 import { IMusic } from './IMusic';
 import { IMusicRepository } from './IMusicRepository';
 import MusicSchema from './MusicModel';
+import { CreateMusicInputDTO } from '@modules/music/dto/CreateMusicInputDTO';
+import { CreateMusicOutputDTO } from '@modules/music/dto/CreateMusicOutputDTO';
 
 export class MusicRepository implements IMusicRepository {
   public async findAll(): Promise<IMusic[]> {
@@ -28,10 +30,9 @@ export class MusicRepository implements IMusicRepository {
     }
   }
 
-  public async save(entity: IMusic): Promise<IMusic> {
+  public async save(entity: CreateMusicInputDTO): Promise<CreateMusicOutputDTO> {
     try {
-      await entity.save();
-      return Promise.resolve(entity);
+      return await MusicSchema.create(entity);
     } catch (e) {
       throw new MongoDbErrorException(e);
     }

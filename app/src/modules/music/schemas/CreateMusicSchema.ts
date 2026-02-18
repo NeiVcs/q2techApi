@@ -2,8 +2,8 @@ import { DefinitionsExceptionSchema } from '@shared/exceptions';
 import { createSchema } from '@shared/schemas/define';
 
 const schema = createSchema({
-  description: 'Query a music.',
-  summary: 'Query a music.',
+  description: 'Create a music.',
+  summary: 'Create a music.',
   tags: ['Music'],
   security: [{ ApiKeyAuth: [] }],
   body: {
@@ -13,40 +13,41 @@ const schema = createSchema({
       name: {
         type: 'string',
         description: 'name',
+        minLength: 1,
         errorMessage: {
-          required: {
-            segment: 'name é obrigatório.'
-          },
+          minLength: 'Nome deve ter pelo menos 1 caractere.'
         }
       },
       category: {
         type: 'string',
         description: 'category.',
+        minLength: 1,
         errorMessage: {
-          required: 'category é obrigatório.',
+          minLength: 'Categoria deve ter pelo menos 1 caractere.'
         }
       },
       artist: {
         type: 'string',
-        description: 'artist.',
+        description: 'artist.'
       },
       gender: {
         type: 'string',
         description: 'gender.',
+        minLength: 1,
         errorMessage: {
-          format: 'gender é obrigatório.'
+          minLength: 'Gênero deve ter pelo menos 1 caractere.'
         }
       },
       link: {
         type: 'string',
-        description: 'link.',
-      },
+        description: 'link.'
+      }
     },
     errorMessage: {
       required: {
-        name: 'erro',
-        category: 'erro',
-        gender: 'erro',
+        name: 'Nome é um campo obrigatório.',
+        category: 'Categoria é um campo obrigatório.',
+        gender: 'Gênero é um campo obrigatório.'
       }
     },
     examples: [
@@ -55,7 +56,7 @@ const schema = createSchema({
         category: 'heavy',
         artist: 'angra',
         gender: 'heavy',
-        link: 'abc',
+        link: 'abc'
       }
     ]
   },
