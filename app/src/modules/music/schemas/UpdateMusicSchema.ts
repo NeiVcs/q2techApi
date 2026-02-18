@@ -6,18 +6,16 @@ const schema = createSchema({
   summary: 'Update a music.',
   tags: ['Music'],
   security: [{ ApiKeyAuth: [] }],
-  body: {
+  params: {
     type: 'object',
     required: ['id'],
     properties: {
-      id: {
-        type: 'string',
-        description: 'id',
-        minLength: 1,
-        errorMessage: {
-          minLength: 'Id deve ter pelo menos 1 caractere.'
-        }
-      },
+      id: { type: 'string', description: 'Id.' }
+    }
+  },
+  body: {
+    type: 'object',
+    properties: {
       name: {
         type: 'string',
         description: 'name',
@@ -39,11 +37,6 @@ const schema = createSchema({
         description: 'link.'
       }
     },
-    errorMessage: {
-      required: {
-        id: 'Id é um campo obrigatório.',
-      }
-    },
     examples: [
       {
         name: 'musica',
@@ -55,12 +48,11 @@ const schema = createSchema({
     ]
   },
   response: {
-    201: {
-      description: 'Created successfully.',
+    204: {
+      description: 'Updated successfully.',
       type: 'object',
       properties: {
         id: { type: 'string', format: 'uuid', example: '01992691-67f2-7189-bc1c-eb6a52222fdd' },
-        createdAt: { type: 'string', format: 'date-time', example: '2025-06-19 10:14:09.860' }
       }
     },
     400: DefinitionsExceptionSchema.Error400,
@@ -77,4 +69,5 @@ const schema = createSchema({
 
 export const UpdateMusicSchema = schema.raw;
 export type UpdateMusicBodyRequest = typeof schema.types.body;
-export type UpdateMusicResponse = (typeof schema.types.response)[201];
+export type UpdateMusicParamsRequest = typeof schema.types.params;
+export type UpdateMusicResponse = (typeof schema.types.response)[204];

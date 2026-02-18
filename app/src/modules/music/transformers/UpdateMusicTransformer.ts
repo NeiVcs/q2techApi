@@ -1,16 +1,16 @@
 import { singleton } from 'tsyringe';
 import { FastifyRequest } from 'fastify';
-import { UpdateMusicBodyRequest, UpdateMusicResponse } from '@modules/music/schemas/UpdateMusicSchema'
+import { UpdateMusicBodyRequest, UpdateMusicParamsRequest, UpdateMusicResponse } from '@modules/music/schemas/UpdateMusicSchema'
 import { UpdateMusicInputDTO } from "@modules/music/dto/UpdateMusicInputDTO";
 import { UpdateMusicOutputDTO } from "@modules/music/dto/UpdateMusicOutputDTO";
 
 @singleton()
 export class UpdateMusicTransformer {
-  public fromApi(request?: FastifyRequest<{ Body: UpdateMusicBodyRequest }>): UpdateMusicInputDTO {
-    const { body } = request;
+  public fromApi(request?: FastifyRequest<{ Body: UpdateMusicBodyRequest, Params: UpdateMusicParamsRequest }>): UpdateMusicInputDTO {
+    const { params, body } = request;
 
     return {
-      id: body?.id || '',
+      id: params?.id || '',
       name: body?.name || '',
       category: body?.category || '',
       artist: body?.artist || '',
