@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { MusicEntity } from '../entities/MusicEntity';
+import { IMusic } from './IMusic';
 
 
 const MusicSchema: Schema = new Schema({
@@ -10,4 +10,4 @@ const MusicSchema: Schema = new Schema({
   link: { type: String, required: true },
 });
 
-export default mongoose.model<MusicEntity>('Music', MusicSchema);
+export default mongoose.model<IMusic>('Music', MusicSchema);

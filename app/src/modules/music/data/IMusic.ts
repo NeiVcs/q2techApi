@@ -1,6 +1,7 @@
 import { Document } from 'mongoose';
 
-export interface MusicEntity extends Document {
+export interface IMusic extends Document {
+  id: string;
   name: string;
   category: string;
   artist: string;
