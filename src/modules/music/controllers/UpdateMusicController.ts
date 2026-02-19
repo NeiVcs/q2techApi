@@ -1,5 +1,5 @@
 import { singleton } from 'tsyringe';
-import { FastifyRequest, FastifyReply } from "fastify";
+import { FastifyRequest, FastifyReply } from 'fastify';
 import { UpdateMusicBodyRequest, UpdateMusicParamsRequest } from '@modules/music/schemas/UpdateMusicSchema'
 import { UpdateMusicTransformer } from '@modules/music/transformers/UpdateMusicTransformer';
 import { UpdateMusicService } from '@modules/music/services/UpdateMusicService';
@@ -16,5 +16,5 @@ export class UpdateMusicController {
 
     await this.service.execute(inputDTO);
     reply.code(204);
-  }
+  };
 }

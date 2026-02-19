@@ -1,5 +1,5 @@
 import { singleton } from 'tsyringe';
-import { FastifyRequest, FastifyReply } from "fastify";
+import { FastifyRequest, FastifyReply } from 'fastify';
 import { CreateMusicBodyRequest, CreateMusicResponse } from '@modules/music/schemas/CreateMusicSchema'
 import { CreateMusicTransformer } from '@modules/music/transformers/CreateMusicTransformer';
 import { CreateMusicService } from '@modules/music/services/CreateMusicService';

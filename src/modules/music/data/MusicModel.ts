@@ -1,7 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import { IMusic } from './IMusic';
 
-
 const MusicSchema: Schema = new Schema({
   name: { type: String, required: true },
   category: { type: String, required: true },

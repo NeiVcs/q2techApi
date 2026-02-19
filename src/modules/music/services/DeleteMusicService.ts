@@ -1,5 +1,5 @@
 import { singleton } from 'tsyringe';
-import { DeleteMusicInputDTO } from "@modules/music/dto/DeleteMusicInputDTO";
+import { DeleteMusicInputDTO } from '@modules/music/dto/DeleteMusicInputDTO';
 import { MusicRepository } from '../data/MusicRepository';
 
 @singleton()

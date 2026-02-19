@@ -6,7 +6,10 @@ import { FindAllMusicOutputDTO } from '../dto/FindAllMusicOutputDTO';
 
 @singleton()
 export class FindAllMusicService {
-  constructor(private transformer: FindAllMusicTransformer, private storage: MusicRepository) { }
+  constructor(
+    private transformer: FindAllMusicTransformer,
+    private storage: MusicRepository
+  ) {}
 
   public async execute(dto?: FindAllMusicInputDTO): Promise<FindAllMusicOutputDTO> {
     const entities = await this.storage.findAll();

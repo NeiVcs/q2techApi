@@ -3,9 +3,7 @@ import { IMusic } from './IMusic';
 import { IMusicRepository } from './IMusicRepository';
 import MusicSchema from './MusicModel';
 import { CreateMusicInputDTO } from '@modules/music/dto/CreateMusicInputDTO';
-import { CreateMusicOutputDTO } from '@modules/music/dto/CreateMusicOutputDTO';
 import { UpdateMusicInputDTO } from '../dto/UpdateMusicInputDTO';
-import { UpdateMusicOutputDTO } from '../dto/UpdateMusicOutputDTO';
 
 export class MusicRepository implements IMusicRepository {
   public async findAll(): Promise<IMusic[]> {
@@ -32,7 +30,7 @@ export class MusicRepository implements IMusicRepository {
     }
   }
 
-  public async save(entity: CreateMusicInputDTO): Promise<CreateMusicOutputDTO> {
+  public async save(entity: CreateMusicInputDTO): Promise<IMusic> {
     try {
       return await MusicSchema.create(entity);
     } catch (e) {
@@ -40,7 +38,7 @@ export class MusicRepository implements IMusicRepository {
     }
   }
 
-  public async update(entity: UpdateMusicInputDTO): Promise<UpdateMusicOutputDTO> {
+  public async update(entity: UpdateMusicInputDTO): Promise<IMusic> {
     try {
       return await MusicSchema.findByIdAndUpdate(entity.id, entity, { new: true });
     } catch (e) {

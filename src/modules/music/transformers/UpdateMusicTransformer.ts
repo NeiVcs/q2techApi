@@ -1,8 +1,7 @@
 import { singleton } from 'tsyringe';
 import { FastifyRequest } from 'fastify';
-import { UpdateMusicBodyRequest, UpdateMusicParamsRequest, UpdateMusicResponse } from '@modules/music/schemas/UpdateMusicSchema'
-import { UpdateMusicInputDTO } from "@modules/music/dto/UpdateMusicInputDTO";
-import { UpdateMusicOutputDTO } from "@modules/music/dto/UpdateMusicOutputDTO";
+import { UpdateMusicBodyRequest, UpdateMusicParamsRequest } from '@modules/music/schemas/UpdateMusicSchema'
+import { UpdateMusicInputDTO } from '@modules/music/dto/UpdateMusicInputDTO';
 
 @singleton()
 export class UpdateMusicTransformer {
@@ -16,12 +15,6 @@ export class UpdateMusicTransformer {
       artist: body?.artist || '',
       gender: body?.gender || '',
       link: body?.link || '',
-    };
-  }
-
-  public toApi(outputDTO: UpdateMusicOutputDTO): UpdateMusicResponse {
-    return {
-      id: outputDTO?.id ?? '',
     };
   }
 }

@@ -1,7 +1,7 @@
 import { singleton } from 'tsyringe';
 import { FastifyRequest } from 'fastify';
 import { DeleteMusicBodyRequest } from '@modules/music/schemas/DeleteMusicSchema'
-import { DeleteMusicInputDTO } from "@modules/music/dto/DeleteMusicInputDTO";
+import { DeleteMusicInputDTO } from '@modules/music/dto/DeleteMusicInputDTO';
 
 @singleton()
 export class DeleteMusicTransformer {
@@ -9,7 +9,7 @@ export class DeleteMusicTransformer {
     const { params } = request;
 
     return {
-      id: params?.id,
+      id: params?.id
     };
   }
 }
