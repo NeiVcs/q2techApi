@@ -12,7 +12,7 @@
     "format:fix": "prettier --write \"{src,tests}/**/*.ts\"",
     "build": "tsc && tsc-alias",
     "gen": "ts-node -r tsconfig-paths/register cli/index.ts",
-    "lint:pkg": "npmPkgJsonLint .",
+    "lint:pkg": "npmPkgJsonLint app",
     "check:pkg": "npm-check-updates",
     "check:pkg:update": "npm-check-updates -u"
   },

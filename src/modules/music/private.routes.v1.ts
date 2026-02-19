@@ -1,6 +1,6 @@
 import { FastifyInstance, FastifyPluginAsync, RouteHandlerMethod } from "fastify";
 import { FindAllMusicSchema } from "./schemas/FindAllMusicSchema";
-import { createMusicController, deleteMusicController, findAllMusicController, updateMusicController } from ".";
+import { createMusicController, deleteMusicController, findAllMusicController, updateMusicController } from "./index";
 import { CreateMusicSchema } from "./schemas/CreateMusicSchema";
 import { UpdateMusicSchema } from "./schemas/UpdateMusicSchema";
 import { DeleteMusicSchema } from "./schemas/DeleteMusicSchema";
