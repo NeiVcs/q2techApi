@@ -5,4 +5,5 @@ export interface MusicDTO {
   artist?: string;
   gender?: string;
   link?: string;
+  link2?: string;
 }
