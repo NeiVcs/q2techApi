@@ -25,7 +25,7 @@
   "author": "BHUT Soluções em Tecnologia",
   "license": "ISC",
   "engines": {
-    "node": ">=24"
+    "node": ">=22"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.983.0",
