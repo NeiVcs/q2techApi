@@ -10,7 +10,12 @@ const schema = createSchema({
     type: 'object',
     required: ['id'],
     properties: {
-      id: { type: 'string', description: 'Id.' }
+      id: {
+        type: 'string',
+        description: 'MongoDB Id.',
+        pattern: '^[0-9a-fA-F]{24}$',
+        errorMessage: 'Id deve ser um MongoDB Id.'
+      }
     }
   },
   body: {
@@ -51,6 +56,7 @@ const schema = createSchema({
     204: {
       description: 'Updated successfully.',
       type: 'object',
+      required: ['id'],
       properties: {
         id: { type: 'string', format: 'uuid', example: '01992691-67f2-7189-bc1c-eb6a52222fdd' },
       }

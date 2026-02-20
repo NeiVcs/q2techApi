@@ -10,7 +10,12 @@ const schema = createSchema({
     type: 'object',
     required: ['id'],
     properties: {
-      id: { type: 'string', description: 'Id.' }
+      id: {
+        type: 'string',
+        description: 'MongoDB Id.',
+        pattern: '^[0-9a-fA-F]{24}$',
+        errorMessage: 'Id deve ser um MongoDB Id.'
+      }
     }
   },
   response: {
