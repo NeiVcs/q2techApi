@@ -1,24 +1,23 @@
 .idea
 
-/app/node_modules
-/app/dist/
-/app/tsconfig.tsbuildinfo
-/app/proto/
+/node_modules
+/dist/
+/tsconfig.tsbuildinfo
+/proto/
 
 /.env
 /.env_hmg
 /.env_prod
 
-/app/.npmrc
-/app/.yarnrc.yml
-/app/.env
+/.npmrc
+/.yarnrc.yml
 
-/app/.yarn/*
-!/app/.yarn/patches
-!/app/.yarn/plugins
-!/app/.yarn/releases
-!/app/.yarn/sdks
-!/app/.yarn/versions
+/.yarn/*
+!/.yarn/patches
+!/.yarn/plugins
+!/.yarn/releases
+!/.yarn/sdks
+!/.yarn/versions
 
-/app/coverage/
-/app/.yarn/
+/coverage/
+/.yarn/
