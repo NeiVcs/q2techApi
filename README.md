@@ -77,17 +77,17 @@ Para executar o projeto, você precisará dos seguintes requisitos:
   
   **Onde:**
   - `--m`: Nome do módulo que será criado (ex.: pj-bill-payments, pf-bill-payments, etc).
-  - `--s`: Nome do schema que será usado como base para criar o módulo (ex.: CreateNewBillPaymentsSchema, etc).
+  - `--s`: Nome do schema que será usado como base para criar o módulo (ex.: CreateNewSchema, etc).
   - `--force`: (opcional) Se informado, sobrescreve arquivos existentes sem perguntar.
   
   Exemplo:
   ```bash
-   dcli gen --m billPayments --s CreateNewBillPaymentsSchema
+   dcli gen --m Q2tech --s CreateNewSchema
   ```
   
 - Exemplo com `force` (sobrescreve arquivos existentes):
   ```bash
-   dcli gen --m billPayments --s FindBillPaymentsByIdSchema --force
+   dcli gen --m Q2tech --s FindNewByIdSchema --force
   ```
 
 🚨 **OBSERVAÇÃO:** 
