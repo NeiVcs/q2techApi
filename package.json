@@ -5,6 +5,7 @@
   "main": "dist/main.js",
   "scripts": {
     "dev": "ts-node-dev --inspect=0.0.0.0 -r tsconfig-paths/register src/main.ts",
+    "start": "node dist/main.js",
     "test": "jest --detectOpenHandles --config jest.config.ts",
     "lint": "eslint \"{src,test}/**/*.ts\"",
     "lint:fix": "eslint \"{src,test}/**/*.ts\" --fix",
