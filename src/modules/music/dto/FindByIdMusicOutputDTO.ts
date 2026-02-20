@@ -1,5 +1,5 @@
-export interface UpdateMusicInputDTO {
-  id: string;
+export interface FindAllMusicOutputDTO {
+  id?: string;
   name?: string;
   category?: string;
   artist?: string;

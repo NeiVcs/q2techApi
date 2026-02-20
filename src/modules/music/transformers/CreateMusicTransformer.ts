@@ -1,6 +1,6 @@
 import { singleton } from 'tsyringe';
 import { FastifyRequest } from 'fastify';
-import { CreateMusicBodyRequest, CreateMusicResponse } from '@modules/music/schemas/CreateMusicSchema'
+import { CreateMusicBodyRequest, CreateMusicResponse } from '@modules/music/schemas/CreateMusicSchema';
 import { CreateMusicInputDTO } from '@modules/music/dto/CreateMusicInputDTO';
 import { CreateMusicOutputDTO } from '@modules/music/dto/CreateMusicOutputDTO';
 

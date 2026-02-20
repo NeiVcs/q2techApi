@@ -6,7 +6,8 @@ import { FindAllMusicService } from '@modules/music/services/FindAllMusicService
 
 @singleton()
 export class FindAllMusicController {
-  constructor(private readonly transformer: FindAllMusicTransformer,
+  constructor(
+    private readonly transformer: FindAllMusicTransformer,
     private readonly service: FindAllMusicService
   ) {}
 

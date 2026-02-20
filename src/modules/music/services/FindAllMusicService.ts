@@ -14,6 +14,6 @@ export class FindAllMusicService {
   public async execute(dto?: FindAllMusicInputDTO): Promise<FindAllMusicOutputDTO> {
     const entities = await this.storage.findAll(dto);
 
-    return this.transformer.toDto(entities);
+    return this.transformer.toDto(entities) as unknown as FindAllMusicOutputDTO;
   }
 }
