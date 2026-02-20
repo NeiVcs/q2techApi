@@ -38,7 +38,7 @@ export const RegisterSwaggerDoc = async (fastifyInstance: FastifyInstance) => {
           }
         }
       },
-      tags: [{ name: 'Bill Payments', description: 'Services related to bill payments.' }]
+      tags: [{ name: 'Q2tech', description: 'Services related to Q2tech.' }]
     }
   });
 
