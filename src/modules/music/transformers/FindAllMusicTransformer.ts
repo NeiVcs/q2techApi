@@ -22,13 +22,13 @@ export class FindAllMusicTransformer {
     return {
       items: Array.isArray(outputDTO?.items)
         ? outputDTO.items.map((f) => ({
-            id: f?.id ?? '',
-            name: f?.name ?? '',
-            category: f?.category ?? '',
-            artist: f?.artist ?? '',
-            gender: f?.gender ?? '',
-            link: f?.link ?? ''
-          }))
+          id: f?.id ?? '',
+          name: f?.name ?? '',
+          category: f?.category ?? '',
+          artist: f?.artist ?? '',
+          gender: f?.gender ?? '',
+          link: f?.link ?? ''
+        }))
         : []
     };
   }
@@ -37,13 +37,13 @@ export class FindAllMusicTransformer {
     return {
       items: Array.isArray(entity)
         ? entity.map((f) => ({
-            id: f?.id ?? '',
-            name: f?.name ?? '',
-            category: f?.category ?? '',
-            artist: f?.artist ?? '',
-            gender: f?.gender ?? '',
-            link: f?.link ?? ''
-          }))
+          id: f?.id ?? '',
+          name: f?.name ?? '',
+          category: f?.category ?? '',
+          artist: f?.artist ?? '',
+          gender: f?.gender ?? '',
+          link: f?.link ?? ''
+        }))
         : []
     };
   }

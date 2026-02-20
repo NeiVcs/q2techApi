@@ -10,7 +10,7 @@ export class FindByIdMusicService {
   constructor(
     private transformer: FindByIdMusicTransformer,
     private storage: MusicRepository
-  ) {}
+  ) { }
 
   public async execute(inputDTO: FindByIdMusicInputDTO): Promise<MusicDTO> {
     const entity = await this.storage.findById(inputDTO.id);
