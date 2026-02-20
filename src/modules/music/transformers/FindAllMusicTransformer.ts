@@ -3,7 +3,7 @@ import { FastifyRequest } from 'fastify';
 import { FindAllMusicQueryRequest, FindAllMusicResponse } from '@modules/music/schemas/FindAllMusicSchema';
 import { FindAllMusicInputDTO } from '@modules/music/dto/FindAllMusicInputDTO';
 import { FindAllMusicOutputDTO } from '../dto/FindAllMusicOutputDTO';
-import { MusicDTO } from '../dto/MusicDTO';
+import { MusicDTOFix } from '../dto/MusicDTOFix';
 
 @singleton()
 export class FindAllMusicTransformer {
@@ -22,28 +22,28 @@ export class FindAllMusicTransformer {
     return {
       items: Array.isArray(outputDTO?.items)
         ? outputDTO.items.map((f) => ({
-            id: f?.id ?? '',
-            name: f?.name ?? '',
-            category: f?.category ?? '',
-            artist: f?.artist ?? '',
-            gender: f?.gender ?? '',
-            link: f?.link ?? ''
-          }))
+          id: f?.id ?? '',
+          name: f?.name ?? '',
+          category: f?.category ?? '',
+          artist: f?.artist ?? '',
+          gender: f?.gender ?? '',
+          link: f?.link ?? ''
+        }))
         : []
     };
   }
 
-  public toDto(entity: MusicDTO[]): FindAllMusicOutputDTO {
+  public toDto(entity: MusicDTOFix[]): FindAllMusicOutputDTO {
     return {
       items: Array.isArray(entity)
         ? entity.map((f) => ({
-            id: f?.id ?? '',
-            name: f?.name ?? '',
-            category: f?.category ?? '',
-            artist: f?.artist ?? '',
-            gender: f?.gender ?? '',
-            link: f?.link ?? ''
-          }))
+          id: f?.id ?? '',
+          name: f?.name ?? '',
+          category: f?.category ?? '',
+          artist: f?.artist ?? '',
+          gender: f?.gender ?? '',
+          link: f?.link ?? ''
+        }))
         : []
     };
   }

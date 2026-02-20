@@ -1,4 +1,4 @@
-export interface MusicDTO {
+export interface MusicDTOFix {
   id?: string;
   name?: string;
   category?: string;
