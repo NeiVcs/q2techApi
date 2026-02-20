@@ -37,8 +37,7 @@ export const RegisterSwaggerDoc = async (fastifyInstance: FastifyInstance) => {
             description: 'API key to access this endpoint'
           }
         }
-      },
-      tags: [{ name: 'Q2tech', description: 'Services related to Q2tech.' }]
+      }
     }
   });
 
