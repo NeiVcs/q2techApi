@@ -24,12 +24,12 @@ const schema = createSchema({
       type: 'object',
       required: ['id'],
       properties: {
-        id: { type: 'string', description: 'Id of the bill payment order.' },
-        name: { type: 'string', description: 'Id of the bill payment order.' },
-        category: { type: 'string', description: 'Id of the bill payment order.' },
-        artist: { type: 'string', description: 'Id of the bill payment order.' },
-        gender: { type: 'string', description: 'Id of the bill payment order.' },
-        link: { type: 'string', description: 'Id of the bill payment order.' }
+        id: { type: 'string', description: 'id.' },
+        name: { type: 'string', description: 'name.' },
+        category: { type: 'string', description: 'category.' },
+        artist: { type: 'string', description: 'artist.' },
+        gender: { type: 'string', description: 'gender.' },
+        link: { type: 'string', description: 'link.' }
       }
     },
     400: DefinitionsExceptionSchema.Error400,

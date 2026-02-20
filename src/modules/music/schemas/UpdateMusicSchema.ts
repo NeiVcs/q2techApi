@@ -55,11 +55,7 @@ const schema = createSchema({
   response: {
     204: {
       description: 'Updated successfully.',
-      type: 'object',
-      required: ['id'],
-      properties: {
-        id: { type: 'string', format: 'uuid', example: '01992691-67f2-7189-bc1c-eb6a52222fdd' },
-      }
+      required: ['id']
     },
     400: DefinitionsExceptionSchema.Error400,
     401: DefinitionsExceptionSchema.Error401,

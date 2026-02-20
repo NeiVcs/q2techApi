@@ -2,8 +2,8 @@ import { DefinitionsExceptionSchema } from '@shared/exceptions';
 import { createSchema } from '@shared/schemas/define';
 
 const schema = createSchema({
-  description: 'Query a music.',
-  summary: 'Query a music.',
+  description: 'Query a list of music.',
+  summary: 'Query a list of music.',
   tags: ['Music'],
   security: [{ ApiKeyAuth: [] }],
   querystring: {
@@ -49,12 +49,12 @@ const schema = createSchema({
           items: {
             type: 'object',
             properties: {
-              id: { type: 'string', description: 'Id of the bill payment order.' },
-              name: { type: 'string', description: 'Id of the bill payment order.' },
-              category: { type: 'string', description: 'Id of the bill payment order.' },
-              artist: { type: 'string', description: 'Id of the bill payment order.' },
-              gender: { type: 'string', description: 'Id of the bill payment order.' },
-              link: { type: 'string', description: 'Id of the bill payment order.' },
+              id: { type: 'string', description: 'id.' },
+              name: { type: 'string', description: 'name.' },
+              category: { type: 'string', description: 'category.' },
+              artist: { type: 'string', description: 'artist.' },
+              gender: { type: 'string', description: 'gender.' },
+              link: { type: 'string', description: 'link.' }
             }
           }
         }

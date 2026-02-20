@@ -20,11 +20,7 @@ const schema = createSchema({
   },
   response: {
     204: {
-      description: 'Deleted successfully.',
-      type: 'object',
-      properties: {
-        id: { type: 'string', format: 'uuid', example: '01992691-67f2-7189-bc1c-eb6a52222fdd' },
-      }
+      description: 'Deleted successfully.'
     },
     400: DefinitionsExceptionSchema.Error400,
     401: DefinitionsExceptionSchema.Error401,

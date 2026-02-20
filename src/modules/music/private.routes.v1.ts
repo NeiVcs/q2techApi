@@ -12,9 +12,9 @@ import { FindByIdMusicSchema } from '@modules/music/schemas/FindByIdMusicSchema'
  * @param {FastifyInstance} fastifyInstance - The Fastify instance where the routes will be registered.
  */
 export const privateMusicRoutesV1: FastifyPluginAsync = async (fastifyInstance: FastifyInstance) => {
-  fastifyInstance.get('/v1/musics', { schema: FindAllMusicSchema }, findAllMusicController().handler as RouteHandlerMethod);
-  fastifyInstance.get('/v1/musics/:id', { schema: FindByIdMusicSchema }, findByIdMusicController().handler as RouteHandlerMethod);
-  fastifyInstance.post('/v1/musics', { schema: CreateMusicSchema }, createMusicController().handler as RouteHandlerMethod);
-  fastifyInstance.put('/v1/musics/:id', { schema: UpdateMusicSchema }, updateMusicController().handler as RouteHandlerMethod);
-  fastifyInstance.delete('/v1/musics/:id', { schema: DeleteMusicSchema }, deleteMusicController().handler as RouteHandlerMethod);
+  fastifyInstance.get('/v1/music', { schema: FindAllMusicSchema }, findAllMusicController().handler as RouteHandlerMethod);
+  fastifyInstance.get('/v1/music/:id', { schema: FindByIdMusicSchema }, findByIdMusicController().handler as RouteHandlerMethod);
+  fastifyInstance.post('/v1/music', { schema: CreateMusicSchema }, createMusicController().handler as RouteHandlerMethod);
+  fastifyInstance.put('/v1/music/:id', { schema: UpdateMusicSchema }, updateMusicController().handler as RouteHandlerMethod);
+  fastifyInstance.delete('/v1/music/:id', { schema: DeleteMusicSchema }, deleteMusicController().handler as RouteHandlerMethod);
 };
