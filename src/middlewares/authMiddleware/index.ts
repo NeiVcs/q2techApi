@@ -38,10 +38,10 @@ export const authMiddleware = async (request: FastifyRequest, reply: FastifyRepl
   try {
     const xApiKey = request.headers['x-api-key'] as string | undefined;
 
-    // if (xApiKey !== envConfig.API_KEY_API) {
-    //   registerLoggerError(request, reply);
-    //   return reply.code(401).send(UnauthorizedResponse);
-    // }
+    if (xApiKey !== envConfig.API_KEY_API) {
+      registerLoggerError(request, reply);
+      return reply.code(401).send(UnauthorizedResponse);
+    }
   } catch (error) {
     registerLoggerError(request, reply, error);
     return reply.code(401).send(UnauthorizedResponse);
