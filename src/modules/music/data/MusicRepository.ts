@@ -4,7 +4,6 @@ import { MusicModel } from '@modules/music/data/MusicModel';
 import { CreateMusicInputDTO } from '@modules/music/dto/CreateMusicInputDTO';
 import { UpdateMusicInputDTO } from '../dto/UpdateMusicInputDTO';
 import { FindAllMusicInputDTO } from '@modules/music/dto/FindAllMusicInputDTO';
-import { ResourceNotFoundException } from '@shared/exceptions';
 
 export class MusicRepository {
   public async findAll(dto: FindAllMusicInputDTO): Promise<IMusic[]> {
@@ -20,14 +19,10 @@ export class MusicRepository {
     try {
       const result = await MusicModel.findById(id);
       if (!result) {
-        throw 'NOT_FOUND';
+        throw { type: 'NOT_FOUND', message: 'Música não encontrada' };
       }
-
       return result;
     } catch (e) {
-      if (e === 'NOT_FOUND') {
-        throw new ResourceNotFoundException('Música não encontrada');
-      }
       throw new MongoDbErrorException(e);
     }
   }
@@ -53,12 +48,9 @@ export class MusicRepository {
       const body = Object.fromEntries(Object.entries(entity).filter(([_, value]) => value != null && value !== ''));
       const result = await MusicModel.findByIdAndUpdate(entity.id, body, { new: true });
       if (!result) {
-        throw 'NOT_FOUND';
+        throw { type: 'NOT_FOUND', message: 'Música não encontrada' };
       }
     } catch (e) {
-      if (e === 'NOT_FOUND') {
-        throw new ResourceNotFoundException('Música não encontrada');
-      }
       throw new MongoDbErrorException(e);
     }
   }
@@ -67,12 +59,9 @@ export class MusicRepository {
     try {
       const result = await MusicModel.findByIdAndDelete({ _id: id });
       if (!result) {
-        throw 'NOT_FOUND';
+        throw { type: 'NOT_FOUND', message: 'Música não encontrada' };
       }
     } catch (e) {
-      if (e === 'NOT_FOUND') {
-        throw new ResourceNotFoundException('Música não encontrada');
-      }
       throw new MongoDbErrorException(e);
     }
   }
