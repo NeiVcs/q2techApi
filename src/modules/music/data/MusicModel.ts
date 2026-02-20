@@ -9,4 +9,4 @@ const MusicSchema: Schema = new Schema({
   link: { type: String, required: false }
 });
 
-export default mongoose.model<IMusic>('Music', MusicSchema);
+export const MusicModel = mongoose.model<IMusic>('Music', MusicSchema);

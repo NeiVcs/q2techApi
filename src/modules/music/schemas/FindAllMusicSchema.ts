@@ -8,21 +8,26 @@ const schema = createSchema({
   security: [{ ApiKeyAuth: [] }],
   querystring: {
     type: 'object',
-    //required: ['page', 'pageSize'],
     properties: {
-      status: {
+      name: {
         type: 'string',
-        //format: 'date',
-        description: 'Bill payment status filter',
-        enum: ['PENDENTE_APROVACAO'],
-        errorMessage: { enum: 'O campo status deve ser um dos seguintes valores pré definidos.' }
+        description: 'music name'
       },
-    },
-    errorMessage: {
-      required: {
-        page: 'O campo page é obrigatório.',
-        pageSize: 'O campo pageSize é obrigatório.',
-        entityId: 'O campo entityId é obrigatório.'
+      category: {
+        type: 'string',
+        description: 'music category',
+        enum: ['a', 'm', 'l'],
+        errorMessage: 'Categoria deve ser um dos seguintes valores: a, m, l.'
+      },
+      artist: {
+        type: 'string',
+        description: 'artist name'
+      },
+      gender: {
+        type: 'string',
+        description: 'music gender',
+        enum: ['hm', 'mn', 'lm', 'ps', 'ar', 'po', 'gm', 'fb', 'rn', 'pr', 'jr', 'cl', 'bd'],
+        errorMessage: 'Gênero deve ser um dos seguintes valores: hm, mn, lm, ps, ar, po, gm, fb, rn, pr, jr, cl ou bd.'
       }
     }
   },

@@ -11,7 +11,10 @@ export class FindAllMusicTransformer {
     const { query } = request;
 
     return {
-      status: query?.status || ''
+      name: query?.name || '',
+      category: query?.category || '',
+      artist: query?.artist || '',
+      gender: query?.gender || ''
     };
   }
 

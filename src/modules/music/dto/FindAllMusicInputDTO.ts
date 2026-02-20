@@ -1,3 +1,6 @@
 export interface FindAllMusicInputDTO {
-  status?: string;
+  name?: string;
+  category?: string;
+  artist?: string;
+  gender?: string;
 }
