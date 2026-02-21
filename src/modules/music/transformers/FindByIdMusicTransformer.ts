@@ -2,7 +2,7 @@ import { singleton } from 'tsyringe';
 import { FastifyRequest } from 'fastify';
 import { FindByIdMusicParamsRequest, FindByIdMusicResponse } from '@modules/music/schemas/FindByIdMusicSchema';
 import { FindByIdMusicInputDTO } from '@modules/music/dto/FindByIdMusicInputDTO';
-import { MusicDTOFix } from '@modules/music/dto/MusicDTOFix';
+import { MusicDTO } from '@modules/music/dto/MusicDTO';
 
 @singleton()
 export class FindByIdMusicTransformer {
@@ -14,7 +14,7 @@ export class FindByIdMusicTransformer {
     };
   }
 
-  public toApi(outputDTO: MusicDTOFix): FindByIdMusicResponse {
+  public toApi(outputDTO: MusicDTO): FindByIdMusicResponse {
     return {
       id: outputDTO?.id ?? '',
       name: outputDTO?.name ?? '',
@@ -25,7 +25,7 @@ export class FindByIdMusicTransformer {
     };
   }
 
-  public toDto(entity: MusicDTOFix): MusicDTOFix {
+  public toDto(entity: MusicDTO): MusicDTO {
     return {
       id: entity?.id ?? '',
       name: entity?.name ?? '',

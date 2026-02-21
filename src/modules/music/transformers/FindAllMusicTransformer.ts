@@ -3,7 +3,7 @@ import { FastifyRequest } from 'fastify';
 import { FindAllMusicQueryRequest, FindAllMusicResponse } from '@modules/music/schemas/FindAllMusicSchema';
 import { FindAllMusicInputDTO } from '@modules/music/dto/FindAllMusicInputDTO';
 import { FindAllMusicOutputDTO } from '../dto/FindAllMusicOutputDTO';
-import { MusicDTOFix } from '../dto/MusicDTOFix';
+import { MusicDTO } from '../dto/MusicDTO';
 
 @singleton()
 export class FindAllMusicTransformer {
@@ -33,7 +33,7 @@ export class FindAllMusicTransformer {
     };
   }
 
-  public toDto(entity: MusicDTOFix[]): FindAllMusicOutputDTO {
+  public toDto(entity: MusicDTO[]): FindAllMusicOutputDTO {
     return {
       items: Array.isArray(entity)
         ? entity.map((f) => ({
