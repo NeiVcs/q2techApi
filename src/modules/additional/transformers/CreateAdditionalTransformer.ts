@@ -1,22 +1,10 @@
 import { singleton } from 'tsyringe';
-import { z } from 'zod/v4';
 import { FastifyRequest } from 'fastify';
-import { validateRequest } from '@shared/validateRequest';
 import { CreateAdditionalBodyRequest, CreateAdditionalResponse } from '@modules/additional/schemas/CreateAdditionalSchema'
 import { CreateAdditionalInputDTO } from "@modules/additional/dto/CreateAdditionalInputDTO";
 import { CreateAdditionalOutputDTO } from "@modules/additional/dto/CreateAdditionalOutputDTO";
-
-const requestBodySchema = z.object({
-  min: z.number(),
-  max: z.number(),
-}).superRefine((value, ctx) => {
-  if (value.min > value.max) {
-    ctx.addIssue({
-      code: 'custom',
-      message: 'O campo minímo deve ser menor ou igual ao campo máximo.'
-    });
-  }
-});
+import { minAndMaxRequestSchema } from '@shared/validateRequest/validations/minAndMaxRequestSchema';
+import { validateRequest } from '@shared/validateRequest';
 
 @singleton()
 export class CreateAdditionalTransformer {
@@ -26,7 +14,11 @@ export class CreateAdditionalTransformer {
     }
     const { body } = request;
 
-    validateRequest(requestBodySchema, body);
+    validateRequest(minAndMaxRequestSchema, {
+      min: body.min,
+      max: body.max,
+      message: "A quantidade mínima não pode ser maior que a máxima."
+    });
 
     return {
       name: body?.name || '',
