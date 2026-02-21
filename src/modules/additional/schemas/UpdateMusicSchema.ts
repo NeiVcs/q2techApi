@@ -2,29 +2,32 @@ import { DefinitionsExceptionSchema } from '@shared/exceptions';
 import { createSchema } from '@shared/schemas/define';
 
 const schema = createSchema({
-  description: 'Create a music.',
-  summary: 'Create a music.',
+  description: 'Update a music.',
+  summary: 'Update a music.',
   tags: ['Music'],
   security: [{ ApiKeyAuth: [] }],
+  params: {
+    type: 'object',
+    required: ['id'],
+    properties: {
+      id: {
+        type: 'string',
+        description: 'MongoDB Id.',
+        pattern: '^[0-9a-fA-F]{24}$',
+        errorMessage: 'Id deve ser um MongoDB Id.'
+      }
+    }
+  },
   body: {
     type: 'object',
-    required: ['name', 'category', 'gender'],
     properties: {
       name: {
         type: 'string',
         description: 'name',
-        minLength: 1,
-        errorMessage: {
-          minLength: 'Nome deve ter pelo menos 1 caractere.'
-        }
       },
       category: {
         type: 'string',
         description: 'category.',
-        minLength: 1,
-        errorMessage: {
-          minLength: 'Categoria deve ter pelo menos 1 caractere.'
-        }
       },
       artist: {
         type: 'string',
@@ -33,21 +36,10 @@ const schema = createSchema({
       gender: {
         type: 'string',
         description: 'gender.',
-        minLength: 1,
-        errorMessage: {
-          minLength: 'Gênero deve ter pelo menos 1 caractere.'
-        }
       },
       link: {
         type: 'string',
         description: 'link.'
-      }
-    },
-    errorMessage: {
-      required: {
-        name: 'Nome é um campo obrigatório.',
-        category: 'Categoria é um campo obrigatório.',
-        gender: 'Gênero é um campo obrigatório.'
       }
     },
     examples: [
@@ -61,12 +53,9 @@ const schema = createSchema({
     ]
   },
   response: {
-    201: {
-      description: 'Created successfully.',
-      type: 'object',
-      properties: {
-        id: { type: 'string', format: 'mongoId', example: '65f1a2b3c4d5e6f7a8b9c0d1' }
-      }
+    204: {
+      description: 'Updated successfully.',
+      required: ['id']
     },
     400: DefinitionsExceptionSchema.Error400,
     401: DefinitionsExceptionSchema.Error401,
@@ -80,6 +69,7 @@ const schema = createSchema({
   }
 });
 
-export const CreateMusicSchema = schema.raw;
-export type CreateMusicBodyRequest = typeof schema.types.body;
-export type CreateMusicResponse = (typeof schema.types.response)[201];
+export const UpdateMusicSchema = schema.raw;
+export type UpdateMusicBodyRequest = typeof schema.types.body;
+export type UpdateMusicParamsRequest = typeof schema.types.params;
+export type UpdateMusicResponse = (typeof schema.types.response)[204];

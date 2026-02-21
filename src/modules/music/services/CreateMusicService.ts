@@ -9,7 +9,7 @@ export class CreateMusicService {
   constructor(
     private transformer: CreateMusicTransformer,
     private storage: MusicRepository
-  ) {}
+  ) { }
 
   public async execute(inputDTO: CreateMusicInputDTO): Promise<CreateMusicOutputDTO> {
     const entities = await this.storage.save(inputDTO);
