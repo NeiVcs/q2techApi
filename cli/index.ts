@@ -194,15 +194,15 @@ if (combinedInputSchema && combinedInputSchema.properties) {
   }
 
   const validateLines: string[] = [];
-  if (schema.params && schema.params.properties) {
-    validateLines.push(`validateRequest(requestParamsSchema, params); //TODO: Validação opcional usar apenas quando necessário para validações mais complexas.`);
-  }
-  if (schema.querystring && schema.querystring.properties) {
-    validateLines.push(`validateRequest(requestParamsSchema, query); //TODO: Validação opcional usar apenas quando necessário para validações mais complexas.`);
-  }
-  if (schema.body && schema.body.properties) {
-    validateLines.push(`validateRequest(requestBodySchema, body); //TODO: Validação opcional usar apenas quando necessário para validações mais complexas.`);
-  }
+  // if (schema.params && schema.params.properties) {
+  //   validateLines.push(`validateRequest(requestParamsSchema, params); //TODO: Validação opcional usar apenas quando necessário para validações mais complexas.`);
+  // }
+  // if (schema.querystring && schema.querystring.properties) {
+  //   validateLines.push(`validateRequest(requestParamsSchema, query); //TODO: Validação opcional usar apenas quando necessário para validações mais complexas.`);
+  // }
+  // if (schema.body && schema.body.properties) {
+  //   validateLines.push(`validateRequest(requestBodySchema, body); //TODO: Validação opcional usar apenas quando necessário para validações mais complexas.`);
+  // }
 
   const mapperSourceLines: string[] = [];
   if (schema.headers && schema.headers.properties) {
@@ -259,14 +259,13 @@ ${schema.params ? `const requestParamsSchema = z.object({});` : ``} ${schema.que
 export class ${pascalFeature}Transformer {
   ${fromApiLines}
 
-  ${
-    hasOutput
-      ? `public toApi(outputDTO: ${pascalFeature}OutputDTO): ${pascalFeature}Response {
+  ${hasOutput
+    ? `public toApi(outputDTO: ${pascalFeature}OutputDTO): ${pascalFeature}Response {
     return {
     ${toApiLinesArray.map((l) => '  ' + l).join('\n')}
     };
   }`
-      : ``
+    : ``
   }
 }`,
   force

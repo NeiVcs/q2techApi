@@ -2,9 +2,9 @@ import { DefinitionsExceptionSchema } from '@shared/exceptions';
 import { createSchema } from '@shared/schemas/define';
 
 const schema = createSchema({
-  description: 'Query a music.',
-  summary: 'Query a music.',
-  tags: ['Music'],
+  description: 'Query a additional.',
+  summary: 'Query a additional.',
+  tags: ['Additional'],
   security: [{ ApiKeyAuth: [] }],
   params: {
     type: 'object',
@@ -26,10 +26,15 @@ const schema = createSchema({
       properties: {
         id: { type: 'string', description: 'id.' },
         name: { type: 'string', description: 'name.' },
-        category: { type: 'string', description: 'category.' },
-        artist: { type: 'string', description: 'artist.' },
-        gender: { type: 'string', description: 'gender.' },
-        link: { type: 'string', description: 'link.' }
+        min: { type: 'string', description: 'category.' },
+        max: { type: 'string', description: 'artist.' },
+        productIdList: {
+          type: 'array',
+          items: {
+            type: 'string',
+            description: 'gender.'
+          },
+        }
       }
     },
     400: DefinitionsExceptionSchema.Error400,
@@ -44,6 +49,6 @@ const schema = createSchema({
   }
 });
 
-export const FindByIdMusicSchema = schema.raw;
-export type FindByIdMusicParamsRequest = typeof schema.types.params;
-export type FindByIdMusicResponse = (typeof schema.types.response)[200];
+export const FindByIdAdditionalSchema = schema.raw;
+export type FindByIdAdditionalParamsRequest = typeof schema.types.params;
+export type FindByIdAdditionalResponse = (typeof schema.types.response)[200];
