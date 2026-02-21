@@ -4,10 +4,9 @@ import { CreateAdditionalInputDTO } from '../dto/CreateAdditionalInputDTO';
 import { AdditionalModel } from './AdditionalModel';
 
 export class AdditionalRepository {
-  public async findAll(dto: any): Promise<IAdditional[]> {
+  public async findAll(): Promise<IAdditional[]> {
     try {
-      const query = Object.fromEntries(Object.entries(dto).filter(([_, value]) => value != null && value !== ''));
-      return await AdditionalModel.find(query);
+      return await AdditionalModel.find();
     } catch (e) {
       throw new MongoDbErrorException(e);
     }

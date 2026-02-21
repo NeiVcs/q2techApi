@@ -32,19 +32,4 @@ export class FindAllMusicTransformer {
         : []
     };
   }
-
-  public toDto(entity: MusicDTO[]): FindAllMusicOutputDTO {
-    return {
-      items: Array.isArray(entity)
-        ? entity.map((f) => ({
-          id: f?.id ?? '',
-          name: f?.name ?? '',
-          category: f?.category ?? '',
-          artist: f?.artist ?? '',
-          gender: f?.gender ?? '',
-          link: f?.link ?? ''
-        }))
-        : []
-    };
-  }
 }

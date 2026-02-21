@@ -13,8 +13,7 @@ export class FindByIdMusicService {
   ) { }
 
   public async execute(inputDTO: FindByIdMusicInputDTO): Promise<MusicDTO> {
-    const entity = await this.storage.findById(inputDTO.id);
-
-    return this.transformer.toApi(entity) as unknown as FindAllMusicOutputDTO;
+    const response = await this.storage.findById(inputDTO.id);
+    return response as unknown as FindAllMusicOutputDTO;
   }
 }
