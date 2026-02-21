@@ -35,5 +35,5 @@ const schema = createSchema({
 });
 
 export const DeleteMusicSchema = schema.raw;
-export type DeleteMusicBodyRequest = typeof schema.types.params;
+export type DeleteMusicParamsRequest = typeof schema.types.params;
 export type DeleteMusicResponse = (typeof schema.types.response)[204];

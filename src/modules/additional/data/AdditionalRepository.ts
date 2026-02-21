@@ -17,17 +17,9 @@ export class AdditionalRepository {
     try {
       const result = await AdditionalModel.findById(id);
       if (!result) {
-        throw { type: 'NOT_FOUND', message: 'Música não encontrada' };
+        throw { type: 'NOT_FOUND', message: 'Adicional não encontrado' };
       }
       return result;
-    } catch (e) {
-      throw new MongoDbErrorException(e);
-    }
-  }
-
-  public async findByName(name: string): Promise<IAdditional> {
-    try {
-      return AdditionalModel.findOne({ name });
     } catch (e) {
       throw new MongoDbErrorException(e);
     }
@@ -46,7 +38,7 @@ export class AdditionalRepository {
       const body = Object.fromEntries(Object.entries(entity).filter(([_, value]) => value != null && value !== ''));
       const result = await AdditionalModel.findByIdAndUpdate(entity.id, body, { new: true });
       if (!result) {
-        throw { type: 'NOT_FOUND', message: 'Música não encontrada' };
+        throw { type: 'NOT_FOUND', message: 'Adicional não encontrado' };
       }
     } catch (e) {
       throw new MongoDbErrorException(e);
@@ -57,7 +49,7 @@ export class AdditionalRepository {
     try {
       const result = await AdditionalModel.findByIdAndDelete({ _id: id });
       if (!result) {
-        throw { type: 'NOT_FOUND', message: 'Música não encontrada' };
+        throw { type: 'NOT_FOUND', message: 'Adicional não encontrado' };
       }
     } catch (e) {
       throw new MongoDbErrorException(e);
