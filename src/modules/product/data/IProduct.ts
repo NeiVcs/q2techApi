@@ -8,7 +8,6 @@ export interface IProduct extends Document {
   description: string;
   isActived: boolean;
   imgUrl: string;
-  observations: string;
   price: number;
   previewPrice: number;
   additionalListId: string;

@@ -1,6 +1,7 @@
 import { MongoDbErrorException } from '@database/MongoDbErrorException';
 import { IProduct } from './IProduct';
 import { ProductModel } from './ProductModel';
+import { CreateProductInputDTO } from '../dto/CreateProductInputDTO';
 
 export class ProductRepository {
   public async findAll(): Promise<IProduct[]> {
@@ -23,10 +24,11 @@ export class ProductRepository {
     }
   }
 
-  public async save(entity: any): Promise<IProduct> {
+  public async save(entity: CreateProductInputDTO): Promise<IProduct> {
     try {
       return await ProductModel.create(entity);
     } catch (e) {
+      console.log(e, 'aqui')
       throw new MongoDbErrorException(e);
     }
   }
