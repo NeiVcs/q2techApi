@@ -6,8 +6,10 @@ import { CreateAdditionalService } from '@modules/additional/services/CreateAddi
 
 @singleton()
 export class CreateAdditionalController {
-  constructor(private readonly transformer: CreateAdditionalTransformer,
-              private readonly service: CreateAdditionalService) {}
+  constructor(
+    private readonly transformer: CreateAdditionalTransformer,
+    private readonly service: CreateAdditionalService
+  ) { }
 
   handler = async (request: FastifyRequest<{ Body: CreateAdditionalBodyRequest }>, reply: FastifyReply): Promise<CreateAdditionalResponse> => {
     const inputDTO = this.transformer.fromApi(request);
@@ -15,5 +17,5 @@ export class CreateAdditionalController {
     reply.code(201);
     return this.transformer.toApi(outputDTO);
   }
-  
+
 }

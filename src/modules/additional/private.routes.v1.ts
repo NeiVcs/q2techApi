@@ -1,9 +1,10 @@
 import { FastifyInstance, FastifyPluginAsync, RouteHandlerMethod } from "fastify";
 import { CreateAdditionalSchema } from "./schemas/CreateAdditionalSchema";
-import { createAdditionalController, deleteAdditionalController, findAllAdditionalController, findByIdAdditionalController } from ".";
+import { createAdditionalController, deleteAdditionalController, findAllAdditionalController, findByIdAdditionalController, updateAdditionalController } from ".";
 import { DeleteAdditionalSchema } from "./schemas/DeleteAdditionalSchema";
 import { FindAllAdditionalSchema } from "./schemas/FindAllAdditionalSchema";
 import { FindByIdAdditionalSchema } from "./schemas/FindByIdAdditionalSchema";
+import { UpdateAdditionalSchema } from "./schemas/UpdateAdditionalSchema";
 
 /**
  * Registers private routes for API version 1.
@@ -15,4 +16,5 @@ export const privateAdditionalRoutesV1: FastifyPluginAsync = async (fastifyInsta
     fastifyInstance.delete('/v1/additional/:id', { schema: DeleteAdditionalSchema }, deleteAdditionalController().handler as RouteHandlerMethod);
     fastifyInstance.get('/v1/additional', { schema: FindAllAdditionalSchema }, findAllAdditionalController().handler as RouteHandlerMethod);
     fastifyInstance.get('/v1/additional/:id', { schema: FindByIdAdditionalSchema }, findByIdAdditionalController().handler as RouteHandlerMethod);
+    fastifyInstance.put('/v1/additional/:id', { schema: UpdateAdditionalSchema }, updateAdditionalController().handler as RouteHandlerMethod);
 };
