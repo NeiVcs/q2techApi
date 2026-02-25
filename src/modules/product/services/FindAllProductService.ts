@@ -14,7 +14,7 @@ export class FindAllProductService {
   ) { }
 
   public async execute(inputDTO: FindAllProductInputDTO): Promise<any> {
-    const products = await this.productStorage.findAll();
+    const products = await this.productStorage.findAll(inputDTO);
     const additionalList = await this.findCategories(products);
     const populatedProducts = await this.populateCategory(products, additionalList)
 

@@ -1,13 +1,21 @@
 import { singleton } from 'tsyringe';
 import { FastifyRequest } from 'fastify';
-import { FindAllProductResponse } from '@modules/product/schemas/FindAllProductSchema'
+import { FindAllProductQueryRequest, FindAllProductResponse } from '@modules/product/schemas/FindAllProductSchema'
 import { FindAllProductInputDTO } from "@modules/product/dto/FindAllProductInputDTO";
 import { FindAllProductOutputDTO } from "@modules/product/dto/FindAllProductOutputDTO";
 
 @singleton()
 export class FindAllProductTransformer {
-  public fromApi(request?: FastifyRequest): FindAllProductInputDTO {
-    return {};
+  public fromApi(request?: FastifyRequest<{ Querystring: FindAllProductQueryRequest }>): FindAllProductInputDTO {
+    console.log(request)
+    const { query } = request;
+
+    return {
+      storeId: query?.storeId || '',
+      name: query?.name || '',
+      category: query?.category || '',
+      isActived: query?.isActived || ''
+    };
   }
 
   public toApi(outputDTO: FindAllProductOutputDTO): FindAllProductResponse {

@@ -6,6 +6,27 @@ const schema = createSchema({
   summary: 'Query a list of product.',
   tags: ['Product'],
   security: [{ ApiKeyAuth: [] }],
+  querystring: {
+    type: 'object',
+    properties: {
+      storeId: {
+        type: 'string',
+        description: 'product storeId'
+      },
+      name: {
+        type: 'string',
+        description: 'product name'
+      },
+      category: {
+        type: 'string',
+        description: 'product category',
+      },
+      isActived: {
+        type: 'string',
+        description: 'product activation'
+      }
+    }
+  },
   response: {
     200: {
       description: 'Returned successfully.',

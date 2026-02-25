@@ -2,11 +2,13 @@ import { MongoDbErrorException } from '@database/MongoDbErrorException';
 import { IProduct } from './IProduct';
 import { ProductModel } from './ProductModel';
 import { CreateProductInputDTO } from '../dto/CreateProductInputDTO';
+import { FindAllProductInputDTO } from '../dto/FindAllProductInputDTO';
 
 export class ProductRepository {
-  public async findAll(): Promise<IProduct[]> {
+  public async findAll(dto: FindAllProductInputDTO): Promise<IProduct[]> {
     try {
-      return await ProductModel.find();
+      const query = Object.fromEntries(Object.entries(dto).filter(([_, value]) => value != null && value !== ''));
+      return await ProductModel.find(query);
     } catch (e) {
       throw new MongoDbErrorException(e);
     }

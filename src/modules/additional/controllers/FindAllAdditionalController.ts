@@ -11,7 +11,7 @@ export class FindAllAdditionalController {
     private readonly service: FindAllAdditionalService
   ) { }
 
-  handler = async (request: FastifyRequest<{ Querystring: FindAllAdditionalQueryRequest }>, reply: FastifyReply): Promise<FindAllAdditionalResponse> => {
+  handler = async (_: FastifyRequest, reply: FastifyReply): Promise<FindAllAdditionalResponse> => {
     const outputDTO = await this.service.execute();
     reply.code(200);
     return this.transformer.toApi(outputDTO);
