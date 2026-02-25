@@ -4,7 +4,8 @@ export interface FindAllProductItemsItemDTO {
   name?: string;
   category?: string;
   description?: string;
-  isActived?: string;
+  active?: boolean;
+  isAdditional?: boolean;
   imgUrl?: string;
   price?: number;
   previewPrice?: number;

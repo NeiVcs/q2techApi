@@ -21,8 +21,12 @@ const schema = createSchema({
         type: 'string',
         description: 'product category',
       },
-      isActived: {
-        type: 'string',
+      active: {
+        type: 'boolean',
+        description: 'product activation'
+      },
+      isAdditional: {
+        type: 'boolean',
         description: 'product activation'
       }
     }
@@ -42,7 +46,8 @@ const schema = createSchema({
               name: { type: 'string', description: 'name.' },
               category: { type: 'string', description: 'category.' },
               description: { type: 'string', description: 'description.' },
-              isActived: { type: 'string', description: 'isActived.' },
+              active: { type: 'boolean', description: 'active.' },
+              isAdditional: { type: 'boolean', description: 'isAdditional.' },
               imgUrl: { type: 'string', description: 'imgUrl.' },
               price: { type: 'number', description: 'price.' },
               previewPrice: { type: 'number', description: 'previewPrice.' },

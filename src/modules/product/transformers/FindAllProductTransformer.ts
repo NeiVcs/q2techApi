@@ -7,14 +7,14 @@ import { FindAllProductOutputDTO } from "@modules/product/dto/FindAllProductOutp
 @singleton()
 export class FindAllProductTransformer {
   public fromApi(request?: FastifyRequest<{ Querystring: FindAllProductQueryRequest }>): FindAllProductInputDTO {
-    console.log(request)
     const { query } = request;
 
     return {
       storeId: query?.storeId || '',
       name: query?.name || '',
       category: query?.category || '',
-      isActived: query?.isActived || ''
+      active: query?.active,
+      isAdditional: query?.isAdditional
     };
   }
 
@@ -26,7 +26,8 @@ export class FindAllProductTransformer {
         name: f?.name ?? '',
         category: f?.category ?? '',
         description: f?.description ?? '',
-        isActived: f?.isActived ?? '',
+        active: f?.active,
+        isAdditional: f?.isAdditional,
         imgUrl: f?.imgUrl ?? '',
         price: f?.price ?? 0,
         previewPrice: f?.previewPrice ?? 0,

@@ -13,6 +13,8 @@ export class CreateProductTransformer {
       storeId: body?.storeId || '',
       name: body?.name || '',
       category: body?.category || '',
+      active: body?.active !== null && body?.active !== undefined ? body?.active : true,
+      isAdditional: body?.isAdditional !== null && body?.isAdditional !== undefined ? body?.isAdditional : false,
       description: body?.description || '',
       imgUrl: body?.imgUrl || '',
       price: body?.price || 0,

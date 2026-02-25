@@ -8,7 +8,7 @@ export class CreateProductService {
   constructor(private storage: ProductRepository) { }
 
   public async execute(inputDTO: CreateProductInputDTO): Promise<CreateProductOutputDTO> {
-    const response = await this.storage.save({ ...inputDTO, isActived: true });
+    const response = await this.storage.save({ ...inputDTO });
     return response as unknown as CreateProductOutputDTO;
   }
 }

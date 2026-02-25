@@ -42,6 +42,14 @@ const schema = createSchema({
           minLength: 'Descrição deve ter pelo menos 1 caractere.'
         }
       },
+      active: {
+        type: 'boolean',
+        description: 'active',
+      },
+      isAdditional: {
+        type: 'boolean',
+        description: 'isAdditional',
+      },
       imgUrl: {
         type: 'string',
         description: 'name',
@@ -82,6 +90,7 @@ const schema = createSchema({
         storeId: 'Id da loja é um campo obrigatório',
         name: 'Nome é um campo obrigatório.',
         category: 'Categoria é um campo obrigatório.',
+        isAdditional: 'Apenas adicional é um campo obrigatório.',
         description: 'Descrição é um campo obrigatório.',
         price: 'Preço é um campo obrigatório.',
       }
@@ -92,7 +101,8 @@ const schema = createSchema({
         name: 'cachorro quente simples',
         category: 'hotdogs',
         description: 'salsicha, purê de batata, milho, ervilha e molhos',
-        isActived: true,
+        active: false,
+        isAdditional: false,
         imgUrl: 'enderecodaimagem.com',
         price: 5,
         previewPrice: 5.99,

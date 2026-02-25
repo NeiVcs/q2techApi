@@ -3,7 +3,8 @@ export interface CreateProductInputDTO {
   name: string;
   category: string;
   description: string;
-  isActived?: boolean;
+  active?: boolean;
+  isAdditional?: boolean;
   imgUrl?: string;
   price: number;
   previewPrice?: number;

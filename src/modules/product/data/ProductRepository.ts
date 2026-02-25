@@ -30,7 +30,6 @@ export class ProductRepository {
     try {
       return await ProductModel.create(entity);
     } catch (e) {
-      console.log(e, 'aqui')
       throw new MongoDbErrorException(e);
     }
   }
