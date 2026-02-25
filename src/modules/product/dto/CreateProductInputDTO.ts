@@ -1,5 +1,5 @@
 export interface CreateProductInputDTO {
-  storeId: string;
+  companyId: string;
   name: string;
   category: string;
   description: string;

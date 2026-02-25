@@ -9,9 +9,9 @@ const schema = createSchema({
   querystring: {
     type: 'object',
     properties: {
-      storeId: {
+      companyId: {
         type: 'string',
-        description: 'product storeId'
+        description: 'product companyId'
       },
       name: {
         type: 'string',
@@ -42,7 +42,7 @@ const schema = createSchema({
             type: 'object',
             properties: {
               id: { type: 'string', description: 'id.' },
-              storeId: { type: 'string', description: 'storeId.' },
+              companyId: { type: 'string', description: 'companyId.' },
               name: { type: 'string', description: 'name.' },
               category: { type: 'string', description: 'category.' },
               description: { type: 'string', description: 'description.' },

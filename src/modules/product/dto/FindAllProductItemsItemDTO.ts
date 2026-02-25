@@ -1,6 +1,6 @@
 export interface FindAllProductItemsItemDTO {
   id?: string;
-  storeId?: string;
+  companyId?: string;
   name?: string;
   category?: string;
   description?: string;

@@ -8,9 +8,9 @@ const schema = createSchema({
   security: [{ ApiKeyAuth: [] }],
   body: {
     type: 'object',
-    required: ['storeId', 'name', 'category', 'description', 'price'],
+    required: ['companyId', 'name', 'category', 'description', 'price'],
     properties: {
-      storeId: {
+      companyId: {
         type: 'string',
         description: 'MongoDB Id.',
         pattern: '^[0-9a-fA-F]{24}$',
@@ -87,7 +87,7 @@ const schema = createSchema({
 
     errorMessage: {
       required: {
-        storeId: 'Id da loja é um campo obrigatório',
+        companyId: 'Id da loja é um campo obrigatório',
         name: 'Nome é um campo obrigatório.',
         category: 'Categoria é um campo obrigatório.',
         isAdditional: 'Apenas adicional é um campo obrigatório.',
@@ -97,7 +97,7 @@ const schema = createSchema({
     },
     examples: [
       {
-        storeId: '65f1a2b3c4d5e6f7a8b9c0d1',
+        companyId: '65f1a2b3c4d5e6f7a8b9c0d1',
         name: 'cachorro quente simples',
         category: 'hotdogs',
         description: 'salsicha, purê de batata, milho, ervilha e molhos',

@@ -1,5 +1,5 @@
 export interface FindAllProductInputDTO {
-  storeId?: string;
+  companyId?: string;
   name?: string;
   category?: string;
   active?: boolean;

@@ -10,7 +10,7 @@ describe("CreateProductTransformer", () => {
   it("deve mapear corretamente fromApi", () => {
     const request: any = {
       body: {
-        "storeId": "fakeString",
+        "companyId": "fakeString",
         "name": "fakeString",
         "category": "fakeString",
         "description": "fakeString",
@@ -22,7 +22,7 @@ describe("CreateProductTransformer", () => {
     };
     const dto = transformer.fromApi(request);
     expect(dto).toMatchObject({
-      "storeId": "fakeString",
+      "companyId": "fakeString",
       "name": "fakeString",
       "category": "fakeString",
       "description": "fakeString",

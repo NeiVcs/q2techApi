@@ -21,7 +21,7 @@ describe("CreateProductController", () => {
 
   it("deve chamar service e transformer corretamente", async () => {
     const inputDTO = {
-      "storeId": "fakeString",
+      "companyId": "fakeString",
       "name": "fakeString",
       "category": "fakeString",
       "description": "fakeString",
@@ -40,7 +40,7 @@ describe("CreateProductController", () => {
 
     const result = await controller.handler({
       body: {
-        "storeId": "fakeString",
+        "companyId": "fakeString",
         "name": "fakeString",
         "category": "fakeString",
         "description": "fakeString",

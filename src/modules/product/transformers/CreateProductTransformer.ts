@@ -10,7 +10,7 @@ export class CreateProductTransformer {
     const { body } = request;
 
     return {
-      storeId: body?.storeId || '',
+      companyId: body?.companyId || '',
       name: body?.name || '',
       category: body?.category || '',
       active: body?.active !== null && body?.active !== undefined ? body?.active : true,

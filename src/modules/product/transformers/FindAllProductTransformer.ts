@@ -10,7 +10,7 @@ export class FindAllProductTransformer {
     const { query } = request;
 
     return {
-      storeId: query?.storeId || '',
+      companyId: query?.companyId || '',
       name: query?.name || '',
       category: query?.category || '',
       active: query?.active,
@@ -22,7 +22,7 @@ export class FindAllProductTransformer {
     return {
       items: Array.isArray(outputDTO?.items) ? outputDTO.items.map(f => ({
         id: f?.id ?? '',
-        storeId: f?.storeId ?? '',
+        companyId: f?.companyId ?? '',
         name: f?.name ?? '',
         category: f?.category ?? '',
         description: f?.description ?? '',

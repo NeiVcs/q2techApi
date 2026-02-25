@@ -2,7 +2,7 @@ import { Document } from 'mongoose';
 
 export interface IProduct extends Document {
   id: string;
-  storeId: string;
+  companyId: string;
   name: string;
   category: string;
   description: string;
