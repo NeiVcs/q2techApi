@@ -26,8 +26,8 @@ const schema = createSchema({
       properties: {
         id: { type: 'string', description: 'id.' },
         name: { type: 'string', description: 'name.' },
-        min: { type: 'string', description: 'category.' },
-        max: { type: 'string', description: 'artist.' },
+        min: { type: 'number', description: '1.' },
+        max: { type: 'number', description: '2.' },
         productIdList: {
           type: 'array',
           items: {

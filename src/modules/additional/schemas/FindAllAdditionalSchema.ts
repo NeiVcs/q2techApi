@@ -6,11 +6,40 @@ const schema = createSchema({
   summary: 'Query a list of additional.',
   tags: ['Additional'],
   security: [{ ApiKeyAuth: [] }],
+  querystring: {
+    type: 'object',
+    properties: {
+      page: {
+        type: 'number',
+        description: 'page',
+        minimum: 1,
+        errorMessage: {
+          minimum: 'A página deve ser maior que 0.'
+        }
+      },
+      pageSize: {
+        type: 'number',
+        description: 'page size',
+        minimum: 1,
+        errorMessage: {
+          minimum: 'O tamanho da página deve ser maior que 0.'
+        }
+      },
+    }
+  },
   response: {
     200: {
       description: 'Returned successfully.',
       type: 'object',
       properties: {
+        pagination: {
+          type: 'object',
+          properties: {
+            page: { type: 'number', description: 'page.' },
+            pageSize: { type: 'number', description: 'page size.' },
+            total: { type: 'number', description: 'total.' },
+          },
+        },
         items: {
           type: 'array',
           items: {
@@ -18,8 +47,8 @@ const schema = createSchema({
             properties: {
               id: { type: 'string', description: 'id.' },
               name: { type: 'string', description: 'name.' },
-              min: { type: 'string', description: 'category.' },
-              max: { type: 'string', description: 'artist.' },
+              min: { type: 'number', description: '1' },
+              max: { type: 'number', description: '2' },
               productIdList: {
                 type: 'array',
                 items: {

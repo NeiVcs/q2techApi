@@ -18,8 +18,8 @@ export class FindByIdAdditionalTransformer {
     return {
       id: outputDTO?.id ?? '',
       name: outputDTO?.name ?? '',
-      min: outputDTO?.min ?? '',
-      max: outputDTO?.max ?? '',
+      min: outputDTO?.min,
+      max: outputDTO?.max,
       productIdList: Array.isArray(outputDTO?.productIdList) ? [...outputDTO.productIdList] : [],
     };
   }

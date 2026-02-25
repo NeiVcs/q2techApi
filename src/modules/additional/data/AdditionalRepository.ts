@@ -2,11 +2,19 @@ import { MongoDbErrorException } from '@database/MongoDbErrorException';
 import { IAdditional } from './IAdditional';
 import { CreateAdditionalInputDTO } from '../dto/CreateAdditionalInputDTO';
 import { AdditionalModel } from './AdditionalModel';
+import { FindAllAdditionalInputDTO } from '../dto/FindAllAdditionalInputDTO';
+import { FindAllAdditionalOutputDTO } from '../dto/FindAllAdditionalOutputDTO';
 
 export class AdditionalRepository {
-  public async findAll(): Promise<IAdditional[]> {
+  public async findAll(inputDTO: FindAllAdditionalInputDTO): Promise<FindAllAdditionalOutputDTO> {
     try {
-      return await AdditionalModel.find();
+      const skip = (inputDTO.page - 1) * inputDTO.pageSize;
+      const data = await AdditionalModel.find().skip(skip).limit(inputDTO.pageSize).lean();
+
+      const items = data.map((el: IAdditional) => ({ id: el._id.toString(), ...el }));
+      const total = await AdditionalModel.countDocuments();
+
+      return { items: items, pagination: { ...inputDTO, total: total } }
     } catch (e) {
       throw new MongoDbErrorException(e);
     }

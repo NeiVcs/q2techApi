@@ -1,4 +1,4 @@
-export interface AdditionalDTO {
+export interface FindAllAdditionalItemsItemDTO {
   id?: string;
   name?: string;
   min?: number;
