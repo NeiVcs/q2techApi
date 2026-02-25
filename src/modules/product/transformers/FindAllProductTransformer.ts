@@ -11,7 +11,6 @@ export class FindAllProductTransformer {
   }
 
   public toApi(outputDTO: FindAllProductOutputDTO): FindAllProductResponse {
-    console.log(outputDTO.items[13])
     return {
       items: Array.isArray(outputDTO?.items) ? outputDTO.items.map(f => ({
         id: f?.id ?? '',

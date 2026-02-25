@@ -17,5 +17,4 @@ export class FindAllProductController {
     reply.code(200);
     return this.transformer.toApi(outputDTO);
   }
-
 }
