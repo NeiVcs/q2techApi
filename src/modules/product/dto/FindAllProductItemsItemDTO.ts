@@ -8,5 +8,5 @@ export interface FindAllProductItemsItemDTO {
   imgUrl?: string;
   price?: number;
   previewPrice?: number;
-  additionalList?: FindAllProductAdditionalListItemDTO[];
+  additionalList?: any[];
 }

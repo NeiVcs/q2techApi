@@ -17,7 +17,7 @@ describe("CreateProductTransformer", () => {
         "imgUrl": "fakeString",
         "price": 123,
         "previewPrice": 123,
-        "additionalListId": "fakeString"
+        "additionalIdList": "fakeString"
       }
     };
     const dto = transformer.fromApi(request);
@@ -29,7 +29,7 @@ describe("CreateProductTransformer", () => {
       "imgUrl": "fakeString",
       "price": 123,
       "previewPrice": 123,
-      "additionalListId": "fakeString"
+      "additionalIdList": "fakeString"
     });
   });
   it("deve mapear corretamente toApi", () => {

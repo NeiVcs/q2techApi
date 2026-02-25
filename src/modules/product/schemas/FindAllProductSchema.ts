@@ -26,8 +26,9 @@ const schema = createSchema({
               price: { type: 'number', description: 'price.' },
               previewPrice: { type: 'number', description: 'previewPrice.' },
               additionalList: {
-                type: 'array',
                 description: 'Lista de adicionais',
+                type: 'array',
+                nullable: true,
                 items: {
                   type: 'object',
                   properties: {
@@ -35,20 +36,10 @@ const schema = createSchema({
                     name: { type: 'string' },
                     min: { type: 'number' },
                     max: { type: 'number' },
-                    productList: {
+                    productIdList: {
                       type: 'array',
-                      items: {
-                        type: 'object',
-                        properties: {
-                          id: { type: 'string' },
-                          name: { type: 'string' },
-                          category: { type: 'string' },
-                          description: { type: 'string' },
-                          imgUrl: { type: 'string' },
-                          price: { type: 'number' },
-                          previewPrice: { type: 'number' }
-                        }
-                      }
+                      nullable: true,
+                      items: { type: 'string' }
                     }
                   }
                 }

@@ -10,5 +10,5 @@ export interface IProduct extends Document {
   imgUrl: string;
   price: number;
   previewPrice: number;
-  additionalListId: string;
+  additionalIdList: string[];
 }

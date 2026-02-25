@@ -64,12 +64,15 @@ const schema = createSchema({
           minimum: 'Preço anterios mínimo deve ser pelo menos 1.'
         }
       },
-      additionalListId: {
-        type: 'string',
-        description: 'MongoDB Id.',
-        pattern: '^[0-9a-fA-F]{24}$',
-        errorMessage: {
-          pattern: 'Id da lista de adicionais deve ser um MongoDB Id.'
+      additionalIdList: {
+        type: 'array',
+        description: 'Lista de MongoDB Ids dos adicionais.',
+        items: {
+          type: 'string',
+          pattern: '^[0-9a-fA-F]{24}$',
+          errorMessage: {
+            pattern: 'Cada Id da lista de adicionais deve ser um MongoDB Id válido.'
+          }
         },
       },
     },
@@ -93,7 +96,7 @@ const schema = createSchema({
         imgUrl: 'enderecodaimagem.com',
         price: 5,
         previewPrice: 5.99,
-        additionalListId: '65f1a2b3c4d5e6f7a8b9c0d1',
+        additionalIdList: ['65f1a2b3c4d5e6f7a8b9c0d1'],
       }
     ]
   },

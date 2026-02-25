@@ -7,5 +7,5 @@ export interface CreateProductInputDTO {
   imgUrl?: string;
   price: number;
   previewPrice?: number;
-  additionalListId?: string;
+  additionalIdList?: string[];
 }

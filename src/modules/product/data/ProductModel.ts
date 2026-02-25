@@ -10,7 +10,7 @@ const ProductSchema: Schema = new Schema({
   imgUrl: { type: String },
   price: { type: Number, required: true },
   previewPrice: { type: Number },
-  additionalListId: { type: String },
+  additionalIdList: { type: [String] },
 });
 
 export const ProductModel = mongoose.model<IProduct>('Product', ProductSchema);

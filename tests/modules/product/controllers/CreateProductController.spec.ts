@@ -28,7 +28,7 @@ describe("CreateProductController", () => {
       "imgUrl": "fakeString",
       "price": 123,
       "previewPrice": 123,
-      "additionalListId": "fakeString"
+      "additionalIdList": "fakeString"
     };
     const outputDTO = {
       "id": "fakeString"
@@ -47,7 +47,7 @@ describe("CreateProductController", () => {
         "imgUrl": "fakeString",
         "price": 123,
         "previewPrice": 123,
-        "additionalListId": "fakeString"
+        "additionalIdList": "fakeString"
       }
     } as any, reply);
 

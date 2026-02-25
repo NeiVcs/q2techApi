@@ -17,7 +17,7 @@ export class CreateProductTransformer {
       imgUrl: body?.imgUrl || '',
       price: body?.price || 0,
       previewPrice: body?.previewPrice || 0,
-      additionalListId: body?.additionalListId || '',
+      additionalIdList: body?.additionalIdList || null,
     };
   }
 
