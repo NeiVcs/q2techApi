@@ -1,22 +1,12 @@
 import { singleton } from 'tsyringe';
-import { z } from 'zod/v4';
 import { FastifyRequest } from 'fastify';
-import { validateRequest } from '@shared/validateRequest';
 import { FindAllProductResponse } from '@modules/product/schemas/FindAllProductSchema'
 import { FindAllProductInputDTO } from "@modules/product/dto/FindAllProductInputDTO";
 import { FindAllProductOutputDTO } from "@modules/product/dto/FindAllProductOutputDTO";
-import { FindAllProductItemsItemDTO } from "@modules/product/dto/FindAllProductItemsItemDTO";
-import { FindAllProductAdditionalListItemDTO } from "@modules/product/dto/FindAllProductAdditionalListItemDTO";
-
-
-
-//TODO: Validação opcional usar apenas quando necessário para validações mais complexas.
-
 
 @singleton()
 export class FindAllProductTransformer {
   public fromApi(request?: FastifyRequest): FindAllProductInputDTO {
-    // fallback vazio
     return {};
   }
 
