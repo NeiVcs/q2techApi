@@ -8,23 +8,19 @@ const schema = createSchema({
   security: [{ ApiKeyAuth: [] }],
   params: {
     type: 'object',
-    required: ['CompanyId'],
+    required: ['id'],
     properties: {
       id: {
         type: 'string',
         description: 'MongoDB Id.',
         pattern: '^[0-9a-fA-F]{24}$',
-        errorMessage: 'Id deve ser um MongoDB Id.'
+        errorMessage: 'companyId deve ser um MongoDB Id.'
       }
     }
   },
   querystring: {
     type: 'object',
     properties: {
-      companyId: {
-        type: 'string',
-        description: 'product companyId'
-      },
       name: {
         type: 'string',
         description: 'product name'
@@ -40,7 +36,23 @@ const schema = createSchema({
       isAdditional: {
         type: 'boolean',
         description: 'product activation'
-      }
+      },
+      page: {
+        type: 'number',
+        description: 'page',
+        minimum: 1,
+        errorMessage: {
+          minimum: 'A página deve ser maior que 0.'
+        }
+      },
+      pageSize: {
+        type: 'number',
+        description: 'page size',
+        minimum: 1,
+        errorMessage: {
+          minimum: 'O tamanho da página deve ser maior que 0.'
+        }
+      },
     }
   },
   response: {
@@ -48,6 +60,14 @@ const schema = createSchema({
       description: 'Returned successfully.',
       type: 'object',
       properties: {
+        pagination: {
+          type: 'object',
+          properties: {
+            page: { type: 'number', description: 'page.' },
+            pageSize: { type: 'number', description: 'page size.' },
+            total: { type: 'number', description: 'total.' },
+          },
+        },
         items: {
           type: 'array',
           items: {
@@ -99,7 +119,7 @@ const schema = createSchema({
   }
 });
 
-export const FindAllProductSchema = schema.raw;
+export const FindAllCompanyProductSchema = schema.raw;
 export type FindAllCompanyProductParamsRequest = typeof schema.types.params;
-export type FindAllProductQueryRequest = typeof schema.types.querystring;
-export type FindAllProductResponse = (typeof schema.types.response)[200];
+export type FindAllCompanyProductQueryRequest = typeof schema.types.querystring;
+export type FindAllCompanyProductResponse = (typeof schema.types.response)[200];

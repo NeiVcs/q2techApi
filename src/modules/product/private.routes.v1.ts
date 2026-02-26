@@ -1,7 +1,8 @@
 import { FastifyInstance, FastifyPluginAsync, RouteHandlerMethod } from "fastify";
-import { createProductController, findAllProductController } from ".";
+import { createProductController, findAllCompanyProductController, findAllProductController } from ".";
 import { CreateProductSchema } from "./schemas/CreateProductSchema";
 import { FindAllProductSchema } from "./schemas/FindAllProductSchema";
+import { FindAllCompanyProductSchema } from "./schemas/FindAllCompanyProductSchema";
 
 /**
  * Registers private routes for API version 1.
@@ -11,4 +12,5 @@ import { FindAllProductSchema } from "./schemas/FindAllProductSchema";
 export const privateProductRoutesV1: FastifyPluginAsync = async (fastifyInstance: FastifyInstance) => {
     fastifyInstance.post('/v1/product', { schema: CreateProductSchema }, createProductController().handler as RouteHandlerMethod);
     fastifyInstance.get('/v1/product', { schema: FindAllProductSchema }, findAllProductController().handler as RouteHandlerMethod);
+    fastifyInstance.get('/v1/product/company/:id', { schema: FindAllCompanyProductSchema }, findAllCompanyProductController().handler as RouteHandlerMethod);
 };

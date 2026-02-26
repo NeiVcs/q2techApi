@@ -64,4 +64,20 @@ export class ProductRepository {
       throw new MongoDbErrorException(e);
     }
   }
+
+  public async findByCompanyId(dto: FindAllProductInputDTO): Promise<FindAllProductOutputDTO> {
+    try {
+      const query = Object.fromEntries(Object.entries(dto).filter(([key, value]) => value != null && value !== '' && key !== 'page' && key !== 'pageSize'));
+      const skip = (dto.page - 1) * dto.pageSize;
+      const data = await ProductModel.find(query).skip(skip).limit(dto.pageSize).lean();
+
+      const items = data.map((el: IProduct) => ({ id: el._id.toString(), ...el }));
+      const total = await ProductModel.countDocuments();
+
+      return { items: items, pagination: { ...dto, total: total } }
+
+    } catch (e) {
+      throw new MongoDbErrorException(e);
+    }
+  }
 }

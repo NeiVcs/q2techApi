@@ -1,19 +1,19 @@
 import { singleton } from 'tsyringe';
 import { FastifyRequest } from 'fastify';
-import { FindAllProductQueryRequest, FindAllProductResponse } from '@modules/product/schemas/FindAllProductSchema'
-import { FindAllProductInputDTO } from "@modules/product/dto/FindAllProductInputDTO";
-import { FindAllProductOutputDTO } from "@modules/product/dto/FindAllProductOutputDTO";
+import { FindAllCompanyProductParamsRequest, FindAllCompanyProductQueryRequest, FindAllCompanyProductResponse } from '@modules/product/schemas/FindAllCompanyProductSchema'
+import { FindAllCompanyProductInputDTO } from "@modules/product/dto/FindAllCompanyProductInputDTO";
+import { FindAllCompanyProductOutputDTO } from "@modules/product/dto/FindAllCompanyProductOutputDTO";
 import { validateRequest } from '@shared/validateRequest';
 import { paginationRequestSchema } from '@shared/validateRequest/validations/paginationRequestSchema';
 
 @singleton()
-export class FindAllProductTransformer {
-  public fromApi(request?: FastifyRequest<{ Querystring: FindAllProductQueryRequest }>): FindAllProductInputDTO {
-    const { query } = request;
+export class FindAllCompanyProductTransformer {
+  public fromApi(request?: FastifyRequest<{ Params: FindAllCompanyProductParamsRequest; Querystring: FindAllCompanyProductQueryRequest }>): FindAllCompanyProductInputDTO {
+    const { query, params } = request;
     validateRequest(paginationRequestSchema, { page: query.page, pageSize: query.pageSize });
 
     return {
-      companyId: query?.companyId || '',
+      companyId: params.id,
       name: query?.name || '',
       category: query?.category || '',
       active: query?.active,
@@ -23,7 +23,7 @@ export class FindAllProductTransformer {
     };
   }
 
-  public toApi(outputDTO: FindAllProductOutputDTO): FindAllProductResponse {
+  public toApi(outputDTO: FindAllCompanyProductOutputDTO): FindAllCompanyProductResponse {
     return {
       pagination: outputDTO?.pagination ? {
         page: outputDTO?.pagination?.page ?? 0,
@@ -36,12 +36,12 @@ export class FindAllProductTransformer {
         name: f?.name ?? '',
         category: f?.category ?? '',
         description: f?.description ?? '',
-        active: f?.active,
-        isAdditional: f?.isAdditional,
+        active: f?.active ?? false,
+        isAdditional: f?.isAdditional ?? false,
         imgUrl: f?.imgUrl ?? '',
         price: f?.price ?? 0,
         previewPrice: f?.previewPrice ?? 0,
-        additionalList: f?.additionalList.length > 0 ? f?.additionalList : null,
+        additionalList: f?.additionalList ?? [],
       })) : [],
     };
   }
