@@ -3,7 +3,7 @@ import { FindAllProductInputDTO } from "@modules/product/dto/FindAllProductInput
 import { FindAllProductOutputDTO } from "@modules/product/dto/FindAllProductOutputDTO";
 import { ProductRepository } from '../data/ProductRepository';
 import { AdditionalRepository } from '@modules/additional/data/AdditionalRepository';
-import { IAdditional } from '@modules/additional/data/IAdditional';
+import { FindByIdAdditionalInputDTO } from '@modules/additional/dto/FindByIdAdditionalInputDTO';
 
 @singleton()
 export class FindAllProductService {
@@ -29,16 +29,12 @@ export class FindAllProductService {
     return results.filter(item => item !== null);
   }
 
-  private async populateCategory(products: FindAllProductOutputDTO, additionalList: IAdditional[]) {
+  private async populateCategory(products: FindAllProductOutputDTO, additionalList: FindByIdAdditionalInputDTO[]) {
     return products.items.map(product => {
       const items = { id: product.id, ...product }
-
       const groups = additionalList.filter(add =>
         items.additionalIdList?.includes(add.id)
-      ).map(g => ({
-        ...(g.toObject()),
-        id: g._id.toString()
-      }));
+      )
 
       return { ...items, additionalList: groups };
     });

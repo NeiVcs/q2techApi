@@ -4,6 +4,7 @@ import { CreateAdditionalInputDTO } from '../dto/CreateAdditionalInputDTO';
 import { AdditionalModel } from './AdditionalModel';
 import { FindAllAdditionalInputDTO } from '../dto/FindAllAdditionalInputDTO';
 import { FindAllAdditionalOutputDTO } from '../dto/FindAllAdditionalOutputDTO';
+import { FindByIdAdditionalOutputDTO } from '../dto/FindByIdAdditionalOutputDTO';
 
 export class AdditionalRepository {
   public async findAll(inputDTO: FindAllAdditionalInputDTO): Promise<FindAllAdditionalOutputDTO> {
@@ -20,13 +21,13 @@ export class AdditionalRepository {
     }
   }
 
-  public async findById(id: string): Promise<IAdditional> {
+  public async findById(id: string): Promise<FindByIdAdditionalOutputDTO> {
     try {
-      const result = await AdditionalModel.findById(id);
+      const result = await AdditionalModel.findById(id).lean();
       if (!result) {
         throw { type: 'NOT_FOUND', message: 'Adicional não encontrado' };
       }
-      return result;
+      return { id: result._id.toString(), ...result };
     } catch (e) {
       throw new MongoDbErrorException(e);
     }

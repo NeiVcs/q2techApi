@@ -4,6 +4,7 @@ import { AdditionalRepository } from '@modules/additional/data/AdditionalReposit
 import { FindAllProductInputDTO } from '../dto/FindAllProductInputDTO';
 import { FindAllProductOutputDTO } from '../dto/FindAllProductOutputDTO';
 import { IAdditional } from '@modules/additional/data/IAdditional';
+import { FindByIdAdditionalOutputDTO } from '@modules/additional/dto/FindByIdAdditionalOutputDTO';
 
 @singleton()
 export class FindAllCompanyProductService {
@@ -29,16 +30,13 @@ export class FindAllCompanyProductService {
     return results.filter(item => item !== null);
   }
 
-  private async populateCategory(products: FindAllProductOutputDTO, additionalList: IAdditional[]) {
+  private async populateCategory(products: FindAllProductOutputDTO, additionalList: FindByIdAdditionalOutputDTO[]) {
     return products.items.map(product => {
       const items = { id: product.id, ...product }
 
       const groups = additionalList.filter(add =>
         items.additionalIdList?.includes(add.id)
-      ).map(g => ({
-        ...(g.toObject()),
-        id: g._id.toString()
-      }));
+      )
 
       return { ...items, additionalList: groups };
     });

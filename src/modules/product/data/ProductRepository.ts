@@ -4,6 +4,7 @@ import { ProductModel } from './ProductModel';
 import { CreateProductInputDTO } from '../dto/CreateProductInputDTO';
 import { FindAllProductInputDTO } from '../dto/FindAllProductInputDTO';
 import { FindAllProductOutputDTO } from '../dto/FindAllProductOutputDTO';
+import { FindByIdProductOutputDTO } from '../dto/FindByIdProductOutputDTO';
 
 export class ProductRepository {
   public async findAll(dto: FindAllProductInputDTO): Promise<FindAllProductOutputDTO> {
@@ -22,13 +23,13 @@ export class ProductRepository {
     }
   }
 
-  public async findById(id: string): Promise<IProduct> {
+  public async findById(id: string): Promise<FindByIdProductOutputDTO> {
     try {
-      const result = await ProductModel.findById(id);
+      const result = await ProductModel.findById(id).lean();
       if (!result) {
         throw { type: 'NOT_FOUND', message: 'Produto não encontrado' };
       }
-      return result;
+      return { id: result._id.toString(), ...result };
     } catch (e) {
       throw new MongoDbErrorException(e);
     }

@@ -6,10 +6,8 @@ import { FindAllCompanyProductService } from '@modules/product/services/FindAllC
 
 @singleton()
 export class FindAllCompanyProductController {
-  constructor(
-    private readonly transformer: FindAllCompanyProductTransformer,
-    private readonly service: FindAllCompanyProductService
-  ) { }
+  constructor(private readonly transformer: FindAllCompanyProductTransformer,
+              private readonly service: FindAllCompanyProductService) {}
 
   handler = async (request: FastifyRequest<{ Params: FindAllCompanyProductParamsRequest; Querystring: FindAllCompanyProductQueryRequest }>, reply: FastifyReply): Promise<FindAllCompanyProductResponse> => {
     const inputDTO = this.transformer.fromApi(request);
@@ -17,4 +15,5 @@ export class FindAllCompanyProductController {
     reply.code(200);
     return this.transformer.toApi(outputDTO);
   }
+  
 }
