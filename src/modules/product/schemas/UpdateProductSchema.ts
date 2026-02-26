@@ -2,13 +2,25 @@ import { DefinitionsExceptionSchema } from '@shared/exceptions';
 import { createSchema } from '@shared/schemas/define';
 
 const schema = createSchema({
-  description: 'Create a product.',
-  summary: 'Create a product.',
+  description: 'Update a product.',
+  summary: 'Update a product.',
   tags: ['Product'],
   security: [{ ApiKeyAuth: [] }],
+  params: {
+    type: 'object',
+    required: ['id'],
+    properties: {
+      id: {
+        type: 'string',
+        description: 'MongoDB Id.',
+        pattern: '^[0-9a-fA-F]{24}$',
+        errorMessage: 'Id deve ser um MongoDB Id.'
+      }
+    }
+  },
   body: {
     type: 'object',
-    required: ['companyId', 'name', 'category', 'description', 'price'],
+    required: ['id'],
     properties: {
       companyId: {
         type: 'string',
@@ -46,9 +58,9 @@ const schema = createSchema({
         type: 'boolean',
         description: 'active',
       },
-      isAdditional: {
+      isProduct: {
         type: 'boolean',
-        description: 'isAdditional',
+        description: 'isProduct',
       },
       imgUrl: {
         type: 'string',
@@ -72,7 +84,7 @@ const schema = createSchema({
           minimum: 'Preço anterios mínimo deve ser pelo menos 1.'
         }
       },
-      additionalIdList: {
+      ProductIdList: {
         type: 'array',
         description: 'Lista de MongoDB Ids dos adicionais.',
         items: {
@@ -84,16 +96,6 @@ const schema = createSchema({
         },
       },
     },
-    errorMessage: {
-      required: {
-        companyId: 'Id da loja é um campo obrigatório',
-        name: 'Nome é um campo obrigatório.',
-        category: 'Categoria é um campo obrigatório.',
-        isAdditional: 'Apenas adicional é um campo obrigatório.',
-        description: 'Descrição é um campo obrigatório.',
-        price: 'Preço é um campo obrigatório.',
-      }
-    },
     examples: [
       {
         companyId: '65f1a2b3c4d5e6f7a8b9c0d1',
@@ -101,21 +103,18 @@ const schema = createSchema({
         category: 'hotdogs',
         description: 'salsicha, purê de batata, milho, ervilha e molhos',
         active: false,
-        isAdditional: false,
+        isProduct: false,
         imgUrl: 'enderecodaimagem.com',
         price: 5,
         previewPrice: 5.99,
-        additionalIdList: ['65f1a2b3c4d5e6f7a8b9c0d1'],
+        ProductIdList: ['65f1a2b3c4d5e6f7a8b9c0d1'],
       }
     ]
   },
   response: {
-    201: {
-      description: 'Created successfully.',
-      type: 'object',
-      properties: {
-        id: { type: 'string', format: 'mongoId', example: '65f1a2b3c4d5e6f7a8b9c0d1' }
-      }
+    204: {
+      description: 'Updated successfully.',
+      required: ['id']
     },
     400: DefinitionsExceptionSchema.Error400,
     401: DefinitionsExceptionSchema.Error401,
@@ -129,6 +128,7 @@ const schema = createSchema({
   }
 });
 
-export const CreateProductSchema = schema.raw;
-export type CreateProductBodyRequest = typeof schema.types.body;
-export type CreateProductResponse = (typeof schema.types.response)[201];
+export const UpdateProductSchema = schema.raw;
+export type UpdateProductBodyRequest = typeof schema.types.body;
+export type UpdateProductParamsRequest = typeof schema.types.params;
+export type UpdateProductResponse = (typeof schema.types.response)[204];
