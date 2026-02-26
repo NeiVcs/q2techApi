@@ -4,4 +4,6 @@ export interface FindAllProductInputDTO {
   category?: string;
   active?: boolean;
   isAdditional?: boolean;
+  page?: number;
+  pageSize?: number;
 }

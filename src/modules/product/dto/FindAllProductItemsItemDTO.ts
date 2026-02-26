@@ -1,4 +1,4 @@
-export interface FindAllProductItemsItemDTO {
+export interface FindAllProductDTO {
   id?: string;
   companyId?: string;
   name?: string;
@@ -10,4 +10,5 @@ export interface FindAllProductItemsItemDTO {
   price?: number;
   previewPrice?: number;
   additionalList?: any[];
+  additionalIdList?: any[];
 }

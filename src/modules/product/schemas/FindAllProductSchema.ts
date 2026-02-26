@@ -28,7 +28,23 @@ const schema = createSchema({
       isAdditional: {
         type: 'boolean',
         description: 'product activation'
-      }
+      },
+      page: {
+        type: 'number',
+        description: 'page',
+        minimum: 1,
+        errorMessage: {
+          minimum: 'A página deve ser maior que 0.'
+        }
+      },
+      pageSize: {
+        type: 'number',
+        description: 'page size',
+        minimum: 1,
+        errorMessage: {
+          minimum: 'O tamanho da página deve ser maior que 0.'
+        }
+      },
     }
   },
   response: {
@@ -36,6 +52,14 @@ const schema = createSchema({
       description: 'Returned successfully.',
       type: 'object',
       properties: {
+        pagination: {
+          type: 'object',
+          properties: {
+            page: { type: 'number', description: 'page.' },
+            pageSize: { type: 'number', description: 'page size.' },
+            total: { type: 'number', description: 'total.' },
+          },
+        },
         items: {
           type: 'array',
           items: {
