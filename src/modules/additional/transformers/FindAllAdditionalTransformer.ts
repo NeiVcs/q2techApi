@@ -27,6 +27,8 @@ export class FindAllAdditionalTransformer {
       } : undefined,
       items: Array.isArray(outputDTO?.items) ? outputDTO.items.map(f => ({
         id: f?.id ?? '',
+        companyId: f?.companyId ?? '',
+        category: f?.category ?? '',
         name: f?.name ?? '',
         min: f?.min,
         max: f?.max,

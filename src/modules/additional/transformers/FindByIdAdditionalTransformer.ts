@@ -17,6 +17,8 @@ export class FindByIdAdditionalTransformer {
   public toApi(outputDTO: FindByIdAdditionalOutputDTO): FindByIdAdditionalResponse {
     return {
       id: outputDTO?.id ?? '',
+      companyId: outputDTO?.companyId ?? '',
+      category: outputDTO?.category ?? '',
       name: outputDTO?.name ?? '',
       min: outputDTO?.min,
       max: outputDTO?.max,

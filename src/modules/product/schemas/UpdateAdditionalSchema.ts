@@ -21,6 +21,23 @@ const schema = createSchema({
   body: {
     type: 'object',
     properties: {
+      companyId: {
+        type: 'string',
+        description: 'companyId',
+        pattern: '^[0-9a-fA-F]{24}$',
+        minLength: 1,
+        errorMessage: {
+          minLength: 'Id da empresa deve ser um mongo Id.'
+        }
+      },
+      category: {
+        type: 'string',
+        description: 'category',
+        minLength: 1,
+        errorMessage: {
+          minLength: 'Category deve ter pelo menos 1 caractere.'
+        }
+      },
       name: {
         type: 'string',
         description: 'name',

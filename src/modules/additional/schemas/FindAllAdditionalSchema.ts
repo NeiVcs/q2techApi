@@ -25,6 +25,15 @@ const schema = createSchema({
           minimum: 'O tamanho da página deve ser maior que 0.'
         }
       },
+      companyId: {
+        type: 'string',
+        description: 'company Id',
+        minLength: 1,
+        pattern: '^[0-9a-fA-F]{24}$',
+        errorMessage: {
+          minLength: 'Id da empresa deve ser um mongoDb Id.'
+        }
+      },
     }
   },
   response: {
@@ -46,6 +55,8 @@ const schema = createSchema({
             type: 'object',
             properties: {
               id: { type: 'string', description: 'id.' },
+              companyId: { type: 'string', description: 'company id.' },
+              category: { type: 'string', description: 'category.' },
               name: { type: 'string', description: 'name.' },
               min: { type: 'number', description: '1' },
               max: { type: 'number', description: '2' },

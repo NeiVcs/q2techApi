@@ -8,8 +8,25 @@ const schema = createSchema({
   security: [{ ApiKeyAuth: [] }],
   body: {
     type: 'object',
-    required: ['name', 'min', 'max', 'productIdList'],
+    required: ['companyId', 'category', 'name', 'min', 'max', 'productIdList'],
     properties: {
+      companyId: {
+        type: 'string',
+        description: 'name',
+        minLength: 1,
+        pattern: '^[0-9a-fA-F]{24}$',
+        errorMessage: {
+          minLength: 'Id da empresa deve ser um mongoDb Id.'
+        }
+      },
+      category: {
+        type: 'string',
+        description: 'category',
+        minLength: 1,
+        errorMessage: {
+          minLength: 'Categoria deve ter pelo menos 1 caractere.'
+        }
+      },
       name: {
         type: 'string',
         description: 'name',
@@ -54,6 +71,8 @@ const schema = createSchema({
 
     errorMessage: {
       required: {
+        companyId: 'Id da empresa é um campo obrigatório.',
+        category: 'Categoria é um campo obrigatório.',
         name: 'Nome é um campo obrigatório.',
         min: 'quantidade mínima é um campo obrigatório.',
         max: 'Quantidade máxima é um campo obrigatório.',

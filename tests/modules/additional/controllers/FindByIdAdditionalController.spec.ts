@@ -18,30 +18,32 @@ describe("FindByIdAdditionalController", () => {
     reply = mock<FastifyReply>();
     controller = new FindByIdAdditionalController(transformer, service);
   });
-  
+
   it("deve chamar service e transformer corretamente", async () => {
     const inputDTO = {
-  "id": "fakeString"
-};
+      "id": "fakeString"
+    };
     const outputDTO = {
-  "id": "fakeString",
-  "name": "fakeString",
-  "min": "fakeString",
-  "max": "fakeString",
-  "productIdList": [
-    "fakeString"
-  ]
-};
+      "id": "fakeString",
+      "companyId": "fakeString",
+      "category": "fakeString",
+      "name": "fakeString",
+      "min": "fakeString",
+      "max": "fakeString",
+      "productIdList": [
+        "fakeString"
+      ]
+    };
 
     transformer.fromApi.mockReturnValue(inputDTO);
     service.execute.mockResolvedValue(outputDTO);
     transformer.toApi.mockReturnValue(outputDTO);
 
     const result = await controller.handler({
-  params: {
-  "id": "fakeString"
-}
-} as any, reply);
+      params: {
+        "id": "fakeString"
+      }
+    } as any, reply);
 
     expect(transformer.fromApi).toHaveBeenCalled();
     expect(service.execute).toHaveBeenCalledWith(inputDTO);

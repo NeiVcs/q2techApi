@@ -21,6 +21,23 @@ const schema = createSchema({
   body: {
     type: 'object',
     properties: {
+      companyId: {
+        type: 'string',
+        description: 'name',
+        pattern: '^[0-9a-fA-F]{24}$',
+        minLength: 1,
+        errorMessage: {
+          minLength: 'Id da empresa deve ter pelo menos 1 caractere.'
+        }
+      },
+      category: {
+        type: 'string',
+        description: 'name',
+        minLength: 1,
+        errorMessage: {
+          minLength: 'Categoria deve ter pelo menos 1 caractere.'
+        }
+      },
       name: {
         type: 'string',
         description: 'name',
@@ -64,6 +81,8 @@ const schema = createSchema({
     },
     examples: [
       {
+        companyId: '65f1a2b3c4d5e6f7a8b9c0d1',
+        category: 'sabor',
         name: 'sabor',
         min: 0,
         max: 3,

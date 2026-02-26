@@ -25,6 +25,8 @@ const schema = createSchema({
       required: ['id'],
       properties: {
         id: { type: 'string', description: 'id.' },
+        companyId: { type: 'string', description: 'companyId.' },
+        category: { type: 'string', description: 'category.' },
         name: { type: 'string', description: 'name.' },
         min: { type: 'number', description: '1.' },
         max: { type: 'number', description: '2.' },

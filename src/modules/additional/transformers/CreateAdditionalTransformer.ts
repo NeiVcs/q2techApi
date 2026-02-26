@@ -21,6 +21,8 @@ export class CreateAdditionalTransformer {
     });
 
     return {
+      companyId: body?.companyId || '',
+      category: body?.category || '',
       name: body?.name || '',
       min: body?.min || 0,
       max: body?.max || 0,

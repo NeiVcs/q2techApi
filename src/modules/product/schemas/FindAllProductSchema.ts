@@ -83,6 +83,8 @@ const schema = createSchema({
                   type: 'object',
                   properties: {
                     id: { type: 'string' },
+                    companyId: { type: 'string' },
+                    category: { type: 'string' },
                     name: { type: 'string' },
                     min: { type: 'number' },
                     max: { type: 'number' },
