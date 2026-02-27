@@ -1,4 +1,4 @@
-export interface CreateCompanyStylizationDTO {
+export interface CompanyStylizationDTO {
   hasImage?: boolean;
   primaryColor?: string;
   secondaryColor?: string;

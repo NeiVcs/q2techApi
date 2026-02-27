@@ -1,4 +1,4 @@
-export interface FindByIdCompanyAddressDTO {
+export interface CompanyAddressDTO {
   zipCode?: string;
   street?: string;
   number?: string;

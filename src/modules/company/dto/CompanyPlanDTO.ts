@@ -1,4 +1,4 @@
-export interface FindByIdCompanyPlanItemDTO {
+export interface CompanyPlanDTO {
   name?: string;
   value?: number;
   validate?: string;

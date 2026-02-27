@@ -1,9 +1,9 @@
-import { CreateCompanyCategoriesListItemDTO } from "@modules/company/dto/CreateCompanyCategoriesListItemDTO";
-import { CreateCompanyPlanItemDTO } from "@modules/company/dto/CreateCompanyPlanItemDTO";
-import { CreateCompanyStylizationDTO } from "@modules/company/dto/CreateCompanyStylizationDTO";
-import { CreateCompanyContactsDTO } from "@modules/company/dto/CreateCompanyContactsDTO";
-import { CreateCompanyAddressDTO } from "@modules/company/dto/CreateCompanyAddressDTO";
-import { CreateCompanyWorkScheduleItemDTO } from "@modules/company/dto/CreateCompanyWorkScheduleItemDTO";
+import { CompanyCategoriesListDTO } from "@modules/company/dto/CompanyCategoriesListDTO";
+import { CompanyPlanDTO } from "@modules/company/dto/CompanyPlanDTO";
+import { CompanyStylizationDTO } from "@modules/company/dto/CompanyStylizationDTO";
+import { CompanyContactsDTO } from "@modules/company/dto/CompanyContactsDTO";
+import { CompanyAddressDTO } from "@modules/company/dto/CompanyAddressDTO";
+import { CompanyWorkScheduleDTO } from "@modules/company/dto/CompanyWorkScheduleDTO";
 
 export interface CreateCompanyInputDTO {
   name: string;
@@ -12,13 +12,11 @@ export interface CreateCompanyInputDTO {
   closed?: boolean;
   alert?: string;
   minOderPrice?: number;
-  categoriesList?: CreateCompanyCategoriesListItemDTO[];
-  plan?: CreateCompanyPlanItemDTO[];
-  stylization?: CreateCompanyStylizationDTO;
-  contacts?: CreateCompanyContactsDTO;
-  address?: CreateCompanyAddressDTO;
-  workSchedule?: CreateCompanyWorkScheduleItemDTO[];
+  categoriesList?: CompanyCategoriesListDTO[];
+  plan?: CompanyPlanDTO[];
+  stylization?: CompanyStylizationDTO;
+  contacts?: CompanyContactsDTO;
+  address?: CompanyAddressDTO;
+  workSchedule?: CompanyWorkScheduleDTO[];
   paymentForms?: string[];
 }
-    
-    
