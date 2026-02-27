@@ -30,8 +30,8 @@ const schema = createSchema({
         url: { type: 'string', description: 'url.' },
         closed: { type: 'boolean', description: 'closed.' },
         alert: { type: 'string', description: 'alert.' },
-        minOrderPrice: { type: 'string', description: 'minOrderPrice.' },
-        category: {
+        minOrderPrice: { type: 'number', description: 'minOrderPrice.' },
+        categoriesList: {
           description: 'Lista de categorias',
           type: 'array',
           nullable: true,
@@ -44,7 +44,7 @@ const schema = createSchema({
           }
         },
         plan: {
-          description: 'Lista de adicionais',
+          description: 'plano de pagamento',
           type: 'array',
           nullable: true,
           items: {
@@ -56,46 +56,34 @@ const schema = createSchema({
             }
           }
         },
-        styles: {
+        stylization: {
           description: 'Lista de estilizações',
           type: 'object',
           properties: {
             hasImage: { type: 'boolean', description: 'hasImage.' },
-            colors: {
-              description: 'Lista de cores',
-              type: 'object',
-              properties: {
-                primary: { type: 'string', description: 'primary.' },
-                secondary: { type: 'string', description: 'secondary.' }
-              }
-            },
-            images: {
-              description: 'Lista de imagens',
-              type: 'object',
-              properties: {
-                logo: { type: 'string', description: 'logo.' },
-                header: { type: 'string', description: 'header.' }
-              }
-            }
+            primaryColor: { type: 'string', description: 'primary.' },
+            secondaryColor: { type: 'string', description: 'secondary.' },
+            logo: { type: 'string', description: 'logo.' },
+            header: { type: 'string', description: 'header.' }
           }
         },
         contacts: {
           description: 'Lista de contatos',
           type: 'object',
           properties: {
-            phones: {
+            phoneNumberList: {
               description: 'Lista de telefones',
               type: 'array',
               nullable: true,
               items: { type: 'string' }
             },
-            whatsapps: {
+            whatsappNumberList: {
               description: 'Lista de whatsapps',
               type: 'array',
               nullable: true,
               items: { type: 'string' }
             },
-            emails: {
+            emailList: {
               description: 'Lista de emails',
               type: 'array',
               nullable: true,
@@ -103,7 +91,7 @@ const schema = createSchema({
             }
           }
         },
-        socialMedias: {
+        socialMediasList: {
           description: 'Lista de medias',
           type: 'array',
           nullable: true,
@@ -140,7 +128,7 @@ const schema = createSchema({
             }
           }
         },
-        payments: {
+        paymentForms: {
           description: 'Lista de formas de pagamento',
           type: 'array',
           nullable: true,

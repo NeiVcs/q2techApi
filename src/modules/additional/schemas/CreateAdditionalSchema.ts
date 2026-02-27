@@ -68,7 +68,6 @@ const schema = createSchema({
         }
       },
     },
-
     errorMessage: {
       required: {
         companyId: 'Id da empresa é um campo obrigatório.',

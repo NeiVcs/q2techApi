@@ -91,7 +91,9 @@ if (combinedInputSchema && combinedInputSchema.properties) {
       pascalFeature,
       force,
       baseDir
-    )}\n}`,
+    )}\n}
+    
+    `,
     force
   );
 } else {
@@ -188,21 +190,9 @@ if (combinedInputSchema && combinedInputSchema.properties) {
   if (schema.headers) {
     destructuredKeys.push('headers');
   }
-
   if (destructuredKeys.length > 0) {
     originLines.push(`const { ${destructuredKeys.join(', ')} } = request;`);
   }
-
-  const validateLines: string[] = [];
-  // if (schema.params && schema.params.properties) {
-  //   validateLines.push(`validateRequest(requestParamsSchema, params); //TODO: Validação opcional usar apenas quando necessário para validações mais complexas.`);
-  // }
-  // if (schema.querystring && schema.querystring.properties) {
-  //   validateLines.push(`validateRequest(requestParamsSchema, query); //TODO: Validação opcional usar apenas quando necessário para validações mais complexas.`);
-  // }
-  // if (schema.body && schema.body.properties) {
-  //   validateLines.push(`validateRequest(requestBodySchema, body); //TODO: Validação opcional usar apenas quando necessário para validações mais complexas.`);
-  // }
 
   const mapperSourceLines: string[] = [];
   if (schema.headers && schema.headers.properties) {
@@ -224,8 +214,6 @@ if (combinedInputSchema && combinedInputSchema.properties) {
 
   fromApiLines = `public fromApi(request?: FastifyRequest<${requestGeneric}>): ${pascalFeature}InputDTO {
     ${originLines.join('\n    ')}
-    
-    ${validateLines.join('\n    ')}
 
     return {
       ${mapperSourceLines.map((l) => ' ' + l).join('\n      ')}
@@ -244,16 +232,11 @@ const toApiLinesArray = hasOutput ? generateToApiMapper(outputProps) : [];
 createFile(
   path.join(baseDir, 'transformers', `${pascalFeature}Transformer.ts`),
   `import { singleton } from 'tsyringe';
-import { z } from 'zod/v4';
-import {FastifyRequest} from 'fastify';
-import { validateRequest } from '@shared/validateRequest';
-${requestResponseImportLines}
-import { ${pascalFeature}InputDTO } from "@modules/${moduleName}/dto/${pascalFeature}InputDTO";
-${hasOutput ? `import { ${pascalFeature}OutputDTO } from "@modules/${moduleName}/dto/${pascalFeature}OutputDTO";` : ''}
-${transformerImportLines}
-
-//TODO: Validação opcional usar apenas quando necessário para validações mais complexas.
-${schema.params ? `const requestParamsSchema = z.object({});` : ``} ${schema.querystring ? `\nconst requestQuerySchema = z.object({});` : ``} ${schema.body ? `\nconst requestBodySchema = z.object({});` : ``}
+  import {FastifyRequest} from 'fastify';
+  ${requestResponseImportLines}
+  import { ${pascalFeature}InputDTO } from "@modules/${moduleName}/dto/${pascalFeature}InputDTO";
+  ${hasOutput ? `import { ${pascalFeature}OutputDTO } from "@modules/${moduleName}/dto/${pascalFeature}OutputDTO";` : ''}
+  ${transformerImportLines}
 
 @singleton()
 export class ${pascalFeature}Transformer {
@@ -267,7 +250,8 @@ export class ${pascalFeature}Transformer {
   }`
     : ``
   }
-}`,
+}
+  `,
   force
 );
 
@@ -282,14 +266,17 @@ ${hasOutput ? `import { ${pascalFeature}OutputDTO } from "@modules/${moduleName}
 
 @singleton()
 export class ${pascalFeature}Service {
-  constructor() {}
+  constructor(
+  
+  ) {}
   
   public async execute(inputDTO: ${pascalFeature}InputDTO): Promise<${hasOutput ? `${pascalFeature}OutputDTO` : `void`}> {
     // TODO: implementar regra de negócio
+
     ${hasOutput ? `return {} as unknown as ${pascalFeature}OutputDTO;` : `// nenhuma resposta esperada (204) - apenas executar a ação\nreturn;`}
   }
-  
-}`,
+}
+  `,
   force
 );
 
@@ -320,15 +307,17 @@ import { ${pascalFeature}Service } from '@modules/${moduleName}/services/${pasca
 
 @singleton()
 export class ${pascalFeature}Controller {
-  constructor(private readonly transformer: ${pascalFeature}Transformer,
-              private readonly service: ${pascalFeature}Service) {}
+  constructor(
+    private readonly transformer: ${pascalFeature}Transformer,
+    private readonly service: ${pascalFeature}Service
+  ) {}
 
   handler = async (${fastifyRequestTypeLines}, reply: FastifyReply): Promise<${controllerReturnType}> => {
     ${transformerFromApiLines}
     ${hasOutput ? `const outputDTO = await this.service.execute(inputDTO);\n    reply.code(${statusCode});\n    return this.transformer.toApi(outputDTO);` : `\n    await this.service.execute(inputDTO);\n    reply.code(${statusCode});`}
-  }
-  
-}`,
+  }  
+}
+`,
   force
 );
 
