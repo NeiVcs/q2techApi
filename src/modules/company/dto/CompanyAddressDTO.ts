@@ -1,4 +1,5 @@
 export interface CompanyAddressDTO {
+  [x: string]: unknown;
   zipCode?: string;
   street?: string;
   number?: string;

@@ -258,11 +258,19 @@ export class ${pascalFeature}Transformer {
 // --------------------
 // 10️Services (ajustar retorno quando não há output)
 // --------------------
+// const methodsList = { find: 'get', update: 'put', delete: 'delete', create: 'post' }
+// const methodKey = Object.keys(methodsList).find((m) =>
+//   pascalFeature.toLowerCase().includes(m)
+// ) as keyof typeof methodsList | undefined;
+// const method = methodKey ? methodsList[methodKey] : 'patch';
+const action = pascalFeature.replace(new RegExp(moduleName + '$', 'i'), '');
+
+
 createFile(
   path.join(baseDir, 'services', `${pascalFeature}Service.ts`),
   `import { singleton } from 'tsyringe';
 import { ${pascalFeature}InputDTO } from "@modules/${moduleName}/dto/${pascalFeature}InputDTO";
-import { ${pascalFeature}Repository } from '../data/${pascalFeature}Repository';
+import { ${moduleName}Repository } from "@modules/company/data/${moduleName}Repository";
 ${hasOutput ? `import { ${pascalFeature}OutputDTO } from "@modules/${moduleName}/dto/${pascalFeature}OutputDTO";` : ''}
 
 @singleton()
@@ -270,7 +278,7 @@ export class ${pascalFeature}Service {
   constructor( private storage: ${pascalFeature}Repository ) { }
   
   public async execute(inputDTO: ${pascalFeature}InputDTO): Promise<${hasOutput ? `${pascalFeature}OutputDTO` : `void`}> {
-    const response = {} //await this.storage.create(inputDTO);
+    const response = {} //await this.storage.${action}(inputDTO);
 
     ${hasOutput ? `return response as unknown as ${pascalFeature}OutputDTO;` : `return;`}
   }
