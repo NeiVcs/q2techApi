@@ -4,8 +4,11 @@ import { CompanyModel } from './CompanyModel';
 import { CreateCompanyInputDTO } from '../dto/CreateCompanyInputDTO';
 import { FindByIdCompanyOutputDTO } from '../dto/FindByIdCompanyOutputDTO';
 import { UpdateCompanyInputDTO } from '../dto/UpdateCompanyInputDTO';
+import { ensureExists } from '@shared/helpers/ensureExists';
 
 export class CompanyRepository {
+  private static readonly notFoundResponse = 'Empresa nâo encontrada';
+
   public async findAll(dto: any): Promise<any> {
     try {
       const query = Object.fromEntries(Object.entries(dto).filter(([key, value]) => value != null && value !== '' && key !== 'page' && key !== 'pageSize'));
@@ -25,9 +28,8 @@ export class CompanyRepository {
   public async findById(id: string): Promise<FindByIdCompanyOutputDTO> {
     try {
       const result = await CompanyModel.findById(id).lean();
-      if (!result) {
-        throw { type: 'NOT_FOUND', message: 'Produto não encontrado' };
-      }
+      ensureExists(result, CompanyRepository.notFoundResponse)
+
       return { id: result._id.toString(), ...result };
     } catch (e) {
       throw new MongoDbErrorException(e);
@@ -46,9 +48,7 @@ export class CompanyRepository {
     try {
       const body = Object.fromEntries(Object.entries(entity).filter(([_, value]) => value != null && value !== ''));
       const result = await CompanyModel.findByIdAndUpdate(entity.id, body, { new: true });
-      if (!result) {
-        throw { type: 'NOT_FOUND', message: 'Produto não encontrado' };
-      }
+      ensureExists(result, CompanyRepository.notFoundResponse)
     } catch (e) {
       throw new MongoDbErrorException(e);
     }
@@ -57,9 +57,7 @@ export class CompanyRepository {
   public async delete(id: string): Promise<void> {
     try {
       const result = await CompanyModel.findByIdAndDelete({ _id: id });
-      if (!result) {
-        throw { type: 'NOT_FOUND', message: 'Produto não encontrado' };
-      }
+      ensureExists(result, CompanyRepository.notFoundResponse)
     } catch (e) {
       throw new MongoDbErrorException(e);
     }

@@ -2,9 +2,9 @@ import { DefinitionsExceptionSchema } from '@shared/exceptions';
 import { createSchema } from '@shared/schemas/define';
 
 const schema = createSchema({
-  description: 'Delete a product.',
-  summary: 'Delete a product.',
-  tags: ['Product'],
+  description: 'Delete a company.',
+  summary: 'Delete a company.',
+  tags: ['Company'],
   security: [{ ApiKeyAuth: [] }],
   params: {
     type: 'object',
@@ -34,6 +34,6 @@ const schema = createSchema({
   }
 });
 
-export const DeleteProductSchema = schema.raw;
-export type DeleteProductParamsRequest = typeof schema.types.params;
-export type DeleteProductResponse = (typeof schema.types.response)[204];
+export const DeleteCompanySchema = schema.raw;
+export type DeleteCompanyParamsRequest = typeof schema.types.params;
+export type DeleteCompanyResponse = (typeof schema.types.response)[204];

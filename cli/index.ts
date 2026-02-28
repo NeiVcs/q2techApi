@@ -263,23 +263,25 @@ export class ${pascalFeature}Transformer {
 //   pascalFeature.toLowerCase().includes(m)
 // ) as keyof typeof methodsList | undefined;
 // const method = methodKey ? methodsList[methodKey] : 'patch';
-const action = pascalFeature.replace(new RegExp(moduleName + '$', 'i'), '');
-
+const rawAction = pascalFeature.replace(new RegExp(moduleName + '$', 'i'), '');
+const action = rawAction.charAt(0).toLowerCase() + rawAction.slice(1);
+const moduleToUpper = moduleName.charAt(0).toUpperCase() + moduleName.slice(1);
+const needsIdMethod = ['findById', 'delete'].includes(action)
+const noResponseMethod = !['update', 'delete'].includes(action)
 
 createFile(
   path.join(baseDir, 'services', `${pascalFeature}Service.ts`),
   `import { singleton } from 'tsyringe';
 import { ${pascalFeature}InputDTO } from "@modules/${moduleName}/dto/${pascalFeature}InputDTO";
-import { ${moduleName}Repository } from "@modules/company/data/${moduleName}Repository";
+import { ${moduleToUpper}Repository } from "@modules/company/data/${moduleToUpper}Repository";
 ${hasOutput ? `import { ${pascalFeature}OutputDTO } from "@modules/${moduleName}/dto/${pascalFeature}OutputDTO";` : ''}
 
 @singleton()
 export class ${pascalFeature}Service {
-  constructor( private storage: ${pascalFeature}Repository ) { }
+  constructor( private storage: ${moduleToUpper}Repository ) { }
   
   public async execute(inputDTO: ${pascalFeature}InputDTO): Promise<${hasOutput ? `${pascalFeature}OutputDTO` : `void`}> {
-    const response = {} //await this.storage.${action}(inputDTO);
-
+    ${noResponseMethod ? 'const response = ' : ''}await this.storage.${action}(inputDTO${needsIdMethod ? '.id' : ''});
     ${hasOutput ? `return response as unknown as ${pascalFeature}OutputDTO;` : `return;`}
   }
 }
