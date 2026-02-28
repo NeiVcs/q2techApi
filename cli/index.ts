@@ -262,18 +262,17 @@ createFile(
   path.join(baseDir, 'services', `${pascalFeature}Service.ts`),
   `import { singleton } from 'tsyringe';
 import { ${pascalFeature}InputDTO } from "@modules/${moduleName}/dto/${pascalFeature}InputDTO";
+import { ${pascalFeature}Repository } from '../data/${pascalFeature}Repository';
 ${hasOutput ? `import { ${pascalFeature}OutputDTO } from "@modules/${moduleName}/dto/${pascalFeature}OutputDTO";` : ''}
 
 @singleton()
 export class ${pascalFeature}Service {
-  constructor(
-  
-  ) {}
+  constructor( private storage: ${pascalFeature}Repository ) { }
   
   public async execute(inputDTO: ${pascalFeature}InputDTO): Promise<${hasOutput ? `${pascalFeature}OutputDTO` : `void`}> {
-    // TODO: implementar regra de negócio
+    const response = {} //await this.storage.create(inputDTO);
 
-    ${hasOutput ? `return {} as unknown as ${pascalFeature}OutputDTO;` : `// nenhuma resposta esperada (204) - apenas executar a ação\nreturn;`}
+    ${hasOutput ? `return response as unknown as ${pascalFeature}OutputDTO;` : `return;`}
   }
 }
   `,

@@ -3,6 +3,7 @@ import { ICompany } from './ICompany';
 import { CompanyModel } from './CompanyModel';
 import { CreateCompanyInputDTO } from '../dto/CreateCompanyInputDTO';
 import { FindByIdCompanyOutputDTO } from '../dto/FindByIdCompanyOutputDTO';
+import { UpdateCompanyInputDTO } from '../dto/UpdateCompanyInputDTO';
 
 export class CompanyRepository {
   public async findAll(dto: any): Promise<any> {
@@ -41,7 +42,7 @@ export class CompanyRepository {
     }
   }
 
-  public async update(entity: any): Promise<void> {
+  public async update(entity: UpdateCompanyInputDTO): Promise<void> {
     try {
       const body = Object.fromEntries(Object.entries(entity).filter(([_, value]) => value != null && value !== ''));
       const result = await CompanyModel.findByIdAndUpdate(entity.id, body, { new: true });

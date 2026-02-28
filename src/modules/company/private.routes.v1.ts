@@ -1,7 +1,8 @@
 import { FastifyInstance, FastifyPluginAsync, RouteHandlerMethod } from "fastify";
 import { CreateCompanySchema } from "./schemas/CreateCompanySchema";
-import { createCompanyController, findByIdCompanyController } from ".";
+import { createCompanyController, findByIdCompanyController, updateCompanyController } from ".";
 import { FindByIdCompanySchema } from "./schemas/FindByIdCompanySchema";
+import { UpdateCompanySchema } from "./schemas/UpdateCompanySchema";
 
 /**
  * Registers private routes for API version 1.
@@ -11,4 +12,5 @@ import { FindByIdCompanySchema } from "./schemas/FindByIdCompanySchema";
 export const privateCompanyRoutesV1: FastifyPluginAsync = async (fastifyInstance: FastifyInstance) => {
   fastifyInstance.post('/v1/company', { schema: CreateCompanySchema }, createCompanyController().handler as RouteHandlerMethod);
   fastifyInstance.get('/v1/company/:id', { schema: FindByIdCompanySchema }, findByIdCompanyController().handler as RouteHandlerMethod);
+  fastifyInstance.put('/v1/company/:id', { schema: UpdateCompanySchema }, updateCompanyController().handler as RouteHandlerMethod);
 };
