@@ -98,6 +98,37 @@ const schema = createSchema({
             }
           }
         }
+      },
+      orderData: {
+        type: 'array',
+        description: 'Itens do pedido',
+        minItems: 1,
+        errorMessage: { minItems: 'O pedido deve conter pelo menos 1 item.' },
+        items: {
+          type: 'object',
+          required: ['productId', 'name', 'quantity', 'price'],
+          properties: {
+            productId: { type: 'string', description: 'ID do produto' },
+            name: { type: 'string', description: 'Nome do produto' },
+            quantity: { type: 'number', minimum: 1 },
+            price: { type: 'number', minimum: 0 },
+            observation: { type: 'string', description: 'Observação do item', nullable: true },
+            additional: {
+              type: 'array',
+              nullable: true,
+              items: {
+                type: 'object',
+                required: ['additionalId', 'name', 'quantity', 'price'],
+                properties: {
+                  additionalId: { type: 'string' },
+                  name: { type: 'string' },
+                  quantity: { type: 'number', minimum: 1 },
+                  price: { type: 'number', minimum: 0 }
+                }
+              }
+            }
+          }
+        }
       }
     },
     errorMessage: {

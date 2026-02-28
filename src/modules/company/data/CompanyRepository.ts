@@ -29,7 +29,6 @@ export class CompanyRepository {
     try {
       const result = await CompanyModel.findById(id).lean();
       ensureExists(result, CompanyRepository.notFoundResponse)
-
       return { id: result._id.toString(), ...result };
     } catch (e) {
       throw new MongoDbErrorException(e);

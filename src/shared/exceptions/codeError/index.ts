@@ -80,7 +80,7 @@ export const CodeErrors = {
     message: 'Ocorreu um erro e não foi possível realizar o pagamento do boleto.'
   },
   CODE_ERROR_MONGODB_DUPLICATE_KEY: {
-    code: 'PEDIDO_BOLETO_PAYMENT_FAILED',
+    code: 'MONGODB_DUPLICATE_KEY',
     message: 'Ocorreu um erro e não foi possível realizar o pagamento do boleto.'
   }
 } as const;
