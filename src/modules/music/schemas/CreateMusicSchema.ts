@@ -65,8 +65,7 @@ const schema = createSchema({
       description: 'Created successfully.',
       type: 'object',
       properties: {
-        id: { type: 'string', format: 'uuid', example: '01992691-67f2-7189-bc1c-eb6a52222fdd' },
-        createdAt: { type: 'string', format: 'date-time', example: '2025-06-19 10:14:09.860' }
+        id: { type: 'string', format: 'mongoId', example: '65f1a2b3c4d5e6f7a8b9c0d1' }
       }
     },
     400: DefinitionsExceptionSchema.Error400,

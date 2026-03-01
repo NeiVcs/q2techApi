@@ -1,5 +1,5 @@
-import { MusicDTOFix } from './MusicDTOFix';
+import { MusicDTO } from './MusicDTO';
 
 export interface FindAllMusicOutputDTO {
-  items?: MusicDTOFix[];
+  items?: MusicDTO[];
 }

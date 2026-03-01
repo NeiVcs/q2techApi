@@ -12,7 +12,7 @@ export function ensureRouteFiles(moduleDir: string, moduleName: string) {
   if (!existsSync(privateRoute)) {
     writeFileSync(
       privateRoute,
-      `import {FastifyInstance, FastifyPluginAsync} from "fastify";
+      `import {FastifyInstance, FastifyPluginAsync, RouteHandlerMethod} from "fastify";
 
 /**
  * Registers private routes for API version 1.
@@ -20,7 +20,7 @@ export function ensureRouteFiles(moduleDir: string, moduleName: string) {
  * @param {FastifyInstance} fastifyInstance - The Fastify instance where the routes will be registered.
  */
 export const private${capitalizedModuleName}RoutesV1: FastifyPluginAsync = async (fastifyInstance: FastifyInstance) => {
-    //TODO: Implemente aqui as rotas privadas
+  //fastifyInstance.post('/v1/route', { schema: CreateRouteSchema }, createRouteController().handler as RouteHandlerMethod);
 };
             `,
       'utf-8'

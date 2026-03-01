@@ -1,0 +1,17 @@
+import { container } from 'tsyringe';
+import { CreateCompanyController } from "@modules/company/controllers/CreateCompanyController";
+import { DeleteCompanyController } from "@modules/company/controllers/DeleteCompanyController";
+import { FindAllCompanyController } from "@modules/company/controllers/FindAllCompanyController";
+import { FindByIdCompanyController } from "@modules/company/controllers/FindByIdCompanyController";
+import { UpdateCompanyController } from "@modules/company/controllers/UpdateCompanyController";
+import { FindByUrlCompanyController } from './controllers/FindByUrlCompanyController';
+
+export * from './private.routes.v1';
+export * from './public.routes.v1';
+
+export const createCompanyController = () => container.resolve(CreateCompanyController);
+export const deleteCompanyController = () => container.resolve(DeleteCompanyController);
+export const findAllCompanyController = () => container.resolve(FindAllCompanyController);
+export const findByIdCompanyController = () => container.resolve(FindByIdCompanyController);
+export const findByUrlCompanyController = () => container.resolve(FindByUrlCompanyController);
+export const updateCompanyController = () => container.resolve(UpdateCompanyController);
