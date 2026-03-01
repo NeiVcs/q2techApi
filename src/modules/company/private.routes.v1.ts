@@ -1,10 +1,11 @@
 import { FastifyInstance, FastifyPluginAsync, RouteHandlerMethod } from "fastify";
 import { CreateCompanySchema } from "./schemas/CreateCompanySchema";
-import { createCompanyController, deleteCompanyController, findAllCompanyController, findByIdCompanyController, updateCompanyController } from ".";
+import { createCompanyController, deleteCompanyController, findAllCompanyController, findByIdCompanyController, findByUrlCompanyController, updateCompanyController } from ".";
 import { FindByIdCompanySchema } from "./schemas/FindByIdCompanySchema";
 import { UpdateCompanySchema } from "./schemas/UpdateCompanySchema";
 import { FindAllCompanySchema } from "./schemas/FindAllCompanySchema";
 import { DeleteCompanySchema } from "./schemas/DeleteCompanySchema";
+import { FindByUrlCompanySchema } from "./schemas/FindUrlCompanySchema";
 
 /**
  * Registers private routes for API version 1.
@@ -15,6 +16,7 @@ export const privateCompanyRoutesV1: FastifyPluginAsync = async (fastifyInstance
   fastifyInstance.post('/v1/company', { schema: CreateCompanySchema }, createCompanyController().handler as RouteHandlerMethod);
   fastifyInstance.get('/v1/company', { schema: FindAllCompanySchema }, findAllCompanyController().handler as RouteHandlerMethod);
   fastifyInstance.get('/v1/company/:id', { schema: FindByIdCompanySchema }, findByIdCompanyController().handler as RouteHandlerMethod);
+  fastifyInstance.get('/v1/company/url/:url', { schema: FindByUrlCompanySchema }, findByUrlCompanyController().handler as RouteHandlerMethod);
   fastifyInstance.put('/v1/company/:id', { schema: UpdateCompanySchema }, updateCompanyController().handler as RouteHandlerMethod);
   fastifyInstance.delete('/v1/company/:id', { schema: DeleteCompanySchema }, deleteCompanyController().handler as RouteHandlerMethod);
 };
