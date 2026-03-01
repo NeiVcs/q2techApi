@@ -1,4 +1,5 @@
-export interface CreateOrderAddressDTO {
+export interface OrderAddressDTO {
+  [x: string]: unknown;
   zipCode: string;
   street: string;
   number: string;

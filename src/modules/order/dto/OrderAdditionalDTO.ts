@@ -1,4 +1,4 @@
-export interface CreateOrderAdditionalItemDTO {
+export interface OrderAdditionalDTO {
   additionalId: string;
   name: string;
   quantity: number;

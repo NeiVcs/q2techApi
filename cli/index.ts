@@ -273,7 +273,7 @@ createFile(
   path.join(baseDir, 'services', `${pascalFeature}Service.ts`),
   `import { singleton } from 'tsyringe';
 import { ${pascalFeature}InputDTO } from "@modules/${moduleName}/dto/${pascalFeature}InputDTO";
-import { ${moduleToUpper}Repository } from "@modules/company/data/${moduleToUpper}Repository";
+import { ${moduleToUpper}Repository } from "@modules/${moduleName}/data/${moduleToUpper}Repository";
 ${hasOutput ? `import { ${pascalFeature}OutputDTO } from "@modules/${moduleName}/dto/${pascalFeature}OutputDTO";` : ''}
 
 @singleton()

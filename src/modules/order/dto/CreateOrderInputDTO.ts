@@ -1,7 +1,5 @@
-import { CreateOrderUserDataDTO } from "@modules/order/dto/CreateOrderUserDataDTO";
-import { CreateOrderAddressDTO } from "@modules/order/dto/CreateOrderAddressDTO";
-import { CreateOrderOrderDataItemDTO } from "@modules/order/dto/CreateOrderOrderDataItemDTO";
-import { CreateOrderAdditionalItemDTO } from "@modules/order/dto/CreateOrderAdditionalItemDTO";
+import { OrderDataItemDTO } from "./OrderDataItemDTO";
+import { OrderUserDataDTO } from "./OrderUserDataDTO";
 
 export interface CreateOrderInputDTO {
   companyId: string;
@@ -12,8 +10,6 @@ export interface CreateOrderInputDTO {
   deliveryMode: string;
   rating?: number;
   notification?: string;
-  userData: CreateOrderUserDataDTO;
-  orderData: CreateOrderOrderDataItemDTO[];
+  userData: OrderUserDataDTO;
+  orderData: OrderDataItemDTO[];
 }
-    
-    
