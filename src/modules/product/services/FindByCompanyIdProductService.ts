@@ -7,7 +7,7 @@ import { IAdditional } from '@modules/additional/data/IAdditional';
 import { FindByIdAdditionalOutputDTO } from '@modules/additional/dto/FindByIdAdditionalOutputDTO';
 
 @singleton()
-export class FindAllCompanyProductService {
+export class FindByCompanyIdProductService {
   constructor(
     private productStorage: ProductRepository,
     private additionalStorage: AdditionalRepository,

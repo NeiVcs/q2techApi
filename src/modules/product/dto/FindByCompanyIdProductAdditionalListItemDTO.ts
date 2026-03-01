@@ -1,4 +1,4 @@
-export interface FindAllCompanyProductAdditionalListItemDTO {
+export interface FindByCompanyIdProductAdditionalListItemDTO {
   id?: string;
   companyId?: string;
   category?: string;

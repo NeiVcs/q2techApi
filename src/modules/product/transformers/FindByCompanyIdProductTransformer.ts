@@ -1,14 +1,14 @@
 import { singleton } from 'tsyringe';
 import { FastifyRequest } from 'fastify';
-import { FindAllCompanyProductParamsRequest, FindAllCompanyProductQueryRequest, FindAllCompanyProductResponse } from '@modules/product/schemas/FindAllCompanyProductSchema'
-import { FindAllCompanyProductInputDTO } from "@modules/product/dto/FindAllCompanyProductInputDTO";
-import { FindAllCompanyProductOutputDTO } from "@modules/product/dto/FindAllCompanyProductOutputDTO";
+import { FindByCompanyIdProductParamsRequest, FindByCompanyIdProductQueryRequest, FindByCompanyIdProductResponse } from '@modules/product/schemas/FindByCompanyIdProductSchema'
+import { FindByCompanyIdProductInputDTO } from "@modules/product/dto/FindByCompanyIdProductInputDTO";
+import { FindByCompanyIdProductOutputDTO } from "@modules/product/dto/FindByCompanyIdProductOutputDTO";
 import { validateRequest } from '@shared/validateRequest';
 import { paginationRequestSchema } from '@shared/validateRequest/validations/paginationRequestSchema';
 
 @singleton()
-export class FindAllCompanyProductTransformer {
-  public fromApi(request?: FastifyRequest<{ Params: FindAllCompanyProductParamsRequest; Querystring: FindAllCompanyProductQueryRequest }>): FindAllCompanyProductInputDTO {
+export class FindByCompanyIdProductTransformer {
+  public fromApi(request?: FastifyRequest<{ Params: FindByCompanyIdProductParamsRequest; Querystring: FindByCompanyIdProductQueryRequest }>): FindByCompanyIdProductInputDTO {
     const { query, params } = request;
     validateRequest(paginationRequestSchema, { page: query.page, pageSize: query.pageSize });
 
@@ -23,7 +23,7 @@ export class FindAllCompanyProductTransformer {
     };
   }
 
-  public toApi(outputDTO: FindAllCompanyProductOutputDTO): FindAllCompanyProductResponse {
+  public toApi(outputDTO: FindByCompanyIdProductOutputDTO): FindByCompanyIdProductResponse {
     return {
       pagination: outputDTO?.pagination ? {
         page: outputDTO?.pagination?.page ?? 0,

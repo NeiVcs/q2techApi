@@ -121,7 +121,7 @@ const schema = createSchema({
   }
 });
 
-export const FindAllCompanyProductSchema = schema.raw;
-export type FindAllCompanyProductParamsRequest = typeof schema.types.params;
-export type FindAllCompanyProductQueryRequest = typeof schema.types.querystring;
-export type FindAllCompanyProductResponse = (typeof schema.types.response)[200];
+export const FindByCompanyIdProductSchema = schema.raw;
+export type FindByCompanyIdProductParamsRequest = typeof schema.types.params;
+export type FindByCompanyIdProductQueryRequest = typeof schema.types.querystring;
+export type FindByCompanyIdProductResponse = (typeof schema.types.response)[200];

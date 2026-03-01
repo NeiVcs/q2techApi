@@ -4,7 +4,7 @@ import { OrderModel } from './OrderModel';
 import { ensureExists } from '@shared/helpers/ensureExists';
 
 export class OrderRepository {
-  private static readonly notFoundResponse = 'Empresa nâo encontrada';
+  private static readonly notFoundResponse = 'Pedido nâo encontrado';
 
   public async findAll(dto: any): Promise<any> {
     try {
@@ -16,7 +16,6 @@ export class OrderRepository {
       const total = await OrderModel.countDocuments();
 
       return { items: items, pagination: { ...dto, total: total } }
-
     } catch (e) {
       throw new MongoDbErrorException(e);
     }
@@ -25,6 +24,7 @@ export class OrderRepository {
   public async findById(id: string): Promise<any> {
     try {
       const result = await OrderModel.findById(id).lean();
+
       ensureExists(result, OrderRepository.notFoundResponse)
 
       return { id: result._id.toString(), ...result };
@@ -35,7 +35,6 @@ export class OrderRepository {
 
   public async save(entity: any): Promise<IOrder> {
     try {
-      console.log(entity)
       return await OrderModel.create(entity);
     } catch (e) {
       throw new MongoDbErrorException(e);
@@ -46,6 +45,7 @@ export class OrderRepository {
     try {
       const body = Object.fromEntries(Object.entries(entity).filter(([_, value]) => value != null && value !== ''));
       const result = await OrderModel.findByIdAndUpdate(entity.id, body, { new: true });
+
       ensureExists(result, OrderRepository.notFoundResponse)
     } catch (e) {
       throw new MongoDbErrorException(e);
@@ -55,6 +55,7 @@ export class OrderRepository {
   public async delete(id: string): Promise<void> {
     try {
       const result = await OrderModel.findByIdAndDelete({ _id: id });
+
       ensureExists(result, OrderRepository.notFoundResponse)
     } catch (e) {
       throw new MongoDbErrorException(e);
