@@ -4,11 +4,13 @@ import { UserModel } from './UserModel';
 import { ensureExists } from '@shared/helpers/ensureExists';
 import { CreateUserInputDTO } from '../dto/CreateUserInputDTO';
 import { FindAllUserInputDTO } from '../dto/FindAllUserInputDTO';
+import { FindByIdUserOutputDTO } from '@modules/user/dto/FindByIdUserOutputDTO';
+import { FindAllUserOutputDTO } from '@modules/user/dto/FindAllUserOutputDTO';
 
 export class UserRepository {
   private static readonly notFoundResponse = 'Usuário nâo encontrado';
 
-  public async findAll(dto: FindAllUserInputDTO): Promise<any> {
+  public async findAll(dto: FindAllUserInputDTO): Promise<FindAllUserOutputDTO> {
     try {
       const query = Object.fromEntries(Object.entries(dto).filter(([key, value]) => value != null && value !== '' && key !== 'page' && key !== 'pageSize'));
       const skip = (dto.page - 1) * dto.pageSize;
@@ -23,7 +25,7 @@ export class UserRepository {
     }
   }
 
-  public async findById(id: string): Promise<any> {
+  public async findById(id: string): Promise<FindByIdUserOutputDTO> {
     try {
       const result = await UserModel.findById(id).lean();
       ensureExists(result, UserRepository.notFoundResponse)

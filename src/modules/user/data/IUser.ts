@@ -1,6 +1,7 @@
 import { Document } from 'mongoose';
 
 export interface IUserAddress {
+  [x: string]: unknown;
   zipCode?: string;
   street?: string;
   number?: string;
@@ -11,12 +12,14 @@ export interface IUserAddress {
 }
 
 export interface IUserPlan {
+  [x: string]: unknown;
   name?: string;
   value?: number;
   validate?: string;
 }
 
 export interface IUserBilling {
+  [x: string]: unknown;
   dueDate?: string;
   value?: number;
   status?: 'pending' | 'paid' | 'cancelled';
@@ -37,7 +40,7 @@ export interface IUser extends Document {
   plan?: IUserPlan;
   active?: boolean;
   billing?: IUserBilling[];
-  lastLogin?: Date | string;
-  createdAt?: Date;
-  updatedAt?: Date;
+  lastLogin?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
