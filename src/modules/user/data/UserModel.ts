@@ -32,6 +32,7 @@ const UserSchema: Schema = new Schema({
     status: { type: String, enum: ['pending', 'paid', 'cancelled'], default: 'pending' }
   }],
   lastLogin: { type: Date },
+  createdAt: { type: String },
 });
 
 export const UserModel = mongoose.model<IUser>('User', UserSchema);

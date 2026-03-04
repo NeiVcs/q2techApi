@@ -3,11 +3,12 @@ import { IUser } from './IUser';
 import { UserModel } from './UserModel';
 import { ensureExists } from '@shared/helpers/ensureExists';
 import { CreateUserInputDTO } from '../dto/CreateUserInputDTO';
+import { FindAllUserInputDTO } from '../dto/FindAllUserInputDTO';
 
 export class UserRepository {
   private static readonly notFoundResponse = 'Usuário nâo encontrado';
 
-  public async findAll(dto: any): Promise<any> {
+  public async findAll(dto: FindAllUserInputDTO): Promise<any> {
     try {
       const query = Object.fromEntries(Object.entries(dto).filter(([key, value]) => value != null && value !== '' && key !== 'page' && key !== 'pageSize'));
       const skip = (dto.page - 1) * dto.pageSize;
@@ -17,7 +18,6 @@ export class UserRepository {
       const total = await UserModel.countDocuments();
 
       return { items: items, pagination: { ...dto, total: total } }
-
     } catch (e) {
       throw new MongoDbErrorException(e);
     }

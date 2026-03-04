@@ -1,5 +1,6 @@
 import { singleton } from 'tsyringe';
 import { FastifyRequest } from 'fastify';
+import { format } from 'date-fns';
 import { CreateUserBodyRequest, CreateUserResponse } from '@modules/user/schemas/CreateUserSchema'
 import { CreateUserInputDTO } from "@modules/user/dto/CreateUserInputDTO";
 import { CreateUserOutputDTO } from "@modules/user/dto/CreateUserOutputDTO";
@@ -40,7 +41,7 @@ export class CreateUserTransformer {
         status: f?.status || '',
       })) : [],
       lastLogin: body?.lastLogin || '',
-      createdAt: body?.createdAt || '',
+      createdAt: format(new Date(), 'yyyy-MM-dd')
     };
   }
 
