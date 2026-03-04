@@ -17,7 +17,6 @@ user
         "neighborhood": "Bairro Binário",
         "city": "São Paulo",
         "state": "SP",
-        "complement": "Bloco A"
     },
     "plan": {
         "name": "Premium",
