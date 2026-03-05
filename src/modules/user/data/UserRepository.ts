@@ -6,6 +6,7 @@ import { CreateUserInputDTO } from '../dto/CreateUserInputDTO';
 import { FindAllUserInputDTO } from '../dto/FindAllUserInputDTO';
 import { FindByIdUserOutputDTO } from '@modules/user/dto/FindByIdUserOutputDTO';
 import { FindAllUserOutputDTO } from '@modules/user/dto/FindAllUserOutputDTO';
+import { UpdateUserInputDTO } from '../dto/UpdateUserInputDTO';
 
 export class UserRepository {
   private static readonly notFoundResponse = 'Usuário nâo encontrado';
@@ -43,7 +44,7 @@ export class UserRepository {
     }
   }
 
-  public async update(entity: any): Promise<void> {
+  public async update(entity: UpdateUserInputDTO): Promise<void> {
     try {
       const body = Object.fromEntries(Object.entries(entity).filter(([_, value]) => value != null && value !== ''));
       const result = await UserModel.findByIdAndUpdate(entity.id, body, { new: true });

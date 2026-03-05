@@ -1,8 +1,9 @@
 import { FastifyInstance, FastifyPluginAsync, RouteHandlerMethod } from "fastify";
 import { CreateUserSchema } from "./schemas/CreateUserSchema";
-import { createUserController, findAllUserController, findByIdUserController } from '.';
+import { createUserController, findAllUserController, findByIdUserController, updateUserController } from '.';
 import { FindAllUserSchema } from "./schemas/FindAllUserSchema";
 import { FindByIdUserSchema } from '@modules/user/schemas/FindByIdUserSchema';
+import { UpdateUserSchema } from "./schemas/UpdateUserSchema";
 
 /**
  * Registers private routes for API version 1.
@@ -13,4 +14,5 @@ export const privateUserRoutesV1: FastifyPluginAsync = async (fastifyInstance: F
   fastifyInstance.post('/v1/user', { schema: CreateUserSchema }, createUserController().handler as RouteHandlerMethod);
   fastifyInstance.get('/v1/user', { schema: FindAllUserSchema }, findAllUserController().handler as RouteHandlerMethod);
   fastifyInstance.get('/v1/user/:id', { schema: FindByIdUserSchema }, findByIdUserController().handler as RouteHandlerMethod);
+  fastifyInstance.put('/v1/user/:id', { schema: UpdateUserSchema }, updateUserController().handler as RouteHandlerMethod);
 };
