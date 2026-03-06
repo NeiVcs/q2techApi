@@ -1,5 +1,5 @@
 import { singleton } from 'tsyringe';
-import {FastifyRequest} from 'fastify';
+import { FastifyRequest } from 'fastify';
 import { FindByIdUserParamsRequest, FindByIdUserResponse } from '@modules/user/schemas/FindByIdUserSchema'
 import { FindByIdUserInputDTO } from "@modules/user/dto/FindByIdUserInputDTO";
 import { FindByIdUserOutputDTO } from "@modules/user/dto/FindByIdUserOutputDTO";
@@ -10,7 +10,7 @@ export class FindByIdUserTransformer {
     const { params } = request;
 
     return {
-       id: params.id,
+      id: params.id,
     };
   }
 
@@ -50,4 +50,3 @@ export class FindByIdUserTransformer {
     };
   }
 }
-  
