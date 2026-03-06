@@ -7,6 +7,8 @@ import { FindAllUserInputDTO } from '../dto/FindAllUserInputDTO';
 import { FindByIdUserOutputDTO } from '@modules/user/dto/FindByIdUserOutputDTO';
 import { FindAllUserOutputDTO } from '@modules/user/dto/FindAllUserOutputDTO';
 import { UpdateUserInputDTO } from '../dto/UpdateUserInputDTO';
+import { AccessDeniedException } from '@shared/exceptions';
+import { FindByEmailUserOutputDTO } from '../dto/FindByEmailUserrOutputDTO';
 
 export class UserRepository {
   private static readonly notFoundResponse = 'Usuário nâo encontrado';
@@ -59,6 +61,22 @@ export class UserRepository {
       const result = await UserModel.findByIdAndDelete({ _id: id });
       ensureExists(result, UserRepository.notFoundResponse)
     } catch (e) {
+      throw new MongoDbErrorException(e);
+    }
+  }
+
+  public async findByLogin(email: string): Promise<FindByEmailUserOutputDTO> {
+    try {
+      const result = await UserModel.findOne({ email }).lean();
+      if (!result) {
+        throw new AccessDeniedException();
+      }
+
+      return { id: result._id.toString(), ...result };
+    } catch (e) {
+      if (e instanceof AccessDeniedException) {
+        throw e;
+      }
       throw new MongoDbErrorException(e);
     }
   }

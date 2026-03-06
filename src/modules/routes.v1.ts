@@ -6,6 +6,7 @@ import { privateProductRoutesV1 } from './product';
 import { privateCompanyRoutesV1 } from './company';
 import { privateOrderRoutesV1 } from './order';
 import { privateUserRoutesV1 } from './user';
+import { privateAuthRoutesV1 } from './auth';
 
 export const routesV1: FastifyPluginAsync = async (fastifyInstance: FastifyInstance) => {
   fastifyInstance.register(async (privateScope: FastifyInstance) => {
@@ -18,5 +19,6 @@ export const routesV1: FastifyPluginAsync = async (fastifyInstance: FastifyInsta
     privateScope.register(privateCompanyRoutesV1);
     privateScope.register(privateOrderRoutesV1);
     privateScope.register(privateUserRoutesV1);
+    privateScope.register(privateAuthRoutesV1);
   });
 };
