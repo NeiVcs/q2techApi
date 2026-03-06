@@ -12,7 +12,6 @@ import { DeleteUserSchema } from "./schemas/DeleteUserSchema";
  * @param {FastifyInstance} fastifyInstance - The Fastify instance where the routes will be registered.
  */
 export const privateUserRoutesV1: FastifyPluginAsync = async (fastifyInstance: FastifyInstance) => {
-  fastifyInstance.post('/v1/user', { schema: CreateUserSchema }, createUserController().handler as RouteHandlerMethod);
   fastifyInstance.get('/v1/user', { schema: FindAllUserSchema }, findAllUserController().handler as RouteHandlerMethod);
   fastifyInstance.get('/v1/user/:id', { schema: FindByIdUserSchema }, findByIdUserController().handler as RouteHandlerMethod);
   fastifyInstance.put('/v1/user/:id', { schema: UpdateUserSchema }, updateUserController().handler as RouteHandlerMethod);

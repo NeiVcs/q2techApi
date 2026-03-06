@@ -1,8 +1,10 @@
+import jwt from 'jsonwebtoken';
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { CodeErrors } from '@shared/exceptions';
+import { AccessDeniedException, CodeErrors, UnauthorizedException } from '@shared/exceptions';
 import { envConfig } from '@config/env';
 import { RestAuditLog } from '@middlewares/registerLogger/types';
 import { logger } from '@shared/logger';
+import { AsyncHooksContext } from '@shared/asyncHooks';
 
 const UnauthorizedResponse = {
   errors: [CodeErrors.CODE_ERROR_UNAUTHORIZED]
@@ -45,5 +47,45 @@ export const authMiddleware = async (request: FastifyRequest, reply: FastifyRepl
   } catch (error) {
     registerLoggerError(request, reply, error);
     return reply.code(401).send(UnauthorizedResponse);
+  }
+};
+
+/**
+ * Authentication middleware that verifies token header.
+ * If token is invalid, sends 401 Unauthorized response.
+ *
+ * @param {FastifyRequest} request - The incoming Fastify request object.
+ * @param {FastifyReply} reply - The Fastify reply object used to send responses.
+ * @returns {Promise<void|FastifyReply>} Returns early with 401 Unauthorized response if token is invalid or missing.
+ */
+export const tokenMiddleware = async (request: FastifyRequest, reply: FastifyReply) => {
+  const authHeader = request.headers.authorization;
+  if (!authHeader) throw new AccessDeniedException();
+
+  const token = authHeader.replace('Bearer ', '').trim();
+  const secret = process.env.JWT_SECRET as string;
+
+  try {
+    const decoded = jwt.verify(token, secret) as any;
+    const currentContext = AsyncHooksContext.getContext();
+    const updatedContext = {
+      ...currentContext,
+      user: {
+        id: decoded.id,
+        companyId: decoded.companyId,
+        name: decoded.name,
+        resource: decoded.resource,
+        position: decoded.position,
+      }
+    };
+
+    return new Promise((resolve) => {
+      AsyncHooksContext.runWithContext(updatedContext, () => {
+        resolve(undefined);
+      });
+    });
+
+  } catch (error) {
+    throw new AccessDeniedException();
   }
 };

@@ -21,7 +21,7 @@ export class AuthService {
 
   private async passwordValidation(inputDTO: AuthInputDTO, userData: FindByEmailUserOutputDTO): Promise<void> {
     const isMatch = await bcrypt.compare(inputDTO.password, userData.password);
-    if(!isMatch){
+    if (!isMatch) {
       throw new AccessDeniedException();
     }
   }
@@ -29,30 +29,17 @@ export class AuthService {
   public async createToken(inputDTO: FindByEmailUserOutputDTO): Promise<AuthOutputDTO> {
     const secret = process.env.JWT_SECRET;
     const token = jwt.sign(
-      { 
-        id: inputDTO.id, 
+      {
+        id: inputDTO.id,
         companyId: inputDTO.companyId,
-        name: inputDTO.name, 
+        name: inputDTO.name,
         resource: inputDTO.resource,
         position: inputDTO.position,
-      }, 
-      secret, 
+      },
+      secret,
       { expiresIn: '8h' }
     );
- 
+
     return { token: token } as unknown as AuthOutputDTO;
   }
 }
-
-
-// try {
-//   // O jwt.verify faz a mágica: abre o token e CHECA a assinatura ao mesmo tempo
-//   const decoded = jwt.verify(tokenRecebido, secret);
-  
-//   // Se chegou aqui, o token é legítimo!
-//   // Agora o 'decoded' tem o { id, resource } que você guardou lá no login.
-//   request.user = decoded; 
-// } catch (err) {
-//   // Se alguém alterou o token ou ele expirou, o verify lança um erro
-//   throw new UnauthorizedException('Token inválido ou expirado.');
-// }

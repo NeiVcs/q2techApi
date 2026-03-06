@@ -1,16 +1,24 @@
 import { FastifyInstance, FastifyPluginAsync } from 'fastify';
-import { authMiddleware } from '@middlewares/authMiddleware';
+import { authMiddleware, tokenMiddleware } from '@middlewares/authMiddleware';
 import { privateMusicRoutesV1 } from './music';
 import { privateAdditionalRoutesV1 } from './additional';
 import { privateProductRoutesV1 } from './product';
 import { privateCompanyRoutesV1 } from './company';
 import { privateOrderRoutesV1 } from './order';
-import { privateUserRoutesV1 } from './user';
-import { privateAuthRoutesV1 } from './auth';
+import { privateUserRoutesV1, publicUserRoutesV1 } from './user';
+import { publicAuthRoutesV1 } from './auth';
 
 export const routesV1: FastifyPluginAsync = async (fastifyInstance: FastifyInstance) => {
+  fastifyInstance.register(async (publicScope: FastifyInstance) => {
+    publicScope.addHook('preHandler', authMiddleware);
+
+    publicScope.register(publicAuthRoutesV1);
+    publicScope.register(publicUserRoutesV1);
+  });
+
   fastifyInstance.register(async (privateScope: FastifyInstance) => {
     privateScope.addHook('preHandler', authMiddleware);
+    privateScope.addHook('preHandler', tokenMiddleware);
 
     privateScope.register(privateMusicRoutesV1);
 
@@ -19,6 +27,5 @@ export const routesV1: FastifyPluginAsync = async (fastifyInstance: FastifyInsta
     privateScope.register(privateCompanyRoutesV1);
     privateScope.register(privateOrderRoutesV1);
     privateScope.register(privateUserRoutesV1);
-    privateScope.register(privateAuthRoutesV1);
   });
 };
