@@ -24,8 +24,6 @@ export const routesV1: FastifyPluginAsync = async (fastifyInstance: FastifyInsta
     privateScope.addHook('preHandler', authMiddleware);
     privateScope.addHook('preHandler', tokenMiddleware);
 
-    privateScope.register(privateMusicRoutesV1);
-
     privateScope.register(privateAdditionalRoutesV1);
     privateScope.register(privateProductRoutesV1);
     privateScope.register(privateCompanyRoutesV1);
