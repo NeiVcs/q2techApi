@@ -15,8 +15,6 @@ import { DeleteOrderSchema } from "./schemas/DeleteOrderSchema";
 export const privateOrderRoutesV1: FastifyPluginAsync = async (fastifyInstance: FastifyInstance) => {
   fastifyInstance.post('/v1/order', { schema: CreateOrderSchema }, createOrderController().handler as RouteHandlerMethod);
   fastifyInstance.get('/v1/order', { schema: FindAllOrderSchema }, findAllOrderController().handler as RouteHandlerMethod);
-  fastifyInstance.get('/v1/order/:id', { schema: FindByIdOrderSchema }, findByIdOrderController().handler as RouteHandlerMethod);
-  fastifyInstance.get('/v1/order/company/:companyId', { schema: FindByCompanyIdOrderSchema }, findByCompanyIdOrderController().handler as RouteHandlerMethod);
   fastifyInstance.put('/v1/order/:id', { schema: UpdateOrderSchema }, updateOrderController().handler as RouteHandlerMethod);
   fastifyInstance.delete('/v1/order/:id', { schema: DeleteOrderSchema }, deleteOrderController().handler as RouteHandlerMethod);
 };

@@ -1,6 +1,5 @@
 import { FastifyInstance, FastifyPluginAsync, RouteHandlerMethod } from "fastify";
-import { CreateUserSchema } from "./schemas/CreateUserSchema";
-import { createUserController, deleteUserController, findAllUserController, findByIdUserController, updateUserController } from '.';
+import { deleteUserController, findAllUserController, findByIdUserController, updateUserController } from '.';
 import { FindAllUserSchema } from "./schemas/FindAllUserSchema";
 import { FindByIdUserSchema } from '@modules/user/schemas/FindByIdUserSchema';
 import { UpdateUserSchema } from "./schemas/UpdateUserSchema";
