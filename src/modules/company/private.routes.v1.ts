@@ -5,7 +5,6 @@ import { FindByIdCompanySchema } from "./schemas/FindByIdCompanySchema";
 import { UpdateCompanySchema } from "./schemas/UpdateCompanySchema";
 import { FindAllCompanySchema } from "./schemas/FindAllCompanySchema";
 import { DeleteCompanySchema } from "./schemas/DeleteCompanySchema";
-import { FindByUrlCompanySchema } from "./schemas/FindUrlCompanySchema";
 
 /**
  * Registers private routes for API version 1.

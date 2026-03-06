@@ -1,7 +1,7 @@
 import { FastifyInstance, FastifyPluginAsync, RouteHandlerMethod } from "fastify";
 import { FindByIdCompanySchema } from "./schemas/FindByIdCompanySchema";
 import { findByIdCompanyController, findByUrlCompanyController } from ".";
-import { FindByUrlCompanySchema } from "./schemas/FindUrlCompanySchema";
+import { FindByUrlCompanySchema } from "./schemas/FindByUrlCompanySchema";
 
 /**
  * Registers public routes for API version 1.

@@ -17,7 +17,6 @@ export class ProductRepository {
       const total = await ProductModel.countDocuments();
 
       return { items: items, pagination: { ...dto, total: total } }
-
     } catch (e) {
       throw new MongoDbErrorException(e);
     }

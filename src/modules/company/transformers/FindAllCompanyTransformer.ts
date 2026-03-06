@@ -17,27 +17,25 @@ export class FindAllCompanyTransformer {
 
   public toApi(outputDTO: FindAllCompanyOutputDTO): FindAllCompanyResponse {
     return {
-      pagination: outputDTO.pagination ? {
-        page: Number(outputDTO.pagination.page),
-        pageSize: Number(outputDTO.pagination.pageSize),
-        total: Number(outputDTO.pagination.total),
+      pagination: outputDTO?.pagination ? {
+        page: outputDTO?.pagination?.page ?? 0,
+        pageSize: outputDTO?.pagination?.pageSize ?? 0,
+        total: outputDTO?.pagination?.total ?? 0,
       } : undefined,
-      items: Array.isArray(outputDTO?.items) ? outputDTO.items.map(f => {
-        return {
-          id: String(f.id),
-          name: f.name || '',
-          description: f.description || '',
-          url: f.url || '',
-          closed: !!f.closed,
-          minOrderPrice: Number(f.minOrderPrice || 0),
-          paymentForms: Array.isArray(f.paymentForms) ? f.paymentForms : [],
-          categoriesList: Array.isArray(f.categoriesList) ? f.categoriesList.map(c => ({ ...c })) : [],
-          workSchedule: Array.isArray(f.workSchedule) ? f.workSchedule.map(w => ({ ...w })) : [],
-          stylization: f.stylization,
-          contacts: f.contacts,
-          address: f.address
-        };
-      }) : [],
+      items: Array.isArray(outputDTO?.items) ? outputDTO.items.map(f => ({
+        id: f?.id ?? '',
+        name: f?.name ?? '',
+        description: f?.description ?? '',
+        url: f?.url ?? '',
+        closed: f?.closed ?? false,
+        minOrderPrice: f?.minOrderPrice ?? 0,
+        categoriesList: f?.categoriesList ?? [],
+        stylization: f?.stylization ?? undefined,
+        contacts: f?.contacts ?? undefined,
+        address: f?.address ?? undefined,
+        workSchedule: f?.workSchedule ?? [],
+        paymentForms: f?.paymentForms ?? [],
+      })) : [],
     };
   }
 }

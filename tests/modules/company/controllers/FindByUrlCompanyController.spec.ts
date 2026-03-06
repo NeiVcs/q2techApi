@@ -1,14 +1,14 @@
 import { FastifyReply } from "fastify";
 import { mock } from "jest-mock-extended";
 
-import { FindByIdCompanyController } from "../../../../src/modules/company/controllers/FindByIdCompanyController";
-import { FindByIdCompanyTransformer } from "../../../../src/modules/company/transformers/FindByIdCompanyTransformer";
-import { FindByIdCompanyService } from "../../../../src/modules/company/services/FindByIdCompanyService";
+import { FindByUrlCompanyController } from "../../../../src/modules/company/controllers/FindByUrlCompanyController";
+import { FindByUrlCompanyTransformer } from "../../../../src/modules/company/transformers/FindByUrlCompanyTransformer";
+import { FindByUrlCompanyService } from "../../../../src/modules/company/services/FindByUrlCompanyService";
 
-describe("FindByIdCompanyController", () => {
-  let controller: FindByIdCompanyController;
-  let transformer: jest.Mocked<FindByIdCompanyTransformer>;
-  let service: jest.Mocked<FindByIdCompanyService>;
+describe("FindByUrlCompanyController", () => {
+  let controller: FindByUrlCompanyController;
+  let transformer: jest.Mocked<FindByUrlCompanyTransformer>;
+  let service: jest.Mocked<FindByUrlCompanyService>;
   let reply: jest.Mocked<FastifyReply>;
 
   beforeEach(() => {
@@ -16,12 +16,12 @@ describe("FindByIdCompanyController", () => {
     transformer = { fromApi: jest.fn(), toApi: jest.fn() } as any;
     service = { execute: jest.fn() } as any;
     reply = mock<FastifyReply>();
-    controller = new FindByIdCompanyController(transformer, service);
+    controller = new FindByUrlCompanyController(transformer, service);
   });
   
   it("deve chamar service e transformer corretamente", async () => {
     const inputDTO = {
-  "id": "fakeString"
+  "url": "fakeString"
 };
     const outputDTO = {
   "id": "fakeString",
@@ -57,7 +57,7 @@ describe("FindByIdCompanyController", () => {
 
     const result = await controller.handler({
   params: {
-  "id": "fakeString"
+  "url": "fakeString"
 }
 } as any, reply);
 

@@ -3,8 +3,8 @@ import { CreateCompanyController } from "@modules/company/controllers/CreateComp
 import { DeleteCompanyController } from "@modules/company/controllers/DeleteCompanyController";
 import { FindAllCompanyController } from "@modules/company/controllers/FindAllCompanyController";
 import { FindByIdCompanyController } from "@modules/company/controllers/FindByIdCompanyController";
+import { FindByUrlCompanyController } from "@modules/company/controllers/FindByUrlCompanyController";
 import { UpdateCompanyController } from "@modules/company/controllers/UpdateCompanyController";
-import { FindByUrlCompanyController } from './controllers/FindByUrlCompanyController';
 
 export * from './private.routes.v1';
 export * from './public.routes.v1';

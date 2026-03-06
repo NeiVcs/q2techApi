@@ -53,7 +53,7 @@ const schema = createSchema({
         type: 'string',
         description: 'alert',
       },
-      minOderPrice: {
+      minOrderPrice: {
         type: 'number',
         description: 'mínimo.',
         minimum: 0,
@@ -181,7 +181,7 @@ const schema = createSchema({
         url: 'lanchonete-do-dev',
         closed: false,
         alert: 'Estamos aceitando apenas Pix hoje!',
-        minOderPrice: 30.00,
+        minOrderPrice: 30.00,
         categoriesList: [
           { name: 'Hambúrgueres', icon: 'burger-icon' },
           { name: 'Bebidas', icon: 'soda-icon' }
