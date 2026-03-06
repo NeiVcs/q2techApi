@@ -1,20 +1,18 @@
 import { singleton } from 'tsyringe';
-import { FindAllAdditionalQueryRequest, FindAllAdditionalResponse } from '@modules/additional/schemas/FindAllAdditionalSchema'
-import { FindAllAdditionalOutputDTO } from "@modules/additional/dto/FindAllAdditionalOutputDTO";
 import { FastifyRequest } from 'fastify';
-import { FindAllAdditionalInputDTO } from '../dto/FindAllAdditionalInputDTO';
-import { validateRequest } from '@shared/validateRequest';
-import { paginationRequestSchema } from '@shared/validateRequest/validations/paginationRequestSchema';
+import { FindAllAdditionalQueryRequest, FindAllAdditionalResponse } from '@modules/additional/schemas/FindAllAdditionalSchema'
+import { FindAllAdditionalInputDTO } from "@modules/additional/dto/FindAllAdditionalInputDTO";
+import { FindAllAdditionalOutputDTO } from "@modules/additional/dto/FindAllAdditionalOutputDTO";
 
 @singleton()
 export class FindAllAdditionalTransformer {
   public fromApi(request?: FastifyRequest<{ Querystring: FindAllAdditionalQueryRequest }>): FindAllAdditionalInputDTO {
     const { query } = request;
-    validateRequest(paginationRequestSchema, { page: query.page, pageSize: query.pageSize });
 
     return {
       page: query?.page || 0,
       pageSize: query?.pageSize || 0,
+      companyId: query?.companyId || '',
     };
   }
 
@@ -30,8 +28,8 @@ export class FindAllAdditionalTransformer {
         companyId: f?.companyId ?? '',
         category: f?.category ?? '',
         name: f?.name ?? '',
-        min: f?.min,
-        max: f?.max,
+        min: f?.min ?? 0,
+        max: f?.max ?? 0,
         productIdList: f?.productIdList ?? [],
       })) : [],
     };

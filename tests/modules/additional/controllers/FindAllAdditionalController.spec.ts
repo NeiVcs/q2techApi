@@ -18,42 +18,31 @@ describe("FindAllAdditionalController", () => {
     reply = mock<FastifyReply>();
     controller = new FindAllAdditionalController(transformer, service);
   });
-
+  
   it("deve chamar service e transformer corretamente", async () => {
     const inputDTO = {
-      "id": "fakeString",
-      "companyId": "fakeString",
-      "category": "fakeString",
-      "name": "fakeString",
-      "min": 123,
-      "max": "fakeString",
-      "productIdList": [
-        "fakeString"
-      ]
-    };
+  "page": 123,
+  "pageSize": 123,
+  "companyId": "fakeString"
+};
     const outputDTO = {
-      "items": [
-        {}
-      ]
-    };
+  "pagination": {},
+  "items": [
+    {}
+  ]
+};
 
     transformer.fromApi.mockReturnValue(inputDTO);
     service.execute.mockResolvedValue(outputDTO);
     transformer.toApi.mockReturnValue(outputDTO);
 
     const result = await controller.handler({
-      query: {
-        "id": "fakeString",
-        "companyId": "fakeString",
-        "category": "fakeString",
-        "name": "fakeString",
-        "min": 123,
-        "max": "fakeString",
-        "productIdList": [
-          "fakeString"
-        ]
-      }
-    } as any, reply);
+  query: {
+  "page": 123,
+  "pageSize": 123,
+  "companyId": "fakeString"
+}
+} as any, reply);
 
     expect(transformer.fromApi).toHaveBeenCalled();
     expect(service.execute).toHaveBeenCalledWith(inputDTO);

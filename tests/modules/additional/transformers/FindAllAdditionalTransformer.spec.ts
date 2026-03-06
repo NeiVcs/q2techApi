@@ -6,45 +6,35 @@ describe("FindAllAdditionalTransformer", () => {
   beforeEach(() => {
     transformer = new FindAllAdditionalTransformer();
   });
-
+  
   it("deve mapear corretamente fromApi", () => {
     const request: any = {
-      query: {
-        "id": "fakeString",
-        "companyId": "fakeString",
-        "category": "fakeString",
-        "name": "fakeString",
-        "min": 123,
-        "max": "fakeString",
-        "productIdList": [
-          "fakeString"
-        ]
-      }
-    };
+  query: {
+  "page": 123,
+  "pageSize": 123,
+  "companyId": "fakeString"
+}
+};
     const dto = transformer.fromApi(request);
     expect(dto).toMatchObject({
-      "id": "fakeString",
-      "companyId": "fakeString",
-      "category": "fakeString",
-      "name": "fakeString",
-      "min": 123,
-      "max": "fakeString",
-      "productIdList": [
-        "fakeString"
-      ]
-    });
+  "page": 123,
+  "pageSize": 123,
+  "companyId": "fakeString"
+});
   });
   it("deve mapear corretamente toApi", () => {
     const outputDTO: any = {
-      "items": [
-        {}
-      ]
-    };
+  "pagination": {},
+  "items": [
+    {}
+  ]
+};
     const result = transformer.toApi(outputDTO);
     expect(result).toMatchObject({
-      "items": [
-        {}
-      ]
-    });
+  "pagination": {},
+  "items": [
+    {}
+  ]
+});
   });
 });

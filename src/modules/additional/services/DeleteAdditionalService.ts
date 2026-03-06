@@ -1,6 +1,7 @@
 import { singleton } from 'tsyringe';
 import { DeleteAdditionalInputDTO } from "@modules/additional/dto/DeleteAdditionalInputDTO";
-import { AdditionalRepository } from '../data/AdditionalRepository';
+import { AdditionalRepository } from "@modules/additional/data/AdditionalRepository";
+
 
 @singleton()
 export class DeleteAdditionalService {
@@ -8,5 +9,6 @@ export class DeleteAdditionalService {
 
   public async execute(inputDTO: DeleteAdditionalInputDTO): Promise<void> {
     await this.storage.delete(inputDTO.id);
+    return;
   }
 }
