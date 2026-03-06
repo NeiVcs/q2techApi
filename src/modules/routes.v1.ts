@@ -1,6 +1,5 @@
 import { FastifyInstance, FastifyPluginAsync } from 'fastify';
 import { authMiddleware, tokenMiddleware } from '@middlewares/authMiddleware';
-import { privateMusicRoutesV1 } from './music';
 import { privateAdditionalRoutesV1, publicAdditionalRoutesV1 } from './additional';
 import { privateProductRoutesV1, publicProductRoutesV1 } from './product';
 import { privateCompanyRoutesV1, publicCompanyRoutesV1 } from './company';
