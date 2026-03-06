@@ -1,0 +1,36 @@
+user
+
+{
+    "companyId": "123456789",
+    "name": "João Silva",
+    "password": "senha123",
+    "cpf": "123.456.789-00",
+    "email": "email@email.com",
+    "phoneNumber": "11987654321",
+    "whatsapp": "11987654321",
+    "position" "gerente",
+    "resource": "admin",
+    "address": {
+        "zipCode": "01234567",
+        "street": "Avenida da Tecnologia",
+        "number": "1024",
+        "neighborhood": "Bairro Binário",
+        "city": "São Paulo",
+        "state": "SP",
+    },
+    "plan": {
+        "name": "Premium",
+        "value": 99.9,
+        "validate": "2026-12-31"
+    },
+    active: true,
+    billing: [
+        {
+            "dueDate": "2024-07-01",
+            "value": 99.9,
+            "status": "pending"
+        }
+    ],
+    lastLogin: "2024-06-01T12:00:00Z",
+    createdAt: "2024-06-01T12:00:00Z",
+}

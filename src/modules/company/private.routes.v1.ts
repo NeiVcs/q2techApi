@@ -15,8 +15,6 @@ import { FindByUrlCompanySchema } from "./schemas/FindUrlCompanySchema";
 export const privateCompanyRoutesV1: FastifyPluginAsync = async (fastifyInstance: FastifyInstance) => {
   fastifyInstance.post('/v1/company', { schema: CreateCompanySchema }, createCompanyController().handler as RouteHandlerMethod);
   fastifyInstance.get('/v1/company', { schema: FindAllCompanySchema }, findAllCompanyController().handler as RouteHandlerMethod);
-  fastifyInstance.get('/v1/company/:id', { schema: FindByIdCompanySchema }, findByIdCompanyController().handler as RouteHandlerMethod);
-  fastifyInstance.get('/v1/company/url/:url', { schema: FindByUrlCompanySchema }, findByUrlCompanyController().handler as RouteHandlerMethod);
   fastifyInstance.put('/v1/company/:id', { schema: UpdateCompanySchema }, updateCompanyController().handler as RouteHandlerMethod);
   fastifyInstance.delete('/v1/company/:id', { schema: DeleteCompanySchema }, deleteCompanyController().handler as RouteHandlerMethod);
 };
