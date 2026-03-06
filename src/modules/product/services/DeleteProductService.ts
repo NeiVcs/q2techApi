@@ -1,6 +1,6 @@
 import { singleton } from 'tsyringe';
 import { DeleteProductInputDTO } from "@modules/product/dto/DeleteProductInputDTO";
-import { ProductRepository } from '../data/ProductRepository';
+import { ProductRepository } from "@modules/product/data/ProductRepository";
 
 @singleton()
 export class DeleteProductService {
@@ -8,5 +8,6 @@ export class DeleteProductService {
 
   public async execute(inputDTO: DeleteProductInputDTO): Promise<void> {
     await this.storage.delete(inputDTO.id);
+    return;
   }
 }

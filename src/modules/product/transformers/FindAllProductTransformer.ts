@@ -16,8 +16,8 @@ export class FindAllProductTransformer {
       companyId: query?.companyId || '',
       name: query?.name || '',
       category: query?.category || '',
-      active: query?.active,
-      isAdditional: query?.isAdditional,
+      active: query?.active || false,
+      isAdditional: query?.isAdditional || false,
       page: query?.page || 0,
       pageSize: query?.pageSize || 0,
     };
@@ -36,12 +36,12 @@ export class FindAllProductTransformer {
         name: f?.name ?? '',
         category: f?.category ?? '',
         description: f?.description ?? '',
-        active: f?.active,
-        isAdditional: f?.isAdditional,
+        active: f?.active ?? false,
+        isAdditional: f?.isAdditional ?? false,
         imgUrl: f?.imgUrl ?? '',
         price: f?.price ?? 0,
         previewPrice: f?.previewPrice ?? 0,
-        additionalList: f?.additionalList.length > 0 ? f?.additionalList : null,
+        additionalList: f?.additionalList ?? [],
       })) : [],
     };
   }

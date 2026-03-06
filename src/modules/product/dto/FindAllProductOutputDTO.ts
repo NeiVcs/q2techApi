@@ -1,6 +1,5 @@
-
 import { PaginationDTO } from "@shared/dto/PaginationDTO";
-import { FindAllProductDTO } from "./FindAllProductItemsItemDTO";
+import { FindAllProductDTO } from "@modules/product/dto/FindAllProductItemsItemDTO";
 
 export interface FindAllProductOutputDTO {
   pagination?: PaginationDTO;

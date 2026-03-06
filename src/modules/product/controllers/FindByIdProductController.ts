@@ -9,13 +9,12 @@ export class FindByIdProductController {
   constructor(
     private readonly transformer: FindByIdProductTransformer,
     private readonly service: FindByIdProductService
-  ) { }
+  ) {}
 
   handler = async (request: FastifyRequest<{ Params: FindByIdProductParamsRequest }>, reply: FastifyReply): Promise<FindByIdProductResponse> => {
     const inputDTO = this.transformer.fromApi(request);
     const outputDTO = await this.service.execute(inputDTO);
     reply.code(200);
     return this.transformer.toApi(outputDTO);
-  }
-
+  }  
 }

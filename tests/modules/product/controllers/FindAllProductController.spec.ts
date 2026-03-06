@@ -18,20 +18,39 @@ describe("FindAllProductController", () => {
     reply = mock<FastifyReply>();
     controller = new FindAllProductController(transformer, service);
   });
-  
+
   it("deve chamar service e transformer corretamente", async () => {
-    const inputDTO = {};
+    const inputDTO = {
+      "companyId": "fakeString",
+      "name": "fakeString",
+      "category": "fakeString",
+      "active": true,
+      "isAdditional": true,
+      "page": 123,
+      "pageSize": 123
+    };
     const outputDTO = {
-  "items": [
-    {}
-  ]
-};
+      "pagination": {},
+      "items": [
+        {}
+      ]
+    };
 
     transformer.fromApi.mockReturnValue(inputDTO);
     service.execute.mockResolvedValue(outputDTO);
     transformer.toApi.mockReturnValue(outputDTO);
 
-    const result = await controller.handler({} as any, reply);
+    const result = await controller.handler({
+      query: {
+        "companyId": "fakeString",
+        "name": "fakeString",
+        "category": "fakeString",
+        "active": true,
+        "isAdditional": true,
+        "page": 123,
+        "pageSize": 123
+      }
+    } as any, reply);
 
     expect(transformer.fromApi).toHaveBeenCalled();
     expect(service.execute).toHaveBeenCalledWith(inputDTO);

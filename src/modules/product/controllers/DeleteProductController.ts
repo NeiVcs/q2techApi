@@ -9,12 +9,12 @@ export class DeleteProductController {
   constructor(
     private readonly transformer: DeleteProductTransformer,
     private readonly service: DeleteProductService
-  ) { }
+  ) {}
 
   handler = async (request: FastifyRequest<{ Params: DeleteProductParamsRequest }>, reply: FastifyReply): Promise<void> => {
     const inputDTO = this.transformer.fromApi(request);
-
+    
     await this.service.execute(inputDTO);
     reply.code(204);
-  }
+  }  
 }

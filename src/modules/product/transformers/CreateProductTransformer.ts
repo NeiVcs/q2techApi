@@ -13,13 +13,13 @@ export class CreateProductTransformer {
       companyId: body?.companyId || '',
       name: body?.name || '',
       category: body?.category || '',
-      active: body?.active !== null && body?.active !== undefined ? body?.active : true,
-      isAdditional: body?.isAdditional !== null && body?.isAdditional !== undefined ? body?.isAdditional : false,
       description: body?.description || '',
+      active: body?.active || false,
+      isAdditional: body?.isAdditional || false,
       imgUrl: body?.imgUrl || '',
       price: body?.price || 0,
       previewPrice: body?.previewPrice || 0,
-      additionalIdList: body?.additionalIdList || null,
+      additionalIdList: Array.isArray(body?.additionalIdList) ? [...body.additionalIdList] : [],
     };
   }
 
