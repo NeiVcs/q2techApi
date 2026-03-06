@@ -1,7 +1,7 @@
 import { OrderDataItemDTO } from "./OrderDataItemDTO";
 import { OrderUserDataDTO } from "./OrderUserDataDTO";
 
-export interface FindAllOrderItemsItemDTO {
+export interface OrderDTO {
   id?: string;
   companyId?: string;
   paymentForm?: string;

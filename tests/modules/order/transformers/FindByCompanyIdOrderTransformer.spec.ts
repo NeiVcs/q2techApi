@@ -10,7 +10,7 @@ describe("FindByCompanyIdOrderTransformer", () => {
   it("deve mapear corretamente fromApi", () => {
     const request: any = {
   params: {
-  "id": "fakeString"
+  "companyId": "fakeString"
 },
   query: {
   "status": "fakeString",
@@ -20,7 +20,7 @@ describe("FindByCompanyIdOrderTransformer", () => {
 };
     const dto = transformer.fromApi(request);
     expect(dto).toMatchObject({
-  "id": "fakeString",
+  "companyId": "fakeString",
   "status": "fakeString",
   "page": 123,
   "pageSize": 123

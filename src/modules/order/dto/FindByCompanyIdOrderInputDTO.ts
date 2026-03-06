@@ -4,4 +4,3 @@ export interface FindByCompanyIdOrderInputDTO {
   page?: number;
   pageSize?: number;
 }
-
