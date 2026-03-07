@@ -30,7 +30,7 @@ export interface IUser extends Document {
   companyId?: string;
   name?: string;
   password?: string;
-  cpf?: string;
+  taxId?: string;
   email?: string;
   phoneNumber?: string;
   whatsapp?: string;

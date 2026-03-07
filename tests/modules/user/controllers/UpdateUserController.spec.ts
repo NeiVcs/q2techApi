@@ -31,8 +31,7 @@ describe("UpdateUserController", () => {
   "resource": "fakeString",
   "active": true,
   "address": {},
-  "plan": {},
-  "billing": [
+  "companyDataList": [
     {}
   ],
   "lastLogin": "fakeString"
@@ -52,8 +51,7 @@ describe("UpdateUserController", () => {
   "resource": "fakeString",
   "active": true,
   "address": {},
-  "plan": {},
-  "billing": [
+  "companyDataList": [
     {}
   ],
   "lastLogin": "fakeString"

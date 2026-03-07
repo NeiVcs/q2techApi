@@ -8,9 +8,8 @@ const schema = createSchema({
   security: [{ ApiKeyAuth: [] }],
   body: {
     type: 'object',
-    required: ['name', 'password', 'cpf', 'email', 'position', 'address'],
+    required: ['name', 'password', 'taxId', 'email', 'position', 'address'],
     properties: {
-      companyId: { type: 'string', description: 'Id da empresa vinculada.' },
       name: {
         type: 'string',
         minLength: 1,
@@ -21,7 +20,7 @@ const schema = createSchema({
         minLength: 6,
         errorMessage: { minLength: 'A senha deve ter pelo menos 6 caracteres.' }
       },
-      cpf: {
+      taxId: {
         type: 'string',
         minLength: 11,
         errorMessage: { minLength: 'CPF deve ter 11 digitos' }
@@ -49,22 +48,31 @@ const schema = createSchema({
           complement: { type: 'string' }
         }
       },
-      plan: {
-        type: 'object',
-        properties: {
-          name: { type: 'string' },
-          value: { type: 'number' },
-          validate: { type: 'string' }
-        }
-      },
-      billing: {
+      companyDataList: {
         type: 'array',
         items: {
           type: 'object',
           properties: {
-            dueDate: { type: 'string' },
-            value: { type: 'number' },
-            status: { type: 'string' }
+            companyId: { type: 'string', description: 'Id da empresa vinculada.' },
+            plan: {
+              type: 'object',
+              properties: {
+                name: { type: 'string' },
+                value: { type: 'number' },
+                validate: { type: 'string' }
+              }
+            },
+            billing: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  dueDate: { type: 'string' },
+                  value: { type: 'number' },
+                  status: { type: 'string' }
+                }
+              }
+            }
           }
         }
       },
@@ -75,7 +83,7 @@ const schema = createSchema({
       required: {
         name: 'Nome é um campo obrigatório.',
         password: 'Senha é um campo obrigatório.',
-        cpf: 'CPF é um campo obrigatório.',
+        taxId: 'CPF é um campo obrigatório.',
         email: 'E-mail é um campo obrigatório.',
         position: 'Cargo é um campo obrigatório.',
         resource: 'Nível de acesso é um campo obrigatório.',
@@ -84,10 +92,9 @@ const schema = createSchema({
     },
     examples: [
       {
-        companyId: '123456789',
         name: 'João Silva',
         password: 'senha123',
-        cpf: '123.456.789-00',
+        taxId: '123.456.789-00',
         email: 'email@email.com',
         phoneNumber: '11987654321',
         whatsapp: '11987654321',
@@ -101,19 +108,27 @@ const schema = createSchema({
           city: 'São Paulo',
           state: 'SP'
         },
-        plan: {
-          name: 'Premium',
-          value: 99.9,
-          validate: '2026-12-31'
-        },
-        active: true,
-        billing: [
+        companyDataList: [
           {
-            dueDate: '2024-07-01',
-            value: 99.9,
-            status: 'pending'
+            companyId: '123456789',
+            active: true,
+            plan: {
+              name: 'Premium',
+              value: 99.9,
+              validate: '2026-12-31'
+            },
+            billing: [
+              {
+                dueDate: '2024-07-01',
+                value: 99.9,
+                status: 'pending'
+              }
+            ]
           }
-        ]
+        ],
+        active: true,
+        lastLogin: '2026-03-02 08:00',
+        createdAt: '2026-03-02'
       }
     ]
   },

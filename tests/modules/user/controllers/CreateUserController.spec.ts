@@ -21,10 +21,9 @@ describe("CreateUserController", () => {
   
   it("deve chamar service e transformer corretamente", async () => {
     const inputDTO = {
-  "companyId": "fakeString",
   "name": "fakeString",
   "password": "fakeString",
-  "cpf": "fakeString",
+  "taxId": "fakeString",
   "email": "fakeString",
   "phoneNumber": "fakeString",
   "whatsapp": "fakeString",
@@ -32,8 +31,7 @@ describe("CreateUserController", () => {
   "resource": "fakeString",
   "active": true,
   "address": {},
-  "plan": {},
-  "billing": [
+  "companyDataList": [
     {}
   ],
   "lastLogin": "fakeString",
@@ -49,10 +47,9 @@ describe("CreateUserController", () => {
 
     const result = await controller.handler({
   body: {
-  "companyId": "fakeString",
   "name": "fakeString",
   "password": "fakeString",
-  "cpf": "fakeString",
+  "taxId": "fakeString",
   "email": "fakeString",
   "phoneNumber": "fakeString",
   "whatsapp": "fakeString",
@@ -60,8 +57,7 @@ describe("CreateUserController", () => {
   "resource": "fakeString",
   "active": true,
   "address": {},
-  "plan": {},
-  "billing": [
+  "companyDataList": [
     {}
   ],
   "lastLogin": "fakeString",

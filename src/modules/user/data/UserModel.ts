@@ -2,10 +2,9 @@ import mongoose, { Schema } from 'mongoose';
 import { IUser } from './IUser';
 
 const UserSchema: Schema = new Schema({
-  companyId: { type: String, index: true },
   name: { type: String, required: true, trim: true },
   password: { type: String, required: true },
-  cpf: { type: String, required: true, unique: true, index: true },
+  taxId: { type: String, required: true, unique: true, index: true },
   email: { type: String, required: true, index: true, lowercase: true },
   phoneNumber: { type: String },
   whatsapp: { type: String },
@@ -21,15 +20,18 @@ const UserSchema: Schema = new Schema({
     state: { type: String, required: true, uppercase: true, minlength: 2, maxlength: 2 },
     complement: { type: String }
   },
-  plan: {
-    name: { type: String },
-    value: { type: Number },
-    validate: { type: String }
-  },
-  billing: [{
-    dueDate: { type: String, required: true },
-    value: { type: Number, required: true },
-    status: { type: String, enum: ['pending', 'paid', 'cancelled'], default: 'pending' }
+  companyDataList: [{
+    companyId: { type: String },
+    plan: {
+      name: { type: String },
+      value: { type: Number },
+      validate: { type: String }
+    },
+    billing: [{
+      dueDate: { type: String, required: true },
+      value: { type: Number, required: true },
+      status: { type: String, default: 'pending' }
+    }],
   }],
   lastLogin: { type: Date },
   createdAt: { type: String },

@@ -21,7 +21,6 @@ const schema = createSchema({
   body: {
     type: 'object',
     properties: {
-      companyId: { type: 'string', minLength: 1 },
       name: { type: 'string', minLength: 1 },
       password: { type: 'string', minLength: 6 },
       email: { type: 'string', format: 'email' },
@@ -42,22 +41,31 @@ const schema = createSchema({
           complement: { type: 'string' }
         }
       },
-      plan: {
-        type: 'object',
-        properties: {
-          name: { type: 'string' },
-          value: { type: 'number' },
-          validate: { type: 'string' }
-        }
-      },
-      billing: {
+      companyDataList: {
         type: 'array',
         items: {
           type: 'object',
           properties: {
-            dueDate: { type: 'string' },
-            value: { type: 'number' },
-            status: { type: 'string', enum: ['pending', 'paid', 'cancelled'] }
+            companyId: { type: 'string', description: 'Id da empresa vinculada.' },
+            plan: {
+              type: 'object',
+              properties: {
+                name: { type: 'string' },
+                value: { type: 'number' },
+                validate: { type: 'string' }
+              }
+            },
+            billing: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  dueDate: { type: 'string' },
+                  value: { type: 'number' },
+                  status: { type: 'string' }
+                }
+              }
+            }
           }
         }
       },
