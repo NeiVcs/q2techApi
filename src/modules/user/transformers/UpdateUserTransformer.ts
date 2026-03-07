@@ -10,6 +10,7 @@ export class UpdateUserTransformer {
 
     return {
       id: params.id,
+      companyId: body?.companyId || '',
       name: body?.name || '',
       password: body?.password || '',
       email: body?.email || '',

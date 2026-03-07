@@ -8,7 +8,7 @@ const schema = createSchema({
   security: [{ ApiKeyAuth: [] }],
   body: {
     type: 'object',
-    required: ['name', 'description', 'url', 'closed', 'minOrderPrice', 'address', 'contacts', 'stylization'],
+    required: ['name', 'description', 'url', 'minOrderPrice', 'address', 'contacts', 'stylization'],
     properties: {
       name: {
         type: 'string',

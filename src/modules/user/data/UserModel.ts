@@ -2,11 +2,11 @@ import mongoose, { Schema } from 'mongoose';
 import { IUser } from './IUser';
 
 const UserSchema: Schema = new Schema({
-  companyId: { type: String, required: true, index: true },
+  companyId: { type: String, index: true },
   name: { type: String, required: true, trim: true },
   password: { type: String, required: true },
   cpf: { type: String, required: true, unique: true, index: true },
-  email: { type: String, required: true, unique: true, index: true, lowercase: true },
+  email: { type: String, required: true, index: true, lowercase: true },
   phoneNumber: { type: String },
   whatsapp: { type: String },
   position: { type: String, required: true },

@@ -73,7 +73,6 @@ const schema = createSchema({
     },
     errorMessage: {
       required: {
-        companyId: 'Id da empresa é obrigatório.',
         name: 'Nome é um campo obrigatório.',
         password: 'Senha é um campo obrigatório.',
         cpf: 'CPF é um campo obrigatório.',
