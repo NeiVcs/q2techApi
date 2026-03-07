@@ -50,10 +50,9 @@ const schema = createSchema({
             type: 'object',
             properties: {
               id: { type: 'string', description: 'ID do usuário.' },
-              companyId: { type: 'string', description: 'ID da empresa vinculada.' },
               name: { type: 'string', description: 'Nome completo.' },
               email: { type: 'string', description: 'E-mail cadastrado.' },
-              cpf: { type: 'string', description: 'CPF formatado.' },
+              taxId: { type: 'string', description: 'CPF formatado.' },
               phoneNumber: { type: 'string', description: 'Telefone.' },
               whatsapp: { type: 'string', description: 'WhatsApp.' },
               position: { type: 'string', description: 'Cargo ocupado.' },
@@ -71,22 +70,31 @@ const schema = createSchema({
                   complement: { type: 'string' }
                 }
               },
-              plan: {
-                type: 'object',
-                properties: {
-                  name: { type: 'string' },
-                  value: { type: 'number' },
-                  validate: { type: 'string' }
-                }
-              },
-              billing: {
+              companyDataList: {
                 type: 'array',
                 items: {
                   type: 'object',
                   properties: {
-                    dueDate: { type: 'string' },
-                    value: { type: 'number' },
-                    status: { type: 'string' }
+                    companyId: { type: 'string', description: 'Id da empresa vinculada.' },
+                    plan: {
+                      type: 'object',
+                      properties: {
+                        name: { type: 'string' },
+                        value: { type: 'number' },
+                        validate: { type: 'string' }
+                      }
+                    },
+                    billing: {
+                      type: 'array',
+                      items: {
+                        type: 'object',
+                        properties: {
+                          dueDate: { type: 'string' },
+                          value: { type: 'number' },
+                          status: { type: 'string' }
+                        }
+                      }
+                    }
                   }
                 }
               },

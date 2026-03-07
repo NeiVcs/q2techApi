@@ -11,10 +11,9 @@ export class CreateUserTransformer {
     const { body } = request;
 
     return {
-      companyId: body?.companyId || '',
       name: body?.name || '',
       password: body?.password || '',
-      cpf: body?.cpf || '',
+      taxId: body?.taxId || '',
       email: body?.email || '',
       phoneNumber: body?.phoneNumber || '',
       whatsapp: body?.whatsapp || '',
@@ -30,15 +29,18 @@ export class CreateUserTransformer {
         state: body?.address?.state || '',
         complement: body?.address?.complement || '',
       } : undefined,
-      plan: body?.plan ? {
-        name: body?.plan?.name || '',
-        value: body?.plan?.value || 0,
-        validate: body?.plan?.validate || '',
-      } : undefined,
-      billing: Array.isArray(body?.billing) ? body.billing.map(f => ({
-        dueDate: f?.dueDate || '',
-        value: f?.value || 0,
-        status: f?.status || '',
+      companyDataList: Array.isArray(body?.companyDataList) ? body.companyDataList.map(f => ({
+        companyId: f?.companyId || '',
+        plan: f?.plan ? {
+          name: f?.plan?.name || '',
+          value: f?.plan?.value || 0,
+          validate: f?.plan?.validate || '',
+        } : undefined,
+        billing: Array.isArray(f?.billing) ? f.billing.map(f => ({
+          dueDate: f?.dueDate || '',
+          value: f?.value || 0,
+          status: f?.status || '',
+        })) : [],
       })) : [],
       lastLogin: body?.lastLogin || '',
       createdAt: format(new Date(), 'yyyy-MM-dd')

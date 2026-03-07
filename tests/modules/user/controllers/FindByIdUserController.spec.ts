@@ -18,40 +18,38 @@ describe("FindByIdUserController", () => {
     reply = mock<FastifyReply>();
     controller = new FindByIdUserController(transformer, service);
   });
-  
+
   it("deve chamar service e transformer corretamente", async () => {
     const inputDTO = {
-  "id": "fakeString"
-};
+      "id": "fakeString"
+    };
     const outputDTO = {
-  "id": "fakeString",
-  "companyId": "fakeString",
-  "name": "fakeString",
-  "email": "fakeString",
-  "cpf": "fakeString",
-  "phoneNumber": "fakeString",
-  "whatsapp": "fakeString",
-  "position": "fakeString",
-  "resource": "fakeString",
-  "active": true,
-  "address": {},
-  "plan": {},
-  "billing": [
-    {}
-  ],
-  "lastLogin": "fakeString",
-  "createdAt": "fakeString"
-};
+      "id": "fakeString",
+      "name": "fakeString",
+      "email": "fakeString",
+      "taxId": "fakeString",
+      "phoneNumber": "fakeString",
+      "whatsapp": "fakeString",
+      "position": "fakeString",
+      "resource": "fakeString",
+      "active": true,
+      "address": {},
+      "companyDataList": [
+        {}
+      ],
+      "lastLogin": "fakeString",
+      "createdAt": "fakeString"
+    };
 
     transformer.fromApi.mockReturnValue(inputDTO);
     service.execute.mockResolvedValue(outputDTO);
     transformer.toApi.mockReturnValue(outputDTO);
 
     const result = await controller.handler({
-  params: {
-  "id": "fakeString"
-}
-} as any, reply);
+      params: {
+        "id": "fakeString"
+      }
+    } as any, reply);
 
     expect(transformer.fromApi).toHaveBeenCalled();
     expect(service.execute).toHaveBeenCalledWith(inputDTO);

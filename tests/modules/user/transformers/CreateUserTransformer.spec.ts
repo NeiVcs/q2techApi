@@ -10,10 +10,9 @@ describe("CreateUserTransformer", () => {
   it("deve mapear corretamente fromApi", () => {
     const request: any = {
   body: {
-  "companyId": "fakeString",
   "name": "fakeString",
   "password": "fakeString",
-  "cpf": "fakeString",
+  "taxId": "fakeString",
   "email": "fakeString",
   "phoneNumber": "fakeString",
   "whatsapp": "fakeString",
@@ -21,8 +20,7 @@ describe("CreateUserTransformer", () => {
   "resource": "fakeString",
   "active": true,
   "address": {},
-  "plan": {},
-  "billing": [
+  "companyDataList": [
     {}
   ],
   "lastLogin": "fakeString",
@@ -31,10 +29,9 @@ describe("CreateUserTransformer", () => {
 };
     const dto = transformer.fromApi(request);
     expect(dto).toMatchObject({
-  "companyId": "fakeString",
   "name": "fakeString",
   "password": "fakeString",
-  "cpf": "fakeString",
+  "taxId": "fakeString",
   "email": "fakeString",
   "phoneNumber": "fakeString",
   "whatsapp": "fakeString",
@@ -42,8 +39,7 @@ describe("CreateUserTransformer", () => {
   "resource": "fakeString",
   "active": true,
   "address": {},
-  "plan": {},
-  "billing": [
+  "companyDataList": [
     {}
   ],
   "lastLogin": "fakeString",

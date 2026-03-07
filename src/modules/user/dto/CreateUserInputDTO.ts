@@ -1,12 +1,9 @@
 import { UserAddressDTO } from "@modules/user/dto/UserAddressDTO";
-import { UserPlanDTO } from "@modules/user/dto/UserPlanDTO";
-import { UserBillingDTO } from "@modules/user/dto/UserBillingDTO";
-
+import { UserCompanyDataListItemDTO } from "./UserCompanyDataListItemDTO";
 export interface CreateUserInputDTO {
-  companyId?: string;
   name: string;
   password: string;
-  cpf: string;
+  taxId?: string;
   email: string;
   phoneNumber?: string;
   whatsapp?: string;
@@ -14,9 +11,7 @@ export interface CreateUserInputDTO {
   resource?: string;
   active?: boolean;
   address: UserAddressDTO;
-  plan?: UserPlanDTO;
-  billing?: UserBillingDTO[];
+  companyDataList?: UserCompanyDataListItemDTO[];
   lastLogin?: string;
   createdAt?: string;
 }
-

@@ -1,10 +1,8 @@
-import { UpdateUserAddressDTO } from "@modules/user/dto/UpdateUserAddressDTO";
-import { UpdateUserPlanDTO } from "@modules/user/dto/UpdateUserPlanDTO";
-import { UpdateUserBillingItemDTO } from "@modules/user/dto/UpdateUserBillingItemDTO";
+import { UserAddressDTO } from "@modules/user/dto/UserAddressDTO";
+import { UserCompanyDataListItemDTO } from "@modules/user/dto/UserCompanyDataListItemDTO";
 
 export interface UpdateUserInputDTO {
   id: string;
-  companyId: string;
   name?: string;
   password?: string;
   email?: string;
@@ -13,8 +11,7 @@ export interface UpdateUserInputDTO {
   position?: string;
   resource?: string;
   active?: boolean;
-  address?: UpdateUserAddressDTO;
-  plan?: UpdateUserPlanDTO;
-  billing?: UpdateUserBillingItemDTO[];
+  address?: UserAddressDTO;
+  companyDataList?: UserCompanyDataListItemDTO[];
   lastLogin?: string;
 }

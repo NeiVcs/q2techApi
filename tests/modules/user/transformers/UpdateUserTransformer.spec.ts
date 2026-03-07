@@ -19,8 +19,7 @@ describe("UpdateUserTransformer", () => {
   "resource": "fakeString",
   "active": true,
   "address": {},
-  "plan": {},
-  "billing": [
+  "companyDataList": [
     {}
   ],
   "lastLogin": "fakeString"
@@ -41,8 +40,7 @@ describe("UpdateUserTransformer", () => {
   "resource": "fakeString",
   "active": true,
   "address": {},
-  "plan": {},
-  "billing": [
+  "companyDataList": [
     {}
   ],
   "lastLogin": "fakeString"

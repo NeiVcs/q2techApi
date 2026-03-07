@@ -17,10 +17,9 @@ export class FindByIdUserTransformer {
   public toApi(outputDTO: FindByIdUserOutputDTO): FindByIdUserResponse {
     return {
       id: outputDTO?.id ?? '',
-      companyId: outputDTO?.companyId ?? '',
       name: outputDTO?.name ?? '',
       email: outputDTO?.email ?? '',
-      cpf: outputDTO?.cpf ?? '',
+      taxId: outputDTO?.taxId ?? '',
       phoneNumber: outputDTO?.phoneNumber ?? '',
       whatsapp: outputDTO?.whatsapp ?? '',
       position: outputDTO?.position ?? '',
@@ -35,15 +34,10 @@ export class FindByIdUserTransformer {
         state: outputDTO?.address?.state ?? '',
         complement: outputDTO?.address?.complement ?? '',
       } : undefined,
-      plan: outputDTO?.plan ? {
-        name: outputDTO?.plan?.name ?? '',
-        value: outputDTO?.plan?.value ?? 0,
-        validate: outputDTO?.plan?.validate ?? '',
-      } : undefined,
-      billing: Array.isArray(outputDTO?.billing) ? outputDTO.billing.map(f => ({
-        dueDate: f?.dueDate ?? '',
-        value: f?.value ?? 0,
-        status: f?.status ?? '',
+      companyDataList: Array.isArray(outputDTO?.companyDataList) ? outputDTO.companyDataList.map(f => ({
+        companyId: f?.companyId ?? '',
+        plan: f?.plan ?? undefined,
+        billing: f?.billing ?? [],
       })) : [],
       lastLogin: outputDTO?.lastLogin ?? '',
       createdAt: outputDTO?.createdAt ?? '',
