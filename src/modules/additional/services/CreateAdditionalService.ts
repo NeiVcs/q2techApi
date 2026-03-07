@@ -1,7 +1,7 @@
 import { singleton } from 'tsyringe';
 import { CreateAdditionalInputDTO } from "@modules/additional/dto/CreateAdditionalInputDTO";
+import { AdditionalRepository } from "@modules/additional/data/AdditionalRepository";
 import { CreateAdditionalOutputDTO } from "@modules/additional/dto/CreateAdditionalOutputDTO";
-import { AdditionalRepository } from '../data/AdditionalRepository';
 
 @singleton()
 export class CreateAdditionalService {

@@ -1,4 +1,5 @@
 export interface FindAllAdditionalInputDTO {
-  page?: number,
-  pageSize?: number,
+  page?: number;
+  pageSize?: number;
+  companyId?: string;
 }

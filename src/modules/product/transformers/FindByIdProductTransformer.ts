@@ -2,6 +2,7 @@ import { singleton } from 'tsyringe';
 import { FastifyRequest } from 'fastify';
 import { FindByIdProductParamsRequest, FindByIdProductResponse } from '@modules/product/schemas/FindByIdProductSchema'
 import { FindByIdProductInputDTO } from "@modules/product/dto/FindByIdProductInputDTO";
+import { FindByIdProductOutputDTO } from "@modules/product/dto/FindByIdProductOutputDTO";
 
 @singleton()
 export class FindByIdProductTransformer {

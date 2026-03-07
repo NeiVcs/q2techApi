@@ -8,7 +8,7 @@ const schema = createSchema({
   security: [{ ApiKeyAuth: [] }],
   body: {
     type: 'object',
-    required: ['name', 'description', 'url', 'closed', 'minOderPrice', 'address', 'contacts', 'stylization'],
+    required: ['name', 'description', 'url', 'minOrderPrice', 'address', 'contacts', 'stylization'],
     properties: {
       name: {
         type: 'string',
@@ -42,7 +42,7 @@ const schema = createSchema({
         type: 'string',
         description: 'alert',
       },
-      minOderPrice: {
+      minOrderPrice: {
         type: 'number',
         description: 'mínimo.',
         minimum: 0,
@@ -170,7 +170,7 @@ const schema = createSchema({
         url: 'lanchonete-do-dev',
         closed: false,
         alert: 'Estamos aceitando apenas Pix hoje!',
-        minOderPrice: 30.00,
+        minOrderPrice: 30.00,
         categoriesList: [
           { name: 'Hambúrgueres', icon: 'burger-icon' },
           { name: 'Bebidas', icon: 'soda-icon' }

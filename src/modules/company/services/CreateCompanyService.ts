@@ -1,7 +1,7 @@
 import { singleton } from 'tsyringe';
 import { CreateCompanyInputDTO } from "@modules/company/dto/CreateCompanyInputDTO";
+import { CompanyRepository } from "@modules/company/data/CompanyRepository";
 import { CreateCompanyOutputDTO } from "@modules/company/dto/CreateCompanyOutputDTO";
-import { CompanyRepository } from '../data/CompanyRepository';
 
 @singleton()
 export class CreateCompanyService {

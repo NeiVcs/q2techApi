@@ -1,9 +1,9 @@
 import { singleton } from 'tsyringe';
 import { FastifyRequest } from 'fastify';
-
 import { FindByUrlCompanyInputDTO } from "@modules/company/dto/FindByUrlCompanyInputDTO";
 import { FindByUrlCompanyOutputDTO } from "@modules/company/dto/FindByUrlCompanyOutputDTO";
-import { FindByUrlCompanyParamsRequest, FindByUrlCompanyResponse } from '../schemas/FindUrlCompanySchema';
+import { FindByUrlCompanyParamsRequest, FindByUrlCompanyResponse } from '../schemas/FindByUrlCompanySchema';
+import { ICompany } from '../data/ICompany';
 
 @singleton()
 export class FindByUrlCompanyTransformer {
@@ -64,6 +64,58 @@ export class FindByUrlCompanyTransformer {
         end: f?.end ?? '',
       })) : [],
       paymentForms: Array.isArray(outputDTO?.paymentForms) ? [...outputDTO.paymentForms] : [],
+    };
+  }
+
+  public toDto(request?: ICompany): FindByUrlCompanyOutputDTO {
+    return {
+      id: request._id.toString(),
+      name: request.name,
+      description: request.description,
+      url: request.url,
+      closed: request.closed,
+      alert: request.alert,
+      minOrderPrice: request.minOrderPrice,
+      categoriesList: request.categoriesList?.map(cat => ({
+        name: cat.name,
+        icon: cat.icon,
+      })) || [],
+      plan: request.plan?.map(plan => ({
+        name: plan.name,
+        value: plan.value,
+        validate: plan.validate
+      })) || [],
+      stylization: {
+        hasImage: request.stylization?.hasImage,
+        primaryColor: request.stylization?.primaryColor,
+        secondaryColor: request.stylization?.secondaryColor,
+        logo: request.stylization?.logo,
+        header: request.stylization?.header,
+      },
+      contacts: {
+        phoneNumberList: request.contacts?.phoneNumberList,
+        whatsappNumberList: request.contacts?.whatsappNumberList,
+        emailList: request.contacts?.emailList
+      },
+      socialMediasList: request.categoriesList?.map(cat => ({
+        name: cat.name,
+        icon: cat.icon,
+      })) || [],
+      address: {
+        zipCode: request.address?.zipCode,
+        street: request.address?.street,
+        number: request.address?.number,
+        neighborhood: request.address?.neighborhood,
+        city: request.address?.city,
+        state: request.address?.state,
+        complement: request.address?.complement,
+      },
+      workSchedule: request.workSchedule?.map(work => ({
+        weekday: work.weekday,
+        start: work.start,
+        end: work.end,
+      })) || [],
+      paymentForms: request.paymentForms || [],
     };
   }
 }

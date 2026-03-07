@@ -27,7 +27,7 @@ describe("UpdateCompanyController", () => {
   "url": "fakeString",
   "closed": true,
   "alert": "fakeString",
-  "minOderPrice": 123,
+  "minOrderPrice": 123,
   "categoriesList": [
     {}
   ],
@@ -55,7 +55,7 @@ describe("UpdateCompanyController", () => {
   "url": "fakeString",
   "closed": true,
   "alert": "fakeString",
-  "minOderPrice": 123,
+  "minOrderPrice": 123,
   "categoriesList": [
     {}
   ],

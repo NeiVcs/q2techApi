@@ -6,6 +6,8 @@ import { FindByIdCompanyOutputDTO } from '../dto/FindByIdCompanyOutputDTO';
 import { UpdateCompanyInputDTO } from '../dto/UpdateCompanyInputDTO';
 import { ensureExists } from '@shared/helpers/ensureExists';
 import { FindByUrlCompanyOutputDTO } from '../dto/FindByUrlCompanyOutputDTO';
+import { FindByIdCompanyTransformer } from '../transformers/FindByIdCompanyTransformer';
+import { FindByUrlCompanyTransformer } from '../transformers/FindByUrlCompanyTransformer';
 
 export class CompanyRepository {
   private static readonly notFoundResponse = 'Empresa nâo encontrada';
@@ -29,8 +31,10 @@ export class CompanyRepository {
   public async findById(id: string): Promise<FindByIdCompanyOutputDTO> {
     try {
       const result = await CompanyModel.findById(id).lean();
-      ensureExists(result, CompanyRepository.notFoundResponse)
-      return { id: result._id.toString(), ...result };
+      ensureExists(result, CompanyRepository.notFoundResponse);
+      const response = new FindByIdCompanyTransformer().toDto(result)
+
+      return response
     } catch (e) {
       throw new MongoDbErrorException(e);
     }
@@ -67,7 +71,9 @@ export class CompanyRepository {
     try {
       const result = await CompanyModel.findOne({ url: url }).lean();
       ensureExists(result, CompanyRepository.notFoundResponse)
-      return { id: result._id.toString(), ...result };
+      const response = new FindByUrlCompanyTransformer().toDto(result)
+
+      return response
     } catch (e) {
       throw new MongoDbErrorException(e);
     }

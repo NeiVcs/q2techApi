@@ -4,6 +4,7 @@ import { UpdateUserBillingItemDTO } from "@modules/user/dto/UpdateUserBillingIte
 
 export interface UpdateUserInputDTO {
   id: string;
+  companyId: string;
   name?: string;
   password?: string;
   email?: string;
@@ -17,5 +18,3 @@ export interface UpdateUserInputDTO {
   billing?: UpdateUserBillingItemDTO[];
   lastLogin?: string;
 }
-    
-    

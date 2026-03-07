@@ -21,7 +21,7 @@ describe("FindByCompanyIdOrderController", () => {
   
   it("deve chamar service e transformer corretamente", async () => {
     const inputDTO = {
-  "id": "fakeString",
+  "companyId": "fakeString",
   "status": "fakeString",
   "page": 123,
   "pageSize": 123
@@ -39,7 +39,7 @@ describe("FindByCompanyIdOrderController", () => {
 
     const result = await controller.handler({
   params: {
-  "id": "fakeString"
+  "companyId": "fakeString"
 },
   query: {
   "status": "fakeString",

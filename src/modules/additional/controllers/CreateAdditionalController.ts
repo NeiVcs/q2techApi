@@ -17,5 +17,4 @@ export class CreateAdditionalController {
     reply.code(201);
     return this.transformer.toApi(outputDTO);
   }
-
 }

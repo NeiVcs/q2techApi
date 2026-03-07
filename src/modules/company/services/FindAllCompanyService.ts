@@ -9,7 +9,6 @@ export class FindAllCompanyService {
 
   public async execute(inputDTO: FindAllCompanyInputDTO): Promise<FindAllCompanyOutputDTO> {
     const response = await this.storage.findAll(inputDTO);
-
     return response as unknown as FindAllCompanyOutputDTO;
   }
 }

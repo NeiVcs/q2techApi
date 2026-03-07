@@ -15,7 +15,7 @@ export class CreateCompanyTransformer {
       url: body?.url || '',
       closed: body?.closed || false,
       alert: body?.alert || '',
-      minOderPrice: body?.minOderPrice || 0,
+      minOrderPrice: body?.minOrderPrice || 0,
       categoriesList: Array.isArray(body?.categoriesList) ? body.categoriesList.map(f => ({
         name: f?.name || '',
         icon: f?.icon || '',

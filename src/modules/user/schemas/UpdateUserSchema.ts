@@ -21,6 +21,7 @@ const schema = createSchema({
   body: {
     type: 'object',
     properties: {
+      companyId: { type: 'string', minLength: 1 },
       name: { type: 'string', minLength: 1 },
       password: { type: 'string', minLength: 6 },
       email: { type: 'string', format: 'email' },

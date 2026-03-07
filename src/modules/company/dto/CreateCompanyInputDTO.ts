@@ -8,15 +8,15 @@ import { CompanyWorkScheduleDTO } from "@modules/company/dto/CompanyWorkSchedule
 export interface CreateCompanyInputDTO {
   name: string;
   description: string;
-  url?: string;
-  closed?: boolean;
+  url: string;
+  closed: boolean;
   alert?: string;
-  minOderPrice?: number;
+  minOrderPrice: number;
   categoriesList?: CompanyCategoriesListDTO[];
   plan?: CompanyPlanDTO[];
-  stylization?: CompanyStylizationDTO;
-  contacts?: CompanyContactsDTO;
-  address?: CompanyAddressDTO;
+  stylization: CompanyStylizationDTO;
+  contacts: CompanyContactsDTO;
+  address: CompanyAddressDTO;
   workSchedule?: CompanyWorkScheduleDTO[];
   paymentForms?: string[];
 }

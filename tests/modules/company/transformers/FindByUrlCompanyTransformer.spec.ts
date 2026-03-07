@@ -1,43 +1,25 @@
-import { UpdateCompanyTransformer } from "../../../../src/modules/company/transformers/UpdateCompanyTransformer";
+import { FindByUrlCompanyTransformer } from "../../../../src/modules/company/transformers/FindByUrlCompanyTransformer";
 
-describe("UpdateCompanyTransformer", () => {
-  let transformer: UpdateCompanyTransformer;
+describe("FindByUrlCompanyTransformer", () => {
+  let transformer: FindByUrlCompanyTransformer;
 
   beforeEach(() => {
-    transformer = new UpdateCompanyTransformer();
+    transformer = new FindByUrlCompanyTransformer();
   });
   
   it("deve mapear corretamente fromApi", () => {
     const request: any = {
-  body: {
-  "name": "fakeString",
-  "description": "fakeString",
-  "url": "fakeString",
-  "closed": true,
-  "alert": "fakeString",
-  "minOrderPrice": 123,
-  "categoriesList": [
-    {}
-  ],
-  "plan": [
-    {}
-  ],
-  "stylization": {},
-  "contacts": {},
-  "address": {},
-  "workSchedule": [
-    {}
-  ],
-  "paymentForms": [
-    "fakeString"
-  ]
-},
   params: {
-  "id": "fakeString"
+  "url": "fakeString"
 }
 };
     const dto = transformer.fromApi(request);
     expect(dto).toMatchObject({
+  "url": "fakeString"
+});
+  });
+  it("deve mapear corretamente toApi", () => {
+    const outputDTO: any = {
   "id": "fakeString",
   "name": "fakeString",
   "description": "fakeString",
@@ -53,6 +35,37 @@ describe("UpdateCompanyTransformer", () => {
   ],
   "stylization": {},
   "contacts": {},
+  "socialMediasList": [
+    {}
+  ],
+  "address": {},
+  "workSchedule": [
+    {}
+  ],
+  "paymentForms": [
+    "fakeString"
+  ]
+};
+    const result = transformer.toApi(outputDTO);
+    expect(result).toMatchObject({
+  "id": "fakeString",
+  "name": "fakeString",
+  "description": "fakeString",
+  "url": "fakeString",
+  "closed": true,
+  "alert": "fakeString",
+  "minOrderPrice": 123,
+  "categoriesList": [
+    {}
+  ],
+  "plan": [
+    {}
+  ],
+  "stylization": {},
+  "contacts": {},
+  "socialMediasList": [
+    {}
+  ],
   "address": {},
   "workSchedule": [
     {}

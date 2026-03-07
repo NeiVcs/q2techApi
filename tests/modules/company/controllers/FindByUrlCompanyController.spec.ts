@@ -1,14 +1,14 @@
 import { FastifyReply } from "fastify";
 import { mock } from "jest-mock-extended";
 
-import { FindByIdAdditionalController } from "../../../../src/modules/additional/controllers/FindByIdAdditionalController";
-import { FindByIdAdditionalTransformer } from "../../../../src/modules/additional/transformers/FindByIdAdditionalTransformer";
-import { FindByIdAdditionalService } from "../../../../src/modules/additional/services/FindByIdAdditionalService";
+import { FindByUrlCompanyController } from "../../../../src/modules/company/controllers/FindByUrlCompanyController";
+import { FindByUrlCompanyTransformer } from "../../../../src/modules/company/transformers/FindByUrlCompanyTransformer";
+import { FindByUrlCompanyService } from "../../../../src/modules/company/services/FindByUrlCompanyService";
 
-describe("FindByIdAdditionalController", () => {
-  let controller: FindByIdAdditionalController;
-  let transformer: jest.Mocked<FindByIdAdditionalTransformer>;
-  let service: jest.Mocked<FindByIdAdditionalService>;
+describe("FindByUrlCompanyController", () => {
+  let controller: FindByUrlCompanyController;
+  let transformer: jest.Mocked<FindByUrlCompanyTransformer>;
+  let service: jest.Mocked<FindByUrlCompanyService>;
   let reply: jest.Mocked<FastifyReply>;
 
   beforeEach(() => {
@@ -16,21 +16,37 @@ describe("FindByIdAdditionalController", () => {
     transformer = { fromApi: jest.fn(), toApi: jest.fn() } as any;
     service = { execute: jest.fn() } as any;
     reply = mock<FastifyReply>();
-    controller = new FindByIdAdditionalController(transformer, service);
+    controller = new FindByUrlCompanyController(transformer, service);
   });
   
   it("deve chamar service e transformer corretamente", async () => {
     const inputDTO = {
-  "id": "fakeString"
+  "url": "fakeString"
 };
     const outputDTO = {
   "id": "fakeString",
-  "companyId": "fakeString",
-  "category": "fakeString",
   "name": "fakeString",
-  "min": 123,
-  "max": 123,
-  "productIdList": [
+  "description": "fakeString",
+  "url": "fakeString",
+  "closed": true,
+  "alert": "fakeString",
+  "minOrderPrice": 123,
+  "categoriesList": [
+    {}
+  ],
+  "plan": [
+    {}
+  ],
+  "stylization": {},
+  "contacts": {},
+  "socialMediasList": [
+    {}
+  ],
+  "address": {},
+  "workSchedule": [
+    {}
+  ],
+  "paymentForms": [
     "fakeString"
   ]
 };
@@ -41,7 +57,7 @@ describe("FindByIdAdditionalController", () => {
 
     const result = await controller.handler({
   params: {
-  "id": "fakeString"
+  "url": "fakeString"
 }
 } as any, reply);
 

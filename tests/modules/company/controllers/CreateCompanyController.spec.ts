@@ -18,64 +18,64 @@ describe("CreateCompanyController", () => {
     reply = mock<FastifyReply>();
     controller = new CreateCompanyController(transformer, service);
   });
-  
+
   it("deve chamar service e transformer corretamente", async () => {
     const inputDTO = {
-  "name": "fakeString",
-  "description": "fakeString",
-  "url": "fakeString",
-  "closed": true,
-  "alert": "fakeString",
-  "minOderPrice": 123,
-  "categoriesList": [
-    {}
-  ],
-  "plan": [
-    {}
-  ],
-  "stylization": {},
-  "contacts": {},
-  "address": {},
-  "workSchedule": [
-    {}
-  ],
-  "paymentForms": [
-    "fakeString"
-  ]
-};
+      "name": "fakeString",
+      "description": "fakeString",
+      "url": "fakeString",
+      "closed": true,
+      "alert": "fakeString",
+      "minOrderPrice": 123,
+      "categoriesList": [
+        {}
+      ],
+      "plan": [
+        {}
+      ],
+      "stylization": {},
+      "contacts": {},
+      "address": {},
+      "workSchedule": [
+        {}
+      ],
+      "paymentForms": [
+        "fakeString"
+      ]
+    };
     const outputDTO = {
-  "id": "fakeString"
-};
+      "id": "fakeString"
+    };
 
     transformer.fromApi.mockReturnValue(inputDTO);
     service.execute.mockResolvedValue(outputDTO);
     transformer.toApi.mockReturnValue(outputDTO);
 
     const result = await controller.handler({
-  body: {
-  "name": "fakeString",
-  "description": "fakeString",
-  "url": "fakeString",
-  "closed": true,
-  "alert": "fakeString",
-  "minOderPrice": 123,
-  "categoriesList": [
-    {}
-  ],
-  "plan": [
-    {}
-  ],
-  "stylization": {},
-  "contacts": {},
-  "address": {},
-  "workSchedule": [
-    {}
-  ],
-  "paymentForms": [
-    "fakeString"
-  ]
-}
-} as any, reply);
+      body: {
+        "name": "fakeString",
+        "description": "fakeString",
+        "url": "fakeString",
+        "closed": true,
+        "alert": "fakeString",
+        "minOrderPrice": 123,
+        "categoriesList": [
+          {}
+        ],
+        "plan": [
+          {}
+        ],
+        "stylization": {},
+        "contacts": {},
+        "address": {},
+        "workSchedule": [
+          {}
+        ],
+        "paymentForms": [
+          "fakeString"
+        ]
+      }
+    } as any, reply);
 
     expect(transformer.fromApi).toHaveBeenCalled();
     expect(service.execute).toHaveBeenCalledWith(inputDTO);

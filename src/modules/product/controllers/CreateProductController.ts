@@ -9,12 +9,12 @@ export class CreateProductController {
   constructor(
     private readonly transformer: CreateProductTransformer,
     private readonly service: CreateProductService
-  ) { }
+  ) {}
 
   handler = async (request: FastifyRequest<{ Body: CreateProductBodyRequest }>, reply: FastifyReply): Promise<CreateProductResponse> => {
     const inputDTO = this.transformer.fromApi(request);
     const outputDTO = await this.service.execute(inputDTO);
     reply.code(201);
     return this.transformer.toApi(outputDTO);
-  }
+  }  
 }

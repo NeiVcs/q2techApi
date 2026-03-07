@@ -26,7 +26,7 @@ describe("FindByIdCompanyTransformer", () => {
   "url": "fakeString",
   "closed": true,
   "alert": "fakeString",
-  "minOrderPrice": "fakeString",
+  "minOrderPrice": 123,
   "categoriesList": [
     {}
   ],
@@ -54,7 +54,7 @@ describe("FindByIdCompanyTransformer", () => {
   "url": "fakeString",
   "closed": true,
   "alert": "fakeString",
-  "minOrderPrice": "fakeString",
+  "minOrderPrice": 123,
   "categoriesList": [
     {}
   ],

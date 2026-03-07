@@ -1,8 +1,8 @@
-import bcrypt from 'bcryptjs';
 import { singleton } from 'tsyringe';
 import { CreateUserInputDTO } from "@modules/user/dto/CreateUserInputDTO";
+import { UserRepository } from "@modules/user/data/UserRepository";
 import { CreateUserOutputDTO } from "@modules/user/dto/CreateUserOutputDTO";
-import { UserRepository } from '../data/UserRepository';
+import bcrypt from 'bcryptjs';
 
 @singleton()
 export class CreateUserService {

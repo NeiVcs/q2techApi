@@ -12,7 +12,7 @@ export interface UpdateCompanyInputDTO {
   url?: string;
   closed?: boolean;
   alert?: string;
-  minOderPrice?: number;
+  minOrderPrice?: number;
   categoriesList?: CompanyCategoriesListDTO[];
   plan?: CompanyPlanDTO[];
   stylization?: CompanyStylizationDTO;

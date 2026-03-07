@@ -1,6 +1,6 @@
 import { singleton } from 'tsyringe';
 import { UpdateAdditionalInputDTO } from "@modules/additional/dto/UpdateAdditionalInputDTO";
-import { AdditionalRepository } from '../data/AdditionalRepository';
+import { AdditionalRepository } from "@modules/additional/data/AdditionalRepository";
 
 @singleton()
 export class UpdateAdditionalService {

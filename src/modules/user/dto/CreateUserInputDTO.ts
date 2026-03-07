@@ -1,6 +1,6 @@
-import { UserAddressDTO } from "./UserAddressDTO";
-import { UserBillingDTO } from "./UserBillingDTO";
-import { UserPlanDTO } from "./UserPlanDTO";
+import { UserAddressDTO } from "@modules/user/dto/UserAddressDTO";
+import { UserPlanDTO } from "@modules/user/dto/UserPlanDTO";
+import { UserBillingDTO } from "@modules/user/dto/UserBillingDTO";
 
 export interface CreateUserInputDTO {
   companyId?: string;
@@ -19,3 +19,4 @@ export interface CreateUserInputDTO {
   lastLogin?: string;
   createdAt?: string;
 }
+

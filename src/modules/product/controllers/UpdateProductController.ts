@@ -9,12 +9,12 @@ export class UpdateProductController {
   constructor(
     private readonly transformer: UpdateProductTransformer,
     private readonly service: UpdateProductService
-  ) { }
+  ) {}
 
   handler = async (request: FastifyRequest<{ Body: UpdateProductBodyRequest; Params: UpdateProductParamsRequest }>, reply: FastifyReply): Promise<void> => {
     const inputDTO = this.transformer.fromApi(request);
-
+    
     await this.service.execute(inputDTO);
     reply.code(204);
-  }
+  }  
 }

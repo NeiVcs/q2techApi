@@ -51,7 +51,7 @@ export interface ICompany extends Document {
   url?: string;
   closed?: boolean;
   alert?: string;
-  minOderPrice?: number;
+  minOrderPrice?: number;
   categoriesList?: ICompanyCategory[];
   plan?: ICompanyPlan[];
   stylization?: ICompanyStylization;

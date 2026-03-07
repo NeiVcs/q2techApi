@@ -7,7 +7,7 @@ const CompanySchema: Schema = new Schema({
   url: { type: String, required: true, unique: true, index: true },
   closed: { type: Boolean, default: false },
   alert: { type: String },
-  minOderPrice: { type: Number, required: true, default: 0 },
+  minOrderPrice: { type: Number, required: true, default: 0 },
   categoriesList: [{
     name: { type: String, required: true },
     icon: { type: String }

@@ -1,7 +1,7 @@
 import { singleton } from 'tsyringe';
 import { FindByUrlCompanyInputDTO } from "@modules/company/dto/FindByUrlCompanyInputDTO";
+import { CompanyRepository } from "@modules/company/data/CompanyRepository";
 import { FindByUrlCompanyOutputDTO } from "@modules/company/dto/FindByUrlCompanyOutputDTO";
-import { CompanyRepository } from '../data/CompanyRepository';
 
 @singleton()
 export class FindByUrlCompanyService {

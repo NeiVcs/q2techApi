@@ -9,12 +9,12 @@ export class FindAllProductController {
   constructor(
     private readonly transformer: FindAllProductTransformer,
     private readonly service: FindAllProductService
-  ) { }
+  ) {}
 
   handler = async (request: FastifyRequest<{ Querystring: FindAllProductQueryRequest }>, reply: FastifyReply): Promise<FindAllProductResponse> => {
     const inputDTO = this.transformer.fromApi(request);
     const outputDTO = await this.service.execute(inputDTO);
     reply.code(200);
     return this.transformer.toApi(outputDTO);
-  }
+  }  
 }
