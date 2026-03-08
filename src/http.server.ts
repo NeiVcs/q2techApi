@@ -108,9 +108,17 @@ export const serverHttp = async (): Promise<void> => {
       'Authorization',
       'x-api-key'
     ],
+    preflightContinue: false,
+    optionsSuccessStatus: 204
   });
 
-  fastifyInstance.addHook('onRequest', initContextMiddleware);
+  fastifyInstance.addHook('onRequest', (request, reply, done) => {
+    if (request.method === 'OPTIONS') {
+      return done();
+    }
+
+    initContextMiddleware(request, reply, done);
+  });
 
   if (envConfig.ENABLED_SWAGGER) {
     await RegisterSwaggerDoc(fastifyInstance);
