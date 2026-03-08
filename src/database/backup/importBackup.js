@@ -5,7 +5,7 @@ async function importBackup() {
   await mongoose.connect(process.env.MONGODB_URL);
   const db = mongoose.connection.db;
 
-  const rawData = fs.readFileSync('dump_teste.json');
+  const rawData = fs.readFileSync('dump.json');
   const backupData = JSON.parse(rawData);
 
   for (const colName in backupData) {

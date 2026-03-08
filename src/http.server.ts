@@ -13,6 +13,7 @@ import { initContextMiddleware } from '@middlewares/initContextMiddleware';
 import { CodeErrors } from '@shared/exceptions';
 import { MultipartMiddleware } from '@middlewares/multipartMiddleware';
 import ajvErrors from 'ajv-errors';
+import cors from '@fastify/cors';
 
 let isShuttingDown = false;
 const GRACEFUL_SHUTDOWN_TIME = envConfig.NODE_ENV === 'production' ? 70 * 1000 : 1;
@@ -98,6 +99,16 @@ const processApiUnhandledError = () => {
 export const serverHttp = async (): Promise<void> => {
   const port = envConfig.PORT;
   const fastifyInstance = createServer();
+
+  await fastifyInstance.register(cors, {
+    origin: [process.env.WEB_DOMAIN, 'http://localhost:3000'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: [
+      'Content-Type',
+      'Authorization',
+      'x-api-key'
+    ],
+  });
 
   fastifyInstance.addHook('onRequest', initContextMiddleware);
 

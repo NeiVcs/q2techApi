@@ -16,8 +16,8 @@ export class FindAllProductTransformer {
       companyId: query?.companyId || '',
       name: query?.name || '',
       category: query?.category || '',
-      active: query?.active || false,
-      isAdditional: query?.isAdditional || false,
+      active: query?.active || null,
+      isAdditional: query?.isAdditional || null,
       page: query?.page || 0,
       pageSize: query?.pageSize || 0,
     };
