@@ -8,7 +8,7 @@
 /.env
 /.env_hmg
 /.env_prod
-/.dump_teste.json
+/.dump.json
 
 /.npmrc
 /.yarnrc.yml

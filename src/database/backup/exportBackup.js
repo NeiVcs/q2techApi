@@ -15,8 +15,8 @@ async function exportBackup() {
     console.log(`📦 Coleção [${col.name}]: ${data.length} documentos exportados.`);
   }
 
-  fs.writeFileSync('dump_teste.json', JSON.stringify(backupData, null, 2));
-  console.log('✅ Backup concluído: dump_teste.json');
+  fs.writeFileSync('dump.json', JSON.stringify(backupData, null, 2));
+  console.log('✅ Backup concluído: dump.json');
   process.exit();
 }
 

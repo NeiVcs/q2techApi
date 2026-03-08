@@ -10,7 +10,6 @@ import { DeleteCompanySchema } from "./schemas/DeleteCompanySchema";
  * @param {FastifyInstance} fastifyInstance - The Fastify instance where the routes will be registered.
  */
 export const privateCompanyRoutesV1: FastifyPluginAsync = async (fastifyInstance: FastifyInstance) => {
-  fastifyInstance.get('/v1/company', { schema: FindAllCompanySchema }, findAllCompanyController().handler as RouteHandlerMethod);
   fastifyInstance.put('/v1/company/:id', { schema: UpdateCompanySchema }, updateCompanyController().handler as RouteHandlerMethod);
   fastifyInstance.delete('/v1/company/:id', { schema: DeleteCompanySchema }, deleteCompanyController().handler as RouteHandlerMethod);
 };
