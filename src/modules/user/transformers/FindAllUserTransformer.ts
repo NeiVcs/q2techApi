@@ -30,8 +30,6 @@ export class FindAllUserTransformer {
         taxId: f?.taxId ?? '',
         phoneNumber: f?.phoneNumber ?? '',
         whatsapp: f?.whatsapp ?? '',
-        position: f?.position ?? '',
-        resource: f?.resource ?? '',
         active: f?.active ?? false,
         address: f?.address ?? undefined,
         companyDataList: f?.companyDataList ?? [],

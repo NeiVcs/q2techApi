@@ -30,8 +30,6 @@ describe("FindByIdUserController", () => {
       "taxId": "fakeString",
       "phoneNumber": "fakeString",
       "whatsapp": "fakeString",
-      "position": "fakeString",
-      "resource": "fakeString",
       "active": true,
       "address": {},
       "companyDataList": [

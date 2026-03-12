@@ -22,8 +22,6 @@ export class FindByIdUserTransformer {
       taxId: outputDTO?.taxId ?? '',
       phoneNumber: outputDTO?.phoneNumber ?? '',
       whatsapp: outputDTO?.whatsapp ?? '',
-      position: outputDTO?.position ?? '',
-      resource: outputDTO?.resource ?? '',
       active: outputDTO?.active ?? false,
       address: outputDTO?.address ? {
         zipCode: outputDTO?.address?.zipCode ?? '',
@@ -36,6 +34,7 @@ export class FindByIdUserTransformer {
       } : undefined,
       companyDataList: Array.isArray(outputDTO?.companyDataList) ? outputDTO.companyDataList.map(f => ({
         companyId: f?.companyId ?? '',
+        resource: f?.resource ?? '',
         plan: f?.plan ?? undefined,
         billing: f?.billing ?? [],
       })) : [],

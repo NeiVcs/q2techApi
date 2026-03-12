@@ -8,8 +8,6 @@ export interface UpdateUserInputDTO {
   email?: string;
   phoneNumber?: string;
   whatsapp?: string;
-  position?: string;
-  resource?: string;
   active?: boolean;
   address?: UserAddressDTO;
   companyDataList?: UserCompanyDataListItemDTO[];

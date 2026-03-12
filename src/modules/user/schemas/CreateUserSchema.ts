@@ -8,7 +8,7 @@ const schema = createSchema({
   security: [{ ApiKeyAuth: [] }],
   body: {
     type: 'object',
-    required: ['name', 'password', 'taxId', 'email', 'position', 'address'],
+    required: ['name', 'password', 'taxId', 'email', 'address'],
     properties: {
       name: {
         type: 'string',
@@ -32,8 +32,6 @@ const schema = createSchema({
       },
       phoneNumber: { type: 'string' },
       whatsapp: { type: 'string' },
-      position: { type: 'string', description: 'Cargo (ex: gerente)' },
-      resource: { type: 'string', description: 'Nível de acesso (ex: admin)' },
       active: { type: 'boolean', default: true },
       address: {
         type: 'object',
@@ -54,6 +52,7 @@ const schema = createSchema({
           type: 'object',
           properties: {
             companyId: { type: 'string', description: 'Id da empresa vinculada.' },
+            resource: { type: 'string', description: 'Nível de acesso (ex: admin)' },
             plan: {
               type: 'object',
               properties: {
@@ -85,7 +84,6 @@ const schema = createSchema({
         password: 'Senha é um campo obrigatório.',
         taxId: 'CPF é um campo obrigatório.',
         email: 'E-mail é um campo obrigatório.',
-        position: 'Cargo é um campo obrigatório.',
         resource: 'Nível de acesso é um campo obrigatório.',
         address: 'Endereço é um campo obrigatório.'
       }
@@ -98,8 +96,6 @@ const schema = createSchema({
         email: 'email@email.com',
         phoneNumber: '11987654321',
         whatsapp: '11987654321',
-        position: 'gerente',
-        resource: 'admin',
         address: {
           zipCode: '01234567',
           street: 'Avenida da Tecnologia',
@@ -111,6 +107,7 @@ const schema = createSchema({
         companyDataList: [
           {
             companyId: '123456789',
+            resource: 'admin',
             active: true,
             plan: {
               name: 'Premium',

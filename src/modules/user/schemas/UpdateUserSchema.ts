@@ -26,8 +26,6 @@ const schema = createSchema({
       email: { type: 'string', format: 'email' },
       phoneNumber: { type: 'string' },
       whatsapp: { type: 'string' },
-      position: { type: 'string' },
-      resource: { type: 'string' },
       active: { type: 'boolean' },
       address: {
         type: 'object',
@@ -47,6 +45,7 @@ const schema = createSchema({
           type: 'object',
           properties: {
             companyId: { type: 'string', description: 'Id da empresa vinculada.' },
+            resource: { type: 'string' },
             plan: {
               type: 'object',
               properties: {

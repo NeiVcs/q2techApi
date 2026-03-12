@@ -4,12 +4,16 @@ import { singleton } from 'tsyringe';
 import { AuthInputDTO } from "@modules/auth/dto/AuthInputDTO";
 import { UserRepository } from '@modules/user/data/UserRepository';
 import { AuthOutputDTO } from "@modules/auth/dto/AuthOutputDTO";
-import { FindByEmailUserOutputDTO } from '@modules/user/dto/FindByEmailUserrOutputDTO';
+import { FindByEmailUserOutputDTO } from '@modules/user/dto/FindByEmailUserOutputDTO';
 import { AccessDeniedException } from '@shared/exceptions';
+import { CompanyRepository } from '@modules/company/data/CompanyRepository';
 
 @singleton()
 export class AuthService {
-  constructor(private storage: UserRepository) { }
+  constructor(
+    private storage: UserRepository,
+    private companyStorage: CompanyRepository
+  ) { }
 
   public async execute(inputDTO: AuthInputDTO): Promise<AuthOutputDTO> {
     const response = await this.storage.findByLogin(inputDTO.email);
@@ -26,20 +30,36 @@ export class AuthService {
     }
   }
 
-  public async createToken(inputDTO: FindByEmailUserOutputDTO): Promise<AuthOutputDTO> {
+  private async createToken(inputDTO: FindByEmailUserOutputDTO): Promise<AuthOutputDTO> {
+    const companyDataList = await this.getCompaniesData(inputDTO)
+    console.log(inputDTO)
     const secret = process.env.JWT_SECRET;
     const token = jwt.sign(
       {
         id: inputDTO.id,
-        companyId: inputDTO.companyId,
         name: inputDTO.name,
-        resource: inputDTO.resource,
-        position: inputDTO.position,
+        companyDataList: companyDataList,
       },
       secret,
       { expiresIn: '8h' }
     );
 
     return { token: token } as unknown as AuthOutputDTO;
+  }
+
+  private async getCompaniesData(inputDTO: FindByEmailUserOutputDTO): Promise<any> {
+    const companyDataList = await this.companyStorage.findAll({});
+    const userCompanyIdsList = inputDTO.companyDataList.map((company) => company.companyId)
+    const userCompanies = companyDataList.items.filter((company) => userCompanyIdsList.includes(company.id))
+
+    const companyData = userCompanies.map((company) => {
+      return {
+        companyId: company.id,
+        companyName: company?.name,
+        companyUrl: company?.url
+      }
+    })
+
+    return companyData
   }
 }

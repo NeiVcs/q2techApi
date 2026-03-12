@@ -17,8 +17,6 @@ export class CreateUserTransformer {
       email: body?.email || '',
       phoneNumber: body?.phoneNumber || '',
       whatsapp: body?.whatsapp || '',
-      position: body?.position || '',
-      resource: body?.resource || '',
       active: body?.active || false,
       address: body?.address ? {
         zipCode: body?.address?.zipCode || '',
@@ -31,6 +29,7 @@ export class CreateUserTransformer {
       } : undefined,
       companyDataList: Array.isArray(body?.companyDataList) ? body.companyDataList.map(f => ({
         companyId: f?.companyId || '',
+        resource: f?.resource || '',
         plan: f?.plan ? {
           name: f?.plan?.name || '',
           value: f?.plan?.value || 0,

@@ -8,7 +8,7 @@ import { FindByIdUserOutputDTO } from '@modules/user/dto/FindByIdUserOutputDTO';
 import { FindAllUserOutputDTO } from '@modules/user/dto/FindAllUserOutputDTO';
 import { UpdateUserInputDTO } from '../dto/UpdateUserInputDTO';
 import { AccessDeniedException } from '@shared/exceptions';
-import { FindByEmailUserOutputDTO } from '../dto/FindByEmailUserrOutputDTO';
+import { FindByEmailUserOutputDTO } from '../dto/FindByEmailUserOutputDTO';
 
 export class UserRepository {
   private static readonly notFoundResponse = 'Usuário nâo encontrado';
