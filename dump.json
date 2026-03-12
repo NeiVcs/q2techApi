@@ -1338,8 +1338,6 @@
       "email": "neivcs@email.com",
       "phoneNumber": "11987654321",
       "whatsapp": "11987654321",
-      "position": "Gerente de Vendas",
-      "resource": "admin",
       "active": true,
       "address": {
         "zipCode": "13056201",
@@ -1353,6 +1351,7 @@
       "companyDataList": [
         {
           "companyId": "69ab6de9709d04ab753396a5",
+          "resource": "admin",
           "plan": {
             "name": "Premium",
             "value": 99.9,

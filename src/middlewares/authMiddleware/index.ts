@@ -75,7 +75,6 @@ export const tokenMiddleware = async (request: FastifyRequest, reply: FastifyRep
         companyId: decoded.companyId,
         name: decoded.name,
         resource: decoded.resource,
-        position: decoded.position,
       }
     };
 

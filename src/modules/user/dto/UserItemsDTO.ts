@@ -8,8 +8,6 @@ export interface UserItemsDTO {
   taxId?: string;
   phoneNumber?: string;
   whatsapp?: string;
-  position?: string;
-  resource?: string;
   active?: boolean;
   address?: UserAddressDTO;
   companyDataList?: UserCompanyDataListItemDTO[];

@@ -18,6 +18,14 @@ export interface IUserPlan {
   validate?: string;
 }
 
+export interface ICompanyDataList {
+  [x: string]: unknown;
+  companyId?: string
+  resource?: string
+  plan?: IUserPlan;
+  billing?: IUserBilling[];
+}
+
 export interface IUserBilling {
   [x: string]: unknown;
   dueDate?: string;
@@ -27,20 +35,15 @@ export interface IUserBilling {
 
 export interface IUser extends Document {
   id?: string;
-  companyId?: string;
   name?: string;
   password?: string;
   taxId?: string;
   email?: string;
   phoneNumber?: string;
   whatsapp?: string;
-  position?: string;
-  resource?: string;
-  address?: IUserAddress;
-  plan?: IUserPlan;
   active?: boolean;
-  billing?: IUserBilling[];
+  address?: IUserAddress;
+  companyDataList?: ICompanyDataList[];
   lastLogin?: string;
   createdAt?: string;
-  updatedAt?: string;
 }

@@ -18,52 +18,48 @@ describe("CreateUserController", () => {
     reply = mock<FastifyReply>();
     controller = new CreateUserController(transformer, service);
   });
-  
+
   it("deve chamar service e transformer corretamente", async () => {
     const inputDTO = {
-  "name": "fakeString",
-  "password": "fakeString",
-  "taxId": "fakeString",
-  "email": "fakeString",
-  "phoneNumber": "fakeString",
-  "whatsapp": "fakeString",
-  "position": "fakeString",
-  "resource": "fakeString",
-  "active": true,
-  "address": {},
-  "companyDataList": [
-    {}
-  ],
-  "lastLogin": "fakeString",
-  "createdAt": "fakeString"
-};
+      "name": "fakeString",
+      "password": "fakeString",
+      "taxId": "fakeString",
+      "email": "fakeString",
+      "phoneNumber": "fakeString",
+      "whatsapp": "fakeString",
+      "active": true,
+      "address": {},
+      "companyDataList": [
+        {}
+      ],
+      "lastLogin": "fakeString",
+      "createdAt": "fakeString"
+    };
     const outputDTO = {
-  "id": "fakeString"
-};
+      "id": "fakeString"
+    };
 
     transformer.fromApi.mockReturnValue(inputDTO);
     service.execute.mockResolvedValue(outputDTO);
     transformer.toApi.mockReturnValue(outputDTO);
 
     const result = await controller.handler({
-  body: {
-  "name": "fakeString",
-  "password": "fakeString",
-  "taxId": "fakeString",
-  "email": "fakeString",
-  "phoneNumber": "fakeString",
-  "whatsapp": "fakeString",
-  "position": "fakeString",
-  "resource": "fakeString",
-  "active": true,
-  "address": {},
-  "companyDataList": [
-    {}
-  ],
-  "lastLogin": "fakeString",
-  "createdAt": "fakeString"
-}
-} as any, reply);
+      body: {
+        "name": "fakeString",
+        "password": "fakeString",
+        "taxId": "fakeString",
+        "email": "fakeString",
+        "phoneNumber": "fakeString",
+        "whatsapp": "fakeString",
+        "active": true,
+        "address": {},
+        "companyDataList": [
+          {}
+        ],
+        "lastLogin": "fakeString",
+        "createdAt": "fakeString"
+      }
+    } as any, reply);
 
     expect(transformer.fromApi).toHaveBeenCalled();
     expect(service.execute).toHaveBeenCalledWith(inputDTO);

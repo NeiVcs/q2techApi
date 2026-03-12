@@ -55,8 +55,6 @@ const schema = createSchema({
               taxId: { type: 'string', description: 'CPF formatado.' },
               phoneNumber: { type: 'string', description: 'Telefone.' },
               whatsapp: { type: 'string', description: 'WhatsApp.' },
-              position: { type: 'string', description: 'Cargo ocupado.' },
-              resource: { type: 'string', description: 'Nível de permissão.' },
               active: { type: 'boolean', description: 'Status da conta.' },
               address: {
                 type: 'object',
@@ -76,6 +74,7 @@ const schema = createSchema({
                   type: 'object',
                   properties: {
                     companyId: { type: 'string', description: 'Id da empresa vinculada.' },
+                    resource: { type: 'string', description: 'Nível de permissão.' },
                     plan: {
                       type: 'object',
                       properties: {

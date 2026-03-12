@@ -8,8 +8,6 @@ const UserSchema: Schema = new Schema({
   email: { type: String, required: true, index: true, lowercase: true },
   phoneNumber: { type: String },
   whatsapp: { type: String },
-  position: { type: String, required: true },
-  resource: { type: String, required: true, default: 'user' },
   active: { type: Boolean, default: true },
   address: {
     zipCode: { type: String, required: true },
@@ -22,6 +20,7 @@ const UserSchema: Schema = new Schema({
   },
   companyDataList: [{
     companyId: { type: String },
+    resource: { type: String, required: true, default: 'user' },
     plan: {
       name: { type: String },
       value: { type: Number },
