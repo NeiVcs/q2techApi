@@ -4,11 +4,11 @@
 /dist/
 /tsconfig.tsbuildinfo
 /proto/
+/dump.json
 
 /.env
 /.env_hmg
 /.env_prod
-/.dump.json
 
 /.npmrc
 /.yarnrc.yml

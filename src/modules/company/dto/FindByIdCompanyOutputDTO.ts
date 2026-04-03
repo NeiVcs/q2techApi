@@ -20,6 +20,6 @@ export interface FindByIdCompanyOutputDTO {
   contacts?: CompanyContactsDTO;
   socialMediasList?: CompanySocialMediasListDTO[];
   address?: CompanyAddressDTO;
-  workSchedule?: CompanyWorkScheduleDTO[];
+  workSchedule?: CompanyWorkScheduleDTO;
   paymentForms?: string[];
 }

@@ -58,11 +58,16 @@ export class FindByIdCompanyTransformer {
         state: outputDTO?.address?.state ?? '',
         complement: outputDTO?.address?.complement ?? '',
       } : undefined,
-      workSchedule: Array.isArray(outputDTO?.workSchedule) ? outputDTO.workSchedule.map(f => ({
-        weekday: f?.weekday ?? '',
-        start: f?.start ?? '',
-        end: f?.end ?? '',
-      })) : [],
+      workSchedule: {
+        0: outputDTO?.workSchedule?.[0] || null,
+        1: outputDTO?.workSchedule?.[1] || null,
+        2: outputDTO?.workSchedule?.[2] || null,
+        3: outputDTO?.workSchedule?.[3] || null,
+        4: outputDTO?.workSchedule?.[4] || null,
+        5: outputDTO?.workSchedule?.[5] || null,
+        6: outputDTO?.workSchedule?.[6] || null,
+        7: outputDTO?.workSchedule?.[7] || null,
+      },
       paymentForms: Array.isArray(outputDTO?.paymentForms) ? [...outputDTO.paymentForms] : [],
     };
   }
@@ -110,11 +115,16 @@ export class FindByIdCompanyTransformer {
         state: request.address?.state,
         complement: request.address?.complement,
       },
-      workSchedule: request.workSchedule?.map(work => ({
-        weekday: work.weekday,
-        start: work.start,
-        end: work.end,
-      })) || [],
+      workSchedule: {
+        0: request?.workSchedule?.[0] || null,
+        1: request?.workSchedule?.[1] || null,
+        2: request?.workSchedule?.[2] || null,
+        3: request?.workSchedule?.[3] || null,
+        4: request?.workSchedule?.[4] || null,
+        5: request?.workSchedule?.[5] || null,
+        6: request?.workSchedule?.[6] || null,
+        7: request?.workSchedule?.[7] || null,
+      },
       paymentForms: request.paymentForms || [],
     };
   }
