@@ -3,6 +3,8 @@
     "target": "ESNext",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
+    "rootDir": "src",
+    "outDir": "dist",
     "esModuleInterop": true,
     "strict": true,
     "skipLibCheck": true,
@@ -16,36 +18,35 @@
     "sourceMap": true,
     "strictNullChecks": false,
     "noImplicitAny": false,
-    "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false,
-    "outDir": "dist",
-    "baseUrl": ".",
-    "types": ["fastify", "node"],
-    "typeRoots": ["./node_modules/@types",
-      "src/@types"
+    "types": [
+      "fastify",
+      "node"
+    ],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/@types"
     ],
     "paths": {
       "@config/*": [
-        "src/config/*"
+        "./src/config/*"
       ],
       "@middlewares/*": [
-        "src/middlewares/*"
+        "./src/middlewares/*"
       ],
       "@modules/*": [
-        "src/modules/*"
+        "./src/modules/*"
       ],
       "@integrations/*": [
-        "src/integrations/*"
+        "./src/integrations/*"
       ],
       "@database/*": [
-        "src/database/*"
+        "./src/database/*"
       ],
       "@shared/*": [
-        "src/shared/*"
+        "./src/shared/*"
       ],
       "@src/*": [
-        "src/*"
+        "./src/*"
       ]
     }
   },

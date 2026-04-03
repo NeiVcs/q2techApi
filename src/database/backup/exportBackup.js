@@ -5,7 +5,6 @@ async function exportBackup() {
   await mongoose.connect(process.env.MONGODB_URL);
   const db = mongoose.connection.db;
 
-  // Lista todas as coleções do banco
   const collections = await db.listCollections().toArray();
   const backupData = {};
 
