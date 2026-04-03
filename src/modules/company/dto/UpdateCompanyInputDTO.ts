@@ -18,6 +18,6 @@ export interface UpdateCompanyInputDTO {
   stylization?: CompanyStylizationDTO;
   contacts?: CompanyContactsDTO;
   address?: CompanyAddressDTO;
-  workSchedule?: CompanyWorkScheduleDTO[];
+  workSchedule?: CompanyWorkScheduleDTO;
   paymentForms?: string[];
 }

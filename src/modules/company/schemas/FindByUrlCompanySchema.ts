@@ -115,16 +115,21 @@ const schema = createSchema({
           }
         },
         workSchedule: {
-          description: 'Lista de horarios',
-          type: 'array',
-          nullable: true,
-          items: {
-            type: 'object',
-            properties: {
-              weekday: { type: 'string', description: 'weekday.' },
-              start: { type: 'string', description: 'start.' },
-              end: { type: 'string', description: 'end.' }
-            }
+          type: 'object',
+          minProperties: 1,
+          additionalProperties: false,
+          properties: {
+            0: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
+            1: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
+            2: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
+            3: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
+            4: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
+            5: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
+            6: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
+            7: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
+          },
+          errorMessage: {
+            minProperties: 'É necessário configurar o horário de ao menos um dia.'
           }
         },
         paymentForms: {

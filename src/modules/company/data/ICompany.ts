@@ -39,9 +39,14 @@ export interface ICompanyAddress {
 }
 
 export interface ICompanyWorkSchedule {
-  weekday?: string;
-  start?: string;
-  end?: string;
+  0?: string[];
+  1?: string[];
+  2?: string[];
+  3?: string[];
+  4?: string[];
+  5?: string[];
+  6?: string[];
+  7?: string[];
 }
 
 export interface ICompany extends Document {
@@ -57,7 +62,7 @@ export interface ICompany extends Document {
   stylization?: ICompanyStylization;
   contacts?: ICompanyContacts;
   address?: ICompanyAddress;
-  workSchedule?: ICompanyWorkSchedule[];
+  workSchedule?: ICompanyWorkSchedule;
   paymentForms?: string[];
   createdAt?: Date;
   updatedAt?: Date;

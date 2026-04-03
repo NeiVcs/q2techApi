@@ -38,11 +38,16 @@ const CompanySchema: Schema = new Schema({
     state: { type: String, required: true, uppercase: true, minlength: 2, maxlength: 2 },
     complement: { type: String }
   },
-  workSchedule: [{
-    weekday: { type: String, required: true },
-    start: { type: String, required: true },
-    end: { type: String, required: true }
-  }],
+  workSchedule: {
+    0: { type: [String] },
+    1: { type: [String] },
+    2: { type: [String] },
+    3: { type: [String] },
+    4: { type: [String] },
+    5: { type: [String] },
+    6: { type: [String] },
+    7: { type: [String] },
+  },
   paymentForms: [{ type: String }]
 });
 
