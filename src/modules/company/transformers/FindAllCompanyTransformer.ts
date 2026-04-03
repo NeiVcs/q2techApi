@@ -33,7 +33,7 @@ export class FindAllCompanyTransformer {
         stylization: f?.stylization ?? undefined,
         contacts: f?.contacts ?? undefined,
         address: f?.address ?? undefined,
-        workSchedule: f?.workSchedule ?? undefined,
+        workSchedule: f?.workSchedule ?? {},
         paymentForms: f?.paymentForms ?? [],
       })) : [],
     };

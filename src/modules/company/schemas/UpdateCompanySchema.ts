@@ -151,17 +151,162 @@ const schema = createSchema({
         minProperties: 1,
         additionalProperties: false,
         properties: {
-          0: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
-          1: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
-          2: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
-          3: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
-          4: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
-          5: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
-          6: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
-          7: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
+          0: {
+            oneOf: [
+              { type: 'null' },
+              {
+                type: 'array',
+                items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' },
+                nullable: true,
+                minItems: 2,
+                maxItems: 2,
+              }
+            ],
+            errorMessage: {
+              type: 'Deve ser um array de horários ou null.',
+              oneOf: 'O dia deve ser nulo ou um array com exatamente 2 horários.',
+              minItems: 'O dia deve ter horário de início e fim.',
+              maxItems: 'O dia deve ter apenas início e fim.',
+              _: 'Formato inválido para o dia. Envie um array [início, fim] ou null.'
+            }
+          },
+          1: {
+            oneOf: [
+              { type: 'null' },
+              {
+                type: 'array',
+                items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' },
+                nullable: true,
+                minItems: 2,
+                maxItems: 2,
+              }
+            ],
+            errorMessage: {
+              type: 'Deve ser um array de horários ou null.',
+              oneOf: 'O dia deve ser nulo ou um array com exatamente 2 horários.',
+              minItems: 'O dia deve ter horário de início e fim.',
+              maxItems: 'O dia deve ter apenas início e fim.',
+              _: 'Formato inválido para o dia. Envie um array [início, fim] ou null.'
+            }
+          },
+          2: {
+            oneOf: [
+              { type: 'null' },
+              {
+                type: 'array',
+                items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' },
+                nullable: true,
+                minItems: 2,
+                maxItems: 2,
+              }
+            ],
+            errorMessage: {
+              type: 'Deve ser um array de horários ou null.',
+              oneOf: 'O dia deve ser nulo ou um array com exatamente 2 horários.',
+              minItems: 'O dia deve ter horário de início e fim.',
+              maxItems: 'O dia deve ter apenas início e fim.',
+              _: 'Formato inválido para o dia. Envie um array [início, fim] ou null.'
+            }
+          },
+          3: {
+            oneOf: [
+              { type: 'null' },
+              {
+                type: 'array',
+                items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' },
+                nullable: true,
+                minItems: 2,
+                maxItems: 2,
+              }
+            ],
+            errorMessage: {
+              type: 'Deve ser um array de horários ou null.',
+              oneOf: 'O dia deve ser nulo ou um array com exatamente 2 horários.',
+              minItems: 'O dia deve ter horário de início e fim.',
+              maxItems: 'O dia deve ter apenas início e fim.',
+              _: 'Formato inválido para o dia. Envie um array [início, fim] ou null.'
+            }
+          },
+          4: {
+            oneOf: [
+              { type: 'null' },
+              {
+                type: 'array',
+                items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' },
+                nullable: true,
+                minItems: 2,
+                maxItems: 2,
+              }
+            ],
+            errorMessage: {
+              type: 'Deve ser um array de horários ou null.',
+              oneOf: 'O dia deve ser nulo ou um array com exatamente 2 horários.',
+              minItems: 'O dia deve ter horário de início e fim.',
+              maxItems: 'O dia deve ter apenas início e fim.',
+              _: 'Formato inválido para o dia. Envie um array [início, fim] ou null.'
+            }
+          },
+          5: {
+            oneOf: [
+              { type: 'null' },
+              {
+                type: 'array',
+                items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' },
+                nullable: true,
+                minItems: 2,
+                maxItems: 2,
+              }
+            ],
+            errorMessage: {
+              type: 'Deve ser um array de horários ou null.',
+              oneOf: 'O dia deve ser nulo ou um array com exatamente 2 horários.',
+              minItems: 'O dia deve ter horário de início e fim.',
+              maxItems: 'O dia deve ter apenas início e fim.',
+              _: 'Formato inválido para o dia. Envie um array [início, fim] ou null.'
+            }
+          },
+          6: {
+            oneOf: [
+              { type: 'null' },
+              {
+                type: 'array',
+                items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' },
+                nullable: true,
+                minItems: 2,
+                maxItems: 2,
+              }
+            ],
+            errorMessage: {
+              type: 'Deve ser um array de horários ou null.',
+              oneOf: 'O dia deve ser nulo ou um array com exatamente 2 horários.',
+              minItems: 'O dia deve ter horário de início e fim.',
+              maxItems: 'O dia deve ter apenas início e fim.',
+              _: 'Formato inválido para o dia. Envie um array [início, fim] ou null.'
+            }
+          },
+          7: {
+            oneOf: [
+              { type: 'null' },
+              {
+                type: 'array',
+                items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' },
+                nullable: true,
+                minItems: 2,
+                maxItems: 2,
+              }
+            ],
+            errorMessage: {
+              type: 'Deve ser um array de horários ou null.',
+              oneOf: 'O dia deve ser nulo ou um array com exatamente 2 horários.',
+              minItems: 'O dia deve ter horário de início e fim.',
+              maxItems: 'O dia deve ter apenas início e fim.',
+              _: 'Formato inválido para o dia. Envie um array [início, fim] ou null.'
+            }
+          },
         },
         errorMessage: {
-          minProperties: 'É necessário configurar o horário de ao menos um dia.'
+          minProperties: 'É necessário configurar o horário de ao menos um dia.',
+          type: 'O horário de trabalho deve ser um objeto.'
         }
       },
       paymentForms: {

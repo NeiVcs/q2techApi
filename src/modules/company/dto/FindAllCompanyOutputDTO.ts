@@ -3,5 +3,5 @@ import { FindAllCompanyItemsDTO } from "@modules/company/dto/FindAllCompanyItems
 
 export interface FindAllCompanyOutputDTO {
   pagination?: PaginationDTO;
-  items?: FindAllCompanyItemsDTO[];
+  items?: FindAllCompanyItemsDTO;
 }
