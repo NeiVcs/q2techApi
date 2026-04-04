@@ -80,4 +80,18 @@ export class UserRepository {
       throw new MongoDbErrorException(e);
     }
   }
+
+  public async findByUserExist(taxId: string, email: string): Promise<FindByEmailUserOutputDTO> {
+    try {
+      const taxIdExist = await UserModel.findOne({ taxId }).lean();
+      const emailExist = await UserModel.findOne({ email }).lean();
+
+      return taxIdExist || emailExist
+    } catch (e) {
+      if (e instanceof AccessDeniedException) {
+        throw e;
+      }
+      throw new MongoDbErrorException(e);
+    }
+  }
 }
