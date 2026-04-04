@@ -13,7 +13,6 @@ export interface CreateCompanyInputDTO {
   alert?: string;
   minOrderPrice: number;
   categoriesList?: CompanyCategoriesListDTO[];
-  plan?: CompanyPlanDTO[];
   stylization: CompanyStylizationDTO;
   contacts: CompanyContactsDTO;
   address: CompanyAddressDTO;

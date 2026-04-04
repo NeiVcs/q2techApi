@@ -115,21 +115,12 @@ const schema = createSchema({
           }
         },
         workSchedule: {
+          description: 'Horário de funcionamento por dia da semana (0-7).',
           type: 'object',
-          minProperties: 1,
-          additionalProperties: false,
-          properties: {
-            0: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
-            1: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
-            2: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
-            3: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
-            4: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
-            5: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
-            6: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
-            7: { type: 'array', items: { type: 'string', pattern: '^([01]\\d|2[0-3]):([0-5]\\d)$' }, nullable: true },
-          },
-          errorMessage: {
-            minProperties: 'É necessário configurar o horário de ao menos um dia.'
+          additionalProperties: {
+            type: 'array',
+            nullable: true,
+            items: { type: 'string' }
           }
         },
         paymentForms: {

@@ -32,7 +32,7 @@ export class AuthService {
 
   private async createToken(inputDTO: FindByEmailUserOutputDTO): Promise<AuthOutputDTO> {
     const companyDataList = await this.getCompaniesData(inputDTO)
-    console.log(inputDTO)
+
     const secret = process.env.JWT_SECRET;
     const token = jwt.sign(
       {

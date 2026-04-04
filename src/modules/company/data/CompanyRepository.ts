@@ -78,4 +78,13 @@ export class CompanyRepository {
       throw new MongoDbErrorException(e);
     }
   }
+
+  public async findByUrlIfExist(url: string): Promise<any> {
+    try {
+      return await CompanyModel.findOne({ url: url }).lean();
+
+    } catch (e) {
+      throw new MongoDbErrorException(e);
+    }
+  }
 }

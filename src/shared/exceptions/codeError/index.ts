@@ -82,5 +82,14 @@ export const CodeErrors = {
   CODE_ERROR_MONGODB_DUPLICATE_KEY: {
     code: 'MONGODB_DUPLICATE_KEY',
     message: 'Ocorreu um erro e não foi possível realizar o pagamento do boleto.'
+  },
+  CODE_ERROR_USER_ALREADY_EXISTS: {
+    code: 'USER_ALREADY_EXISTS',
+    message: 'Usuário já existe. Faça login para criar uma nova loja.'
+  },
+  CODE_ERROR_COMPANY_ALREADY_EXISTS: {
+    code: 'COMPANY_ALREADY_EXISTS',
+    message: 'Endereço de url da empresa já existe, tente outro endereço.'
   }
+
 } as const;

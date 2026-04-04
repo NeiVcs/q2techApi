@@ -1,4 +1,5 @@
 import { container } from 'tsyringe';
+import { CreateUserAndCompanyController } from "@modules/user/controllers/CreateUserAndCompanyController";
 import { CreateUserController } from "@modules/user/controllers/CreateUserController";
 import { DeleteUserController } from "@modules/user/controllers/DeleteUserController";
 import { FindAllUserController } from "@modules/user/controllers/FindAllUserController";
@@ -8,6 +9,7 @@ import { UpdateUserController } from "@modules/user/controllers/UpdateUserContro
 export * from './private.routes.v1';
 export * from './public.routes.v1';
 
+export const createUserAndCompanyController = () => container.resolve(CreateUserAndCompanyController);
 export const createUserController = () => container.resolve(CreateUserController);
 export const deleteUserController = () => container.resolve(DeleteUserController);
 export const findAllUserController = () => container.resolve(FindAllUserController);

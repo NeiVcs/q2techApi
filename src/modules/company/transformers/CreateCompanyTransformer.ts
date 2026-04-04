@@ -20,11 +20,6 @@ export class CreateCompanyTransformer {
         name: f?.name || '',
         icon: f?.icon || '',
       })) : [],
-      plan: Array.isArray(body?.plan) ? body.plan.map(f => ({
-        name: f?.name || '',
-        value: f?.value || 0,
-        validate: f?.validate || '',
-      })) : [],
       stylization: body?.stylization ? {
         hasImage: body?.stylization?.hasImage || false,
         primaryColor: body?.stylization?.primaryColor || '',
