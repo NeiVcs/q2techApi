@@ -4,7 +4,6 @@ import { UserCompanyDataListItemDTO } from "@modules/user/dto/UserCompanyDataLis
 export interface UpdateUserInputDTO {
   id: string;
   name?: string;
-  password?: string;
   email?: string;
   phoneNumber?: string;
   whatsapp?: string;
