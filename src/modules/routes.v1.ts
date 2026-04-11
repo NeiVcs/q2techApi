@@ -5,7 +5,7 @@ import { privateProductRoutesV1, publicProductRoutesV1 } from './product';
 import { privateCompanyRoutesV1, publicCompanyRoutesV1 } from './company';
 import { privateOrderRoutesV1, publicOrderRoutesV1 } from './order';
 import { privateUserRoutesV1, publicUserRoutesV1 } from './user';
-import { publicAuthRoutesV1 } from './auth';
+import { privateAuthRoutesV1, publicAuthRoutesV1 } from './auth';
 
 export const routesV1: FastifyPluginAsync = async (fastifyInstance: FastifyInstance) => {
   fastifyInstance.register(async (publicScope: FastifyInstance) => {
@@ -23,6 +23,7 @@ export const routesV1: FastifyPluginAsync = async (fastifyInstance: FastifyInsta
     privateScope.addHook('preHandler', authMiddleware);
     privateScope.addHook('preHandler', tokenMiddleware);
 
+    privateScope.register(privateAuthRoutesV1);
     privateScope.register(privateAdditionalRoutesV1);
     privateScope.register(privateProductRoutesV1);
     privateScope.register(privateCompanyRoutesV1);
