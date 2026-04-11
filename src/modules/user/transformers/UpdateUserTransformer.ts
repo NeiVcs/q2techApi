@@ -11,7 +11,6 @@ export class UpdateUserTransformer {
     return {
       id: params.id,
       name: body?.name || '',
-      password: body?.password || '',
       email: body?.email || '',
       phoneNumber: body?.phoneNumber || '',
       whatsapp: body?.whatsapp || '',

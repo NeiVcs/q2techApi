@@ -22,7 +22,6 @@ const schema = createSchema({
     type: 'object',
     properties: {
       name: { type: 'string', minLength: 1 },
-      password: { type: 'string', minLength: 6 },
       email: { type: 'string', format: 'email' },
       phoneNumber: { type: 'string' },
       whatsapp: { type: 'string' },
