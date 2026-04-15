@@ -10,5 +10,5 @@ export interface FindAllProductDTO {
   price?: number;
   previewPrice?: number;
   additionalList?: any[];
-  additionalIdList?: any[];
+  additionalIdList?: string[];
 }

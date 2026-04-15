@@ -88,10 +88,13 @@ const schema = createSchema({
                     name: { type: 'string' },
                     min: { type: 'number' },
                     max: { type: 'number' },
-                    productIdList: {
+                    productList: {
                       type: 'array',
                       nullable: true,
-                      items: { type: 'string' }
+                      items: {
+                        productId: { type: 'string' },
+                        price: { type: 'number' }
+                      }
                     }
                   }
                 }

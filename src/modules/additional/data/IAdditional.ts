@@ -1,5 +1,11 @@
 import { Document } from 'mongoose';
 
+export interface IProductList {
+  [key: string]: unknown;
+  productId: string;
+  price: number;
+}
+
 export interface IAdditional extends Document {
   id: string;
   companyId: string;
@@ -7,5 +13,5 @@ export interface IAdditional extends Document {
   name: string;
   min: number;
   max: number;
-  productIdList: string[];
+  productList: IProductList[];
 }

@@ -22,7 +22,12 @@ export class FindByIdAdditionalTransformer {
       name: outputDTO?.name ?? '',
       min: outputDTO?.min ?? 0,
       max: outputDTO?.max ?? 0,
-      productIdList: Array.isArray(outputDTO?.productIdList) ? [...outputDTO.productIdList] : [],
+      productList: Array.isArray(outputDTO?.productList)
+        ? outputDTO.productList.map(product => ({
+          productId: product.id || (product as any).productId || '',
+          price: product.price ?? 0
+        }))
+        : [],
     };
   }
 }

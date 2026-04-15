@@ -6,47 +6,47 @@ describe("CreateProductTransformer", () => {
   beforeEach(() => {
     transformer = new CreateProductTransformer();
   });
-  
+
   it("deve mapear corretamente fromApi", () => {
     const request: any = {
-  body: {
-  "companyId": "fakeString",
-  "name": "fakeString",
-  "category": "fakeString",
-  "description": "fakeString",
-  "active": true,
-  "isAdditional": true,
-  "imgUrl": "fakeString",
-  "price": 123,
-  "previewPrice": 123,
-  "additionalIdList": [
-    "fakeString"
-  ]
-}
-};
+      body: {
+        "companyId": "fakeString",
+        "name": "fakeString",
+        "category": "fakeString",
+        "description": "fakeString",
+        "active": true,
+        "isAdditional": true,
+        "imgUrl": "fakeString",
+        "price": 123,
+        "previewPrice": 123,
+        "additionalIdList": [
+          "fakeString"
+        ]
+      }
+    };
     const dto = transformer.fromApi(request);
     expect(dto).toMatchObject({
-  "companyId": "fakeString",
-  "name": "fakeString",
-  "category": "fakeString",
-  "description": "fakeString",
-  "active": true,
-  "isAdditional": true,
-  "imgUrl": "fakeString",
-  "price": 123,
-  "previewPrice": 123,
-  "additionalIdList": [
-    "fakeString"
-  ]
-});
+      "companyId": "fakeString",
+      "name": "fakeString",
+      "category": "fakeString",
+      "description": "fakeString",
+      "active": true,
+      "isAdditional": true,
+      "imgUrl": "fakeString",
+      "price": 123,
+      "previewPrice": 123,
+      "additionalList": [
+        "fakeString"
+      ]
+    });
   });
   it("deve mapear corretamente toApi", () => {
     const outputDTO: any = {
-  "id": "fakeString"
-};
+      "id": "fakeString"
+    };
     const result = transformer.toApi(outputDTO);
     expect(result).toMatchObject({
-  "id": "fakeString"
-});
+      "id": "fakeString"
+    });
   });
 });

@@ -1,3 +1,5 @@
+import { ProductListDTO } from "./ProductListDTO";
+
 export interface AdditionalDTO {
   id?: string;
   companyId: string;
@@ -5,5 +7,5 @@ export interface AdditionalDTO {
   name?: string;
   min?: number;
   max?: number;
-  productIdList?: string[];
+  productList?: ProductListDTO[];
 }

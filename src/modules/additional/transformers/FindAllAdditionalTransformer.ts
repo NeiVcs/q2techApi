@@ -30,7 +30,10 @@ export class FindAllAdditionalTransformer {
         name: f?.name ?? '',
         min: f?.min ?? 0,
         max: f?.max ?? 0,
-        productIdList: f?.productIdList ?? [],
+        productList: Array.isArray(f?.productList) ? f.productList.map(product => ({
+          productId: product.productId ?? '',
+          price: product.price ?? 0
+        })) : [],
       })) : [],
     };
   }

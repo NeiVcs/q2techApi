@@ -26,7 +26,7 @@ export class CreateAdditionalTransformer {
       name: body?.name || '',
       min: body?.min || 0,
       max: body?.max || 0,
-      productIdList: Array.isArray(body?.productIdList) ? [...body.productIdList] : [],
+      productList: Array.isArray(body?.productList) ? [...body.productList] : [],
     };
   }
 

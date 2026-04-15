@@ -15,7 +15,7 @@ describe("UpdateAdditionalTransformer", () => {
   "name": "fakeString",
   "min": 123,
   "max": 123,
-  "productIdList": [
+  "productList": [
     "fakeString"
   ]
 },
@@ -31,7 +31,7 @@ describe("UpdateAdditionalTransformer", () => {
   "name": "fakeString",
   "min": 123,
   "max": 123,
-  "productIdList": [
+  "productList": [
     "fakeString"
   ]
 });

@@ -26,7 +26,7 @@ describe("FindByIdAdditionalTransformer", () => {
   "name": "fakeString",
   "min": 123,
   "max": 123,
-  "productIdList": [
+  "productList": [
     "fakeString"
   ]
 };
@@ -38,7 +38,7 @@ describe("FindByIdAdditionalTransformer", () => {
   "name": "fakeString",
   "min": 123,
   "max": 123,
-  "productIdList": [
+  "productList": [
     "fakeString"
   ]
 });

@@ -64,18 +64,27 @@ const schema = createSchema({
           minimum: 'Quantidade máxima deve ser pelo menos 1.'
         }
       },
-      productIdList: {
+      productList: {
         type: 'array',
-        description: 'productIdList.',
+        description: 'productList.',
         items: {
-          type: 'string',
-          pattern: '^[0-9a-fA-F]{24}$',
-          minLength: 1
+          type: 'object',
+          required: ['productId', 'price'],
+          properties: {
+            productId: {
+              type: 'string',
+              pattern: '^[0-9a-fA-F]{24}$',
+              description: 'ID do produto.'
+            },
+            price: {
+              type: 'number',
+              minimum: 0,
+              description: 'Preço unitário do produto.'
+            }
+          }
         },
-        minItems: 1,
         errorMessage: {
-          type: 'productIdList deve ser um array.',
-          minItems: 'Lista de produtos deve conter pelo menos 1 ID.'
+          type: 'productList deve ser um array.',
         }
       },
     },
@@ -86,7 +95,12 @@ const schema = createSchema({
         name: 'sabor',
         min: 0,
         max: 3,
-        productIdList: ['65f1a2b3c4d5e6f7a8b9c0d1'],
+        productList: [
+          {
+            productId: '65f1a2b3c4d5e6f7a8b9c0d1',
+            price: 10.0
+          }
+        ]
       }
     ]
   },
