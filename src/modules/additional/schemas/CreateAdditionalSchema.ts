@@ -8,7 +8,7 @@ const schema = createSchema({
   security: [{ ApiKeyAuth: [] }],
   body: {
     type: 'object',
-    required: ['companyId', 'category', 'name', 'min', 'max', 'productIdList'],
+    required: ['companyId', 'category', 'name', 'min', 'max', 'productList'],
     properties: {
       companyId: {
         type: 'string',
@@ -53,18 +53,27 @@ const schema = createSchema({
           minimum: 'A quantidade máxima deve ser pelo menos 1.'
         }
       },
-      productIdList: {
+      productList: {
         type: 'array',
-        description: 'productIdList.',
+        description: 'productList.',
         items: {
-          type: 'string',
-          pattern: '^[0-9a-fA-F]{24}$',
-          minLength: 1
+          type: 'object',
+          required: ['productId', 'price'],
+          properties: {
+            productId: {
+              type: 'string',
+              pattern: '^[0-9a-fA-F]{24}$',
+              description: 'ID do produto.'
+            },
+            price: {
+              type: 'number',
+              minimum: 0,
+              description: 'Preço unitário do produto.'
+            }
+          }
         },
-        minItems: 1,
         errorMessage: {
-          type: 'productIdList deve ser um array.',
-          minItems: 'A lista de produtos deve conter pelo menos 1 ID.'
+          type: 'productList deve ser um array.',
         }
       },
     },
@@ -75,7 +84,7 @@ const schema = createSchema({
         name: 'Nome é um campo obrigatório.',
         min: 'quantidade mínima é um campo obrigatório.',
         max: 'Quantidade máxima é um campo obrigatório.',
-        productIdList: 'Lista de produtos é um campo obrigatório'
+        productList: 'Lista de produtos é um campo obrigatório'
       }
     },
     examples: [
@@ -83,7 +92,7 @@ const schema = createSchema({
         name: 'sabor',
         min: 0,
         max: 3,
-        productIdList: ['65f1a2b3c4d5e6f7a8b9c0d1'],
+        productList: [{ productId: '65f1a2b3c4d5e6f7a8b9c0d1', price: 123 }],
       }
     ]
   },

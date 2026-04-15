@@ -28,13 +28,13 @@ export class FindByIdProductService {
   }
 
   private async populateCategory(product: FindByIdProductOutputDTO, additionalList: IAdditional[]) {
-    const uniqueIds = [...new Set(additionalList.map(el => el.productIdList).flat())];
-    const promises = uniqueIds.map(item => this.productStorage.findById(item));
+    const uniqueIds = [...new Set(additionalList.map(el => el.productList).flat())];
+    const promises = uniqueIds.map(item => this.productStorage.findById(item.productId));
     const results = await Promise.all(promises);
 
     const additional = additionalList.map((el) => {
       return {
-        ...el, productList: el.productIdList.map((ol) => results.find((il) => il.id === ol))
+        ...el, productList: el.productList.map((ol) => { return { ...results.find((il) => il.id === ol.productId), price: ol.price } })
       }
     })
 

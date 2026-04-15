@@ -26,7 +26,7 @@ describe("CreateAdditionalController", () => {
   "name": "fakeString",
   "min": 123,
   "max": 123,
-  "productIdList": [
+  "productList": [
     "fakeString"
   ]
 };
@@ -45,7 +45,7 @@ describe("CreateAdditionalController", () => {
   "name": "fakeString",
   "min": 123,
   "max": 123,
-  "productIdList": [
+  "productList": [
     "fakeString"
   ]
 }

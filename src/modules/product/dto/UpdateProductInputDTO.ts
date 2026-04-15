@@ -11,5 +11,3 @@ export interface UpdateProductInputDTO {
   previewPrice?: number;
   ProductIdList?: string[];
 }
-    
-    

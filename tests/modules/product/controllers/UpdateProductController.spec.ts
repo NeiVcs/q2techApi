@@ -18,46 +18,46 @@ describe("UpdateProductController", () => {
     reply = mock<FastifyReply>();
     controller = new UpdateProductController(transformer, service);
   });
-  
+
   it("deve chamar service e retornar 204 sem body", async () => {
     const inputDTO = {
-  "id": "fakeString",
-  "companyId": "fakeString",
-  "name": "fakeString",
-  "category": "fakeString",
-  "description": "fakeString",
-  "active": true,
-  "isProduct": true,
-  "imgUrl": "fakeString",
-  "price": 123,
-  "previewPrice": 123,
-  "ProductIdList": [
-    "fakeString"
-  ]
-};
+      "id": "fakeString",
+      "companyId": "fakeString",
+      "name": "fakeString",
+      "category": "fakeString",
+      "description": "fakeString",
+      "active": true,
+      "isProduct": true,
+      "imgUrl": "fakeString",
+      "price": 123,
+      "previewPrice": 123,
+      "ProductIdList": [
+        "fakeString"
+      ]
+    };
 
     transformer.fromApi.mockReturnValue(inputDTO);
     service.execute.mockResolvedValue(undefined as any);
 
     const result = await controller.handler({
-  body: {
-  "companyId": "fakeString",
-  "name": "fakeString",
-  "category": "fakeString",
-  "description": "fakeString",
-  "active": true,
-  "isProduct": true,
-  "imgUrl": "fakeString",
-  "price": 123,
-  "previewPrice": 123,
-  "ProductIdList": [
-    "fakeString"
-  ]
-},
-  params: {
-  "id": "fakeString"
-}
-} as any, reply);
+      body: {
+        "companyId": "fakeString",
+        "name": "fakeString",
+        "category": "fakeString",
+        "description": "fakeString",
+        "active": true,
+        "isProduct": true,
+        "imgUrl": "fakeString",
+        "price": 123,
+        "previewPrice": 123,
+        "ProductList": [
+          "fakeString"
+        ]
+      },
+      params: {
+        "id": "fakeString"
+      }
+    } as any, reply);
 
     expect(transformer.fromApi).toHaveBeenCalled();
     expect(service.execute).toHaveBeenCalledWith(inputDTO);

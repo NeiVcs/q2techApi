@@ -30,11 +30,14 @@ const schema = createSchema({
         name: { type: 'string', description: 'name.' },
         min: { type: 'number', description: '1' },
         max: { type: 'number', description: '2' },
-        productIdList: {
+        productList: {
           type: 'array',
           items: {
-            type: 'string',
-            description: 'gender.'
+            type: 'object',
+            properties: {
+              productId: { type: 'string', description: 'ID do produto.' },
+              price: { type: 'number', description: 'Preço unitário do produto.' }
+            }
           },
         }
       }

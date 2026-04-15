@@ -18,46 +18,46 @@ describe("CreateProductController", () => {
     reply = mock<FastifyReply>();
     controller = new CreateProductController(transformer, service);
   });
-  
+
   it("deve chamar service e transformer corretamente", async () => {
     const inputDTO = {
-  "companyId": "fakeString",
-  "name": "fakeString",
-  "category": "fakeString",
-  "description": "fakeString",
-  "active": true,
-  "isAdditional": true,
-  "imgUrl": "fakeString",
-  "price": 123,
-  "previewPrice": 123,
-  "additionalIdList": [
-    "fakeString"
-  ]
-};
+      "companyId": "fakeString",
+      "name": "fakeString",
+      "category": "fakeString",
+      "description": "fakeString",
+      "active": true,
+      "isAdditional": true,
+      "imgUrl": "fakeString",
+      "price": 123,
+      "previewPrice": 123,
+      "additionalIdList": [
+        "fakeString"
+      ]
+    };
     const outputDTO = {
-  "id": "fakeString"
-};
+      "id": "fakeString"
+    };
 
     transformer.fromApi.mockReturnValue(inputDTO);
     service.execute.mockResolvedValue(outputDTO);
     transformer.toApi.mockReturnValue(outputDTO);
 
     const result = await controller.handler({
-  body: {
-  "companyId": "fakeString",
-  "name": "fakeString",
-  "category": "fakeString",
-  "description": "fakeString",
-  "active": true,
-  "isAdditional": true,
-  "imgUrl": "fakeString",
-  "price": 123,
-  "previewPrice": 123,
-  "additionalIdList": [
-    "fakeString"
-  ]
-}
-} as any, reply);
+      body: {
+        "companyId": "fakeString",
+        "name": "fakeString",
+        "category": "fakeString",
+        "description": "fakeString",
+        "active": true,
+        "isAdditional": true,
+        "imgUrl": "fakeString",
+        "price": 123,
+        "previewPrice": 123,
+        "additionalList": [
+          "fakeString"
+        ]
+      }
+    } as any, reply);
 
     expect(transformer.fromApi).toHaveBeenCalled();
     expect(service.execute).toHaveBeenCalledWith(inputDTO);
