@@ -70,6 +70,11 @@ const schema = createSchema({
         description: 'Dados do cliente',
         required: ['name', 'phoneNumber', 'address'],
         properties: {
+          userId: {
+            type: 'string',
+            description: 'ID do usuário (opcional, para clientes cadastrados)',
+            nullable: true
+          },
           name: {
             type: 'string',
             description: 'Nome do cliente',
@@ -124,6 +129,7 @@ const schema = createSchema({
             quantity: { type: 'number', minimum: 1 },
             price: { type: 'number', minimum: 0 },
             observation: { type: 'string', description: 'Observação do item', nullable: true },
+            status: { type: 'string', enum: ['PENDING', 'PREPARING', 'DELIVERED', 'CONCLUDED', 'CANCELLED'], nullable: true },
             additional: {
               type: 'array',
               nullable: true,

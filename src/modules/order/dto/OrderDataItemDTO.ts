@@ -7,5 +7,6 @@ export interface OrderDataItemDTO {
   quantity: number;
   price: number;
   observation?: string;
+  status: 'PENDING' | 'PREPARING' | 'DELIVERED' | 'CONCLUDED' | 'CANCELLED' | null;
   additional?: OrderAdditionalDTO[];
 }

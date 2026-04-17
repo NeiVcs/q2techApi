@@ -17,6 +17,7 @@ const OrderSchema: Schema = new Schema({
   deliveryMode: { type: String, required: true },
   rating: { type: Number, min: 0, max: 5 },
   userData: {
+    userId: { type: String, required: true },
     name: { type: String, required: true },
     phoneNumber: { type: String, required: true },
     address: {
@@ -36,6 +37,7 @@ const OrderSchema: Schema = new Schema({
     quantity: { type: Number, required: true, min: 1 },
     price: { type: Number, required: true },
     observation: { type: String },
+    status: { type: String },
     additional: [{
       additionalId: { type: String, required: true },
       name: { type: String, required: true },

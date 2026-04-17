@@ -19,6 +19,7 @@ export class UpdateOrderTransformer {
       rating: body?.rating || 0,
       notification: body?.notification || '',
       userData: body?.userData ? {
+        userId: body?.userData?.userId || '',
         name: body?.userData?.name || '',
         phoneNumber: body?.userData?.phoneNumber || '',
         address: body?.userData?.address ? {
@@ -38,6 +39,7 @@ export class UpdateOrderTransformer {
         quantity: f?.quantity || 0,
         price: f?.price || 0,
         observation: f?.observation || '',
+        status: f?.status || null,
         additional: Array.isArray(f?.additional) ? f.additional.map(f => ({
           additionalId: f?.additionalId || '',
           name: f?.name || '',

@@ -20,7 +20,12 @@ const schema = createSchema({
   },
   querystring: {
     type: 'object',
+    required: ['userId'],
     properties: {
+      userId: {
+        type: 'string',
+        description: 'Filter by user ID.'
+      },
       status: {
         type: 'string',
         description: 'Filter by order status (e.g., PENDING, DELIVERED)'
@@ -41,6 +46,11 @@ const schema = createSchema({
           minimum: 'O tamanho da página deve ser maior que 0.'
         }
       },
+    },
+    errorMessage: {
+      required: {
+        userId: 'O ID do usuário é obrigatório.'
+      }
     }
   },
   response: {
@@ -122,7 +132,7 @@ const schema = createSchema({
   }
 });
 
-export const FindByCompanyIdOrderSchema = schema.raw;
-export type FindByCompanyIdOrderParamsRequest = typeof schema.types.params;
-export type FindByCompanyIdOrderQueryRequest = typeof schema.types.querystring;
-export type FindByCompanyIdOrderResponse = (typeof schema.types.response)[200];
+export const FindByUserIdOrderSchema = schema.raw;
+export type FindByUserIdOrderParamsRequest = typeof schema.types.params;
+export type FindByUserIdOrderQueryRequest = typeof schema.types.querystring;
+export type FindByUserIdOrderResponse = (typeof schema.types.response)[200];
