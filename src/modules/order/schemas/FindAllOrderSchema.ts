@@ -67,6 +67,7 @@ const schema = createSchema({
               userData: {
                 type: 'object',
                 properties: {
+                  userId: { type: 'string' },
                   name: { type: 'string' },
                   phoneNumber: { type: 'string' },
                   address: {
@@ -91,6 +92,7 @@ const schema = createSchema({
                     name: { type: 'string' },
                     quantity: { type: 'number' },
                     price: { type: 'number' },
+                    status: { type: 'string' },
                     observation: { type: 'string', nullable: true }
                   }
                 }

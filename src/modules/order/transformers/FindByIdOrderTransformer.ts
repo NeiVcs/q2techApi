@@ -15,6 +15,7 @@ export class FindByIdOrderTransformer {
   }
 
   public toApi(outputDTO: FindByIdOrderOutputDTO): FindByIdOrderResponse {
+    console.log(outputDTO)
     return {
       id: outputDTO?.id ?? '',
       companyId: outputDTO?.companyId ?? '',
@@ -28,6 +29,7 @@ export class FindByIdOrderTransformer {
       notification: outputDTO?.notification ?? '',
       createdAt: outputDTO?.createdAt ?? '',
       userData: outputDTO?.userData ? {
+        userId: outputDTO?.userData?.userId ?? '',
         name: outputDTO?.userData?.name ?? '',
         phoneNumber: outputDTO?.userData?.phoneNumber ?? '',
         address: outputDTO?.userData?.address ?? undefined,
@@ -38,6 +40,7 @@ export class FindByIdOrderTransformer {
         quantity: f?.quantity ?? 0,
         price: f?.price ?? 0,
         observation: f?.observation ?? '',
+        status: f?.status ?? '',
         additional: f?.additional ?? [],
       })) : [],
     };

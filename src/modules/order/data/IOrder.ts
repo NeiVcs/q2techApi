@@ -12,6 +12,7 @@ export interface IOrderAddress {
 }
 
 export interface IOrderUser {
+  userId: string;
   name: string;
   phoneNumber: string;
   address: IOrderAddress;
@@ -30,6 +31,7 @@ export interface IOrderItem {
   quantity: number;
   price: number;
   observation?: string;
+  status: 'PENDING' | 'PREPARING' | 'DELIVERED' | 'CONCLUDED' | 'CANCELLED';
   additional?: IOrderItemAdditional[];
 }
 
@@ -38,7 +40,7 @@ export interface IOrder extends Document {
   companyId: string;
   createdAt: Date;
   updatedAt: Date;
-  status: 'PENDING' | 'CONFIRMED' | 'PREPARING' | 'DISPATCHED' | 'DELIVERED' | 'CANCELLED';
+  status: 'PENDING' | 'PREPARING' | 'DELIVERED' | 'CONCLUDED' | 'CANCELLED' | 'IN_PROGRESS';
   notification?: string;
   paymentForm: string;
   totalPrice: number;
