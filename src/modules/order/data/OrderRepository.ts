@@ -76,4 +76,23 @@ export class OrderRepository {
       throw new MongoDbErrorException(e);
     }
   }
+
+  public async findByUserId(dto: any): Promise<any> {
+    try {
+      const query = Object.fromEntries(Object.entries(dto).filter(([key, value]) => value != null && value !== '' && key !== 'page' && key !== 'pageSize' && key !== 'userId'));
+      if (dto.userId) {
+        query['userData.userId'] = dto.userId;
+      }
+
+      const skip = (dto.page - 1) * dto.pageSize;
+      const data = await OrderModel.find(query).skip(skip).limit(dto.pageSize).lean();
+
+      const items = data.map((el: IOrder) => ({ id: el._id.toString(), ...el }));
+      const total = await OrderModel.countDocuments();
+
+      return { items: items, pagination: { ...dto, total: total } }
+    } catch (e) {
+      throw new MongoDbErrorException(e);
+    }
+  }
 }
