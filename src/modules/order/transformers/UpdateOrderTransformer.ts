@@ -18,6 +18,7 @@ export class UpdateOrderTransformer {
       deliveryMode: body?.deliveryMode || '',
       rating: body?.rating || 0,
       notification: body?.notification || '',
+      status: body?.status || '',
       userData: body?.userData ? {
         userId: body?.userData?.userId || '',
         name: body?.userData?.name || '',

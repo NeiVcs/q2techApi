@@ -65,6 +65,7 @@ const schema = createSchema({
         errorMessage: { minimum: 'Mínimo 0.', maximum: 'Máximo 5.' }
       },
       notification: { type: 'string', description: 'Token para notificações push', nullable: true },
+      status: { type: 'string', enum: ['PENDING', 'PREPARING', 'DELIVERED', 'CONCLUDED', 'CANCELLED'], nullable: true },
       userData: {
         type: 'object',
         description: 'Dados do cliente',

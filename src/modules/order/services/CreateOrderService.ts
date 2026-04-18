@@ -9,6 +9,8 @@ export class CreateOrderService {
   constructor(private storage: OrderRepository) { }
 
   public async execute(inputDTO: CreateOrderInputDTO): Promise<CreateOrderOutputDTO> {
+    inputDTO.createdAt = new Date().toISOString();
+
     if (!inputDTO?.userData?.userId) {
       await this.getUserId(inputDTO);
     }

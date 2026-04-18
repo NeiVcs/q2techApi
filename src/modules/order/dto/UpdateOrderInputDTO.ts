@@ -11,6 +11,8 @@ export interface UpdateOrderInputDTO {
   deliveryMode?: string;
   rating?: number;
   notification?: string;
+  status?: string;
   userData?: OrderUserDataDTO;
   orderData?: OrderDataItemDTO[];
+  updatedAt?: string;
 }
