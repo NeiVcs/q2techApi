@@ -64,7 +64,11 @@ export class OrderRepository {
 
   public async findByCompanyId(dto: any): Promise<any> {
     try {
-      const query = Object.fromEntries(Object.entries(dto).filter(([key, value]) => value != null && value !== '' && key !== 'page' && key !== 'pageSize'));
+      const query = Object.fromEntries(Object.entries(dto).filter(([key, value]) => value != null && value !== '' && key !== 'page' && key !== 'pageSize' && key !== 'userPhoneNumber'));
+      if (dto.userPhoneNumber) {
+        query['userData.phoneNumber'] = dto.userPhoneNumber;
+      }
+
       const skip = (dto.page - 1) * dto.pageSize;
       const data = await OrderModel.find(query).skip(skip).limit(dto.pageSize).lean();
 

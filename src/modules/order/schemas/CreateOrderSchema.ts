@@ -196,7 +196,8 @@ const schema = createSchema({
       description: 'Created successfully.',
       type: 'object',
       properties: {
-        id: { type: 'string', format: 'mongoId', example: '65f1a2b3c4d5e6f7a8b9c0d1' }
+        id: { type: 'string', format: 'mongoId', example: '65f1a2b3c4d5e6f7a8b9c0d1' },
+        userId: { type: 'string', format: 'mongoId', example: '65f1a2b3c4d5e6f7a8b9c0d2' }
       }
     },
     400: DefinitionsExceptionSchema.Error400,

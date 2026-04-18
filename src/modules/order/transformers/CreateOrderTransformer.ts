@@ -53,6 +53,7 @@ export class CreateOrderTransformer {
   public toApi(outputDTO: CreateOrderOutputDTO): CreateOrderResponse {
     return {
       id: outputDTO?.id ?? '',
+      userId: outputDTO?.userData?.userId ?? '',
     };
   }
 }
