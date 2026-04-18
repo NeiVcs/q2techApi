@@ -12,4 +12,5 @@ export interface CreateOrderInputDTO {
   notification?: string;
   userData: OrderUserDataDTO;
   orderData: OrderDataItemDTO[];
+  createdAt?: string;
 }
