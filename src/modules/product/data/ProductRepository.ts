@@ -44,7 +44,7 @@ export class ProductRepository {
 
   public async update(entity: any): Promise<void> {
     try {
-      const body = Object.fromEntries(Object.entries(entity).filter(([_, value]) => value != null && value !== ''));
+      const body = Object.fromEntries(Object.entries(entity).filter(([_, value]) => value != null));
       const result = await ProductModel.findByIdAndUpdate(entity.id, body, { new: true });
       if (!result) {
         throw { type: 'NOT_FOUND', message: 'Produto não encontrado' };
