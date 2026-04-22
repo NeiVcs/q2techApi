@@ -10,15 +10,15 @@ export class UpdateProductTransformer {
 
     return {
       id: params.id,
-      companyId: body?.companyId || '',
-      name: body?.name || '',
-      category: body?.category || '',
-      description: body?.description || '',
-      active: body?.active || false,
-      isProduct: body?.isProduct || false,
-      imgUrl: body?.imgUrl || '',
-      price: body?.price || 0,
-      previewPrice: body?.previewPrice || 0,
+      companyId: body?.companyId,
+      name: body?.name,
+      category: body?.category,
+      description: body?.description,
+      active: body?.active,
+      isProduct: body?.isProduct,
+      imgUrl: body?.imgUrl,
+      price: body?.price,
+      previewPrice: body?.previewPrice,
       ProductIdList: Array.isArray(body?.ProductIdList) ? [...body.ProductIdList] : [],
     };
   }
