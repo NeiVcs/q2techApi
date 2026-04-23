@@ -31,7 +31,6 @@ export class FindAllUserTransformer {
         phoneNumber: f?.phoneNumber ?? '',
         whatsapp: f?.whatsapp ?? '',
         active: f?.active ?? false,
-        address: f?.address ?? undefined,
         companyDataList: f?.companyDataList ?? [],
         lastLogin: f?.lastLogin ?? '',
         createdAt: f?.createdAt ?? '',

@@ -1,4 +1,3 @@
-import { UserAddressDTO } from "@modules/user/dto/UserAddressDTO";
 import { UserCompanyDataListItemDTO } from "@modules/user/dto/UserCompanyDataListItemDTO";
 
 export interface UpdateUserInputDTO {
@@ -9,7 +8,6 @@ export interface UpdateUserInputDTO {
   phoneNumber?: string;
   whatsapp?: string;
   active?: boolean;
-  address?: UserAddressDTO;
   companyDataList?: UserCompanyDataListItemDTO[];
   lastLogin?: string;
 }

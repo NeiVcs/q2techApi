@@ -15,15 +15,6 @@ export class UpdateUserTransformer {
       phoneNumber: body?.phoneNumber || '',
       whatsapp: body?.whatsapp || '',
       active: body?.active || false,
-      address: body?.address ? {
-        zipCode: body?.address?.zipCode || '',
-        street: body?.address?.street || '',
-        number: body?.address?.number || '',
-        neighborhood: body?.address?.neighborhood || '',
-        city: body?.address?.city || '',
-        state: body?.address?.state || '',
-        complement: body?.address?.complement || '',
-      } : undefined,
       companyDataList: Array.isArray(body?.companyDataList) ? body.companyDataList.map(f => ({
         companyId: f?.companyId || '',
         resource: f?.resource || '',

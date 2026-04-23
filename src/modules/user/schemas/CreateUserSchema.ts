@@ -8,7 +8,7 @@ const schema = createSchema({
   security: [{ ApiKeyAuth: [] }],
   body: {
     type: 'object',
-    required: ['name', 'password', 'taxId', 'email', 'address'],
+    required: ['name', 'password', 'taxId', 'email'],
     properties: {
       name: {
         type: 'string',
@@ -33,19 +33,6 @@ const schema = createSchema({
       phoneNumber: { type: 'string' },
       whatsapp: { type: 'string' },
       active: { type: 'boolean', default: true },
-      address: {
-        type: 'object',
-        required: ['zipCode', 'street', 'city', 'state'],
-        properties: {
-          zipCode: { type: 'string', minLength: 8 },
-          street: { type: 'string' },
-          number: { type: 'string' },
-          neighborhood: { type: 'string' },
-          city: { type: 'string' },
-          state: { type: 'string', minLength: 2, maxLength: 2 },
-          complement: { type: 'string' }
-        }
-      },
       companyDataList: {
         type: 'array',
         items: {
@@ -84,8 +71,7 @@ const schema = createSchema({
         password: 'Senha é um campo obrigatório.',
         taxId: 'CPF é um campo obrigatório.',
         email: 'E-mail é um campo obrigatório.',
-        resource: 'Nível de acesso é um campo obrigatório.',
-        address: 'Endereço é um campo obrigatório.'
+        resource: 'Nível de acesso é um campo obrigatório.'
       }
     },
     examples: [

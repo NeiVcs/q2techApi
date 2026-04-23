@@ -1,16 +1,5 @@
 import { Document } from 'mongoose';
 
-export interface IUserAddress {
-  [x: string]: unknown;
-  zipCode?: string;
-  street?: string;
-  number?: string;
-  neighborhood?: string;
-  city?: string;
-  state?: string;
-  complement?: string;
-}
-
 export interface IUserPlan {
   [x: string]: unknown;
   name?: string;
@@ -42,7 +31,6 @@ export interface IUser extends Document {
   phoneNumber?: string;
   whatsapp?: string;
   active?: boolean;
-  address?: IUserAddress;
   companyDataList?: ICompanyDataList[];
   lastLogin?: string;
   createdAt?: string;

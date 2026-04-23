@@ -30,18 +30,6 @@ const schema = createSchema({
         phoneNumber: { type: 'string', description: 'Telefone.' },
         whatsapp: { type: 'string', description: 'WhatsApp.' },
         active: { type: 'boolean', description: 'Status da conta.' },
-        address: {
-          type: 'object',
-          properties: {
-            zipCode: { type: 'string' },
-            street: { type: 'string' },
-            number: { type: 'string' },
-            neighborhood: { type: 'string' },
-            city: { type: 'string' },
-            state: { type: 'string' },
-            complement: { type: 'string' }
-          }
-        },
         companyDataList: {
           type: 'array',
           items: {

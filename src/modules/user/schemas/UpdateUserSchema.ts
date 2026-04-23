@@ -26,18 +26,6 @@ const schema = createSchema({
       phoneNumber: { type: 'string' },
       whatsapp: { type: 'string' },
       active: { type: 'boolean' },
-      address: {
-        type: 'object',
-        properties: {
-          zipCode: { type: 'string', minLength: 8 },
-          street: { type: 'string' },
-          number: { type: 'string' },
-          neighborhood: { type: 'string' },
-          city: { type: 'string' },
-          state: { type: 'string', minLength: 2, maxLength: 2 },
-          complement: { type: 'string' }
-        }
-      },
       companyDataList: {
         type: 'array',
         items: {

@@ -41,16 +41,10 @@ export class CreateCompanyTransformer {
         state: body?.address?.state || '',
         complement: body?.address?.complement || '',
       } : undefined,
-      workSchedule: {
-        0: body?.workSchedule?.[0] || null,
-        1: body?.workSchedule?.[1] || null,
-        2: body?.workSchedule?.[2] || null,
-        3: body?.workSchedule?.[3] || null,
-        4: body?.workSchedule?.[4] || null,
-        5: body?.workSchedule?.[5] || null,
-        6: body?.workSchedule?.[6] || null,
-        7: body?.workSchedule?.[7] || null,
-      },
+      workSchedule: body?.workSchedule
+        ? Object.fromEntries(
+          Object.entries(body?.workSchedule).filter(([_, value]) => value !== undefined)
+        ) : undefined,
       paymentForms: Array.isArray(body?.paymentForms) ? [...body.paymentForms] : [],
     };
   }
