@@ -9,15 +9,6 @@ const UserSchema: Schema = new Schema({
   phoneNumber: { type: String },
   whatsapp: { type: String },
   active: { type: Boolean, default: true },
-  address: {
-    zipCode: { type: String, required: true },
-    street: { type: String, required: true },
-    number: { type: String, required: true },
-    neighborhood: { type: String, required: true },
-    city: { type: String, required: true },
-    state: { type: String, required: true, uppercase: true, minlength: 2, maxlength: 2 },
-    complement: { type: String }
-  },
   companyDataList: [{
     companyId: { type: String },
     resource: { type: String, required: true, default: 'user' },

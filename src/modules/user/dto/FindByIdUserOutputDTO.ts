@@ -1,4 +1,3 @@
-import { UserAddressDTO } from '@modules/user/dto/UserAddressDTO';
 import { UserCompanyDataListItemDTO } from '@modules/user/dto/UserCompanyDataListItemDTO';
 
 export interface FindByIdUserOutputDTO {
@@ -9,7 +8,6 @@ export interface FindByIdUserOutputDTO {
   phoneNumber?: string;
   whatsapp?: string;
   active?: boolean;
-  address?: UserAddressDTO;
   companyDataList?: UserCompanyDataListItemDTO[];
   lastLogin?: string;
   createdAt?: string;

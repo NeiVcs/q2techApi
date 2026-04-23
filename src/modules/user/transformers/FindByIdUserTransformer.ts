@@ -23,15 +23,6 @@ export class FindByIdUserTransformer {
       phoneNumber: outputDTO?.phoneNumber ?? '',
       whatsapp: outputDTO?.whatsapp ?? '',
       active: outputDTO?.active ?? false,
-      address: outputDTO?.address ? {
-        zipCode: outputDTO?.address?.zipCode ?? '',
-        street: outputDTO?.address?.street ?? '',
-        number: outputDTO?.address?.number ?? '',
-        neighborhood: outputDTO?.address?.neighborhood ?? '',
-        city: outputDTO?.address?.city ?? '',
-        state: outputDTO?.address?.state ?? '',
-        complement: outputDTO?.address?.complement ?? '',
-      } : undefined,
       companyDataList: Array.isArray(outputDTO?.companyDataList) ? outputDTO.companyDataList.map(f => ({
         companyId: f?.companyId ?? '',
         resource: f?.resource ?? '',

@@ -18,15 +18,6 @@ export class CreateUserAndCompanyTransformer {
         phoneNumber: body.user.phoneNumber || '',
         whatsapp: body.user.whatsapp || '',
         active: body.user.active ?? true,
-        address: body.user.address ? {
-          zipCode: body.user.address.zipCode || '',
-          street: body.user.address.street || '',
-          number: body.user.address.number || '',
-          neighborhood: body.user.address.neighborhood || '',
-          city: body.user.address.city || '',
-          state: body.user.address.state || '',
-          complement: body.user.address.complement || '',
-        } : undefined,
         companyDataList: Array.isArray(body.user.companyDataList) ? body.user.companyDataList.map((f: any) => ({
           companyId: f?.companyId || '',
           resource: f?.resource || '',
@@ -68,16 +59,10 @@ export class CreateUserAndCompanyTransformer {
           city: body.company.address.city || '',
           state: body.company.address.state || '',
         } : undefined,
-        workSchedule: body.company.workSchedule ? {
-          0: body.company.workSchedule[0] || undefined,
-          1: body.company.workSchedule[1] || undefined,
-          2: body.company.workSchedule[2] || undefined,
-          3: body.company.workSchedule[3] || undefined,
-          4: body.company.workSchedule[4] || undefined,
-          5: body.company.workSchedule[5] || undefined,
-          6: body.company.workSchedule[6] || undefined,
-          7: body.company.workSchedule[7] || undefined,
-        } : undefined,
+        workSchedule: body.company.workSchedule
+          ? Object.fromEntries(
+            Object.entries(body.company.workSchedule).filter(([_, value]) => value !== undefined)
+          ) : undefined,
         paymentForms: Array.isArray(body.company.paymentForms) ? [...body.company.paymentForms] : [],
       } : undefined,
     };

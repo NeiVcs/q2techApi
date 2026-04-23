@@ -31,7 +31,7 @@ const schema = createSchema({
     properties: {
       user: {
         type: 'object',
-        required: ['name', 'password', 'taxId', 'email', 'address'],
+        required: ['name', 'password', 'taxId', 'email'],
         properties: {
           name: { type: 'string', minLength: 1, errorMessage: { minLength: 'Nome é obrigatório.' } },
           password: { type: 'string', minLength: 6, errorMessage: { minLength: 'A senha deve ter pelo menos 6 caracteres.' } },
@@ -40,19 +40,6 @@ const schema = createSchema({
           phoneNumber: { type: 'string' },
           whatsapp: { type: 'string' },
           active: { type: 'boolean', default: true },
-          address: {
-            type: 'object',
-            required: ['zipCode', 'street', 'city', 'state'],
-            properties: {
-              zipCode: { type: 'string', minLength: 8 },
-              street: { type: 'string' },
-              number: { type: 'string' },
-              neighborhood: { type: 'string' },
-              city: { type: 'string' },
-              state: { type: 'string', minLength: 2, maxLength: 2 },
-              complement: { type: 'string' }
-            }
-          },
           companyDataList: {
             type: 'array',
             items: {
