@@ -1,8 +1,8 @@
-# API-Q2Tech
+# Q2Tech
 
 ## 🗒️ Introdução
 
-Esta API de boleto (`API-Q2Tech`) expõe serviços para gerenciamento e processamento de pagamentos de boletos, com rotas organizadas por contexto de negócio para Pessoa Jurídica (PJ) e Pessoa Física (PF). Ela suporta API Key (`x-api-key`) para controle de acesso.
+Esta API de boleto (`Q2Tech`) expõe serviços para gerenciamento e processamento de pagamentos de boletos, com rotas organizadas por contexto de negócio para Pessoa Jurídica (PJ) e Pessoa Física (PF). Ela suporta API Key (`x-api-key`) para controle de acesso.
 
 ---
 

@@ -9,9 +9,9 @@ export const RegisterSwaggerDoc = async (fastifyInstance: FastifyInstance) => {
     openapi: {
       openapi: '3.1.1',
       info: {
-        title: 'API-q2tech',
+        title: 'q2tech',
         description:
-          '(**API-Q2TECH**) tests. It uses supports an API Key (**x-api-key**) for access control.',
+          '(**Q2TECH**) tests. It uses supports an API Key (**x-api-key**) for access control.',
         version: '1.0.0'
       },
       servers: [
