@@ -12,7 +12,13 @@ export class CloudionaryRepository {
         .max_results(dto.pageSize)
         .execute();
       console.log(items)
-      return { items: items.resources, pagination: { ...dto, total: items.total_count } }
+      return {
+        limit: {
+          total: items.rate_limit_allowed,
+          remaining: items.rate_limit_remaining,
+          reset: items.rate_limit_reset_at
+        }, items: items.resources, pagination: { ...dto, total: items.total_count }
+      }
     } catch (e) {
       throw new MongoDbErrorException(e);
     }
