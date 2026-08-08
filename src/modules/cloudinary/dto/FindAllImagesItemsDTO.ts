@@ -1,4 +1,4 @@
-export interface FindAllImagesItemsItemDTO {
+export interface FindAllImagesItemsDTO {
   public_id: string;
   filename: string;
   format: string;

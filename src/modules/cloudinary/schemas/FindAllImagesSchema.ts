@@ -39,6 +39,14 @@ const schema = createSchema({
             total: { type: 'number', description: 'total.' },
           },
         },
+        limit: {
+          type: 'object',
+          properties: {
+            total: { type: 'number', description: 'total limit' },
+            remaining: { type: 'number', description: 'remaining limit.' },
+            reset: { type: 'string', description: 'reset hour' },
+          },
+        },
         items: {
           type: 'array',
           items: {
