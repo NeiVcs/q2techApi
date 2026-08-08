@@ -72,7 +72,7 @@ Para executar o projeto, você precisará dos seguintes requisitos:
 
 - ▶️ Executando para criar nova estrutura de módulo.
     ```bash
-    dcli gen --m `ModuleName` --s `SchemName`
+    yarn gen --m `ModuleName` --s `SchemName`
     ```
   
   **Onde:**
@@ -82,12 +82,12 @@ Para executar o projeto, você precisará dos seguintes requisitos:
   
   Exemplo:
   ```bash
-   dcli gen --m Q2tech --s CreateNewSchema
+   yarn gen --m Q2tech --s CreateNewSchema
   ```
   
 - Exemplo com `force` (sobrescreve arquivos existentes):
   ```bash
-   dcli gen --m Q2tech --s FindNewByIdSchema --force
+   yarn gen --m Q2tech --s FindNewByIdSchema --force
   ```
 
 🚨 **OBSERVAÇÃO:** 
