@@ -1,5 +1,6 @@
 import { MongoDbErrorException } from '@database/MongoDbErrorException';
 import cloudinary from '@config/cloudinary';
+import { ResourceNotFoundException } from '@shared/exceptions';
 
 export class CloudionaryRepository {
   private static readonly notFoundResponse = 'Empresa nâo encontrada';
@@ -49,10 +50,18 @@ export class CloudionaryRepository {
   }
 
   public async delete(id: string): Promise<void> {
+    let result
     try {
+      result = await cloudinary.uploader.destroy(id, {
+        invalidate: true,
+      });
 
     } catch (e) {
       throw new MongoDbErrorException(e);
+    }
+
+    if (result?.result !== 'ok') {
+      throw new ResourceNotFoundException('A imagem não existe.');
     }
   }
 
