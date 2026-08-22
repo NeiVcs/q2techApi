@@ -1,4 +1,5 @@
 import makeWASocket, { useMultiFileAuthState, DisconnectReason } from '@whiskeysockets/baileys';
+import pino from 'pino';
 import fs from 'fs';
 
 let sock: ReturnType<typeof makeWASocket> | null = null;
@@ -8,6 +9,8 @@ export async function initWhatsApp() {
 
   sock = makeWASocket({
     auth: state,
+    logger: pino({ level: 'silent' }),
+    syncFullHistory: false,
   });
 
   sock.ev.on('creds.update', saveCreds);
