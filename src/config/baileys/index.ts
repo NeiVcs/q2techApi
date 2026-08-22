@@ -1,5 +1,4 @@
 import makeWASocket, { useMultiFileAuthState, DisconnectReason } from '@whiskeysockets/baileys';
-import qrcode from 'qrcode-terminal';
 import fs from 'fs';
 
 let sock: ReturnType<typeof makeWASocket> | null = null;
@@ -17,10 +16,12 @@ export async function initWhatsApp() {
     const { connection, lastDisconnect, qr } = update;
 
     if (qr) {
+      const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(qr)}`;
+
       console.log('\n================================================--');
-      console.log('📲 ESCANEE O QR CODE ABAIXO COM O SEU WHATSAPP:');
+      console.log('📲 ESCANEE O QR CODE NO LINK ABAIXO:');
+      console.log(qrImageUrl);
       console.log('================================================--\n');
-      qrcode.generate(qr, { small: true });
     }
 
     if (connection === 'close') {
