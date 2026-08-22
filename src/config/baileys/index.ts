@@ -1,0 +1,62 @@
+import makeWASocket, { useMultiFileAuthState, DisconnectReason } from '@whiskeysockets/baileys';
+import qrcode from 'qrcode-terminal';
+import fs from 'fs';
+
+let sock: ReturnType<typeof makeWASocket> | null = null;
+
+export async function initWhatsApp() {
+  const { state, saveCreds } = await useMultiFileAuthState('whatsapp_session');
+
+  sock = makeWASocket({
+    auth: state,
+  });
+
+  sock.ev.on('creds.update', saveCreds);
+
+  sock.ev.on('connection.update', (update) => {
+    const { connection, lastDisconnect, qr } = update;
+
+    if (qr) {
+      console.log('\n================================================--');
+      console.log('📲 ESCANEE O QR CODE ABAIXO COM O SEU WHATSAPP:');
+      console.log('================================================--\n');
+      qrcode.generate(qr, { small: true });
+    }
+
+    if (connection === 'close') {
+      const statusCode = (lastDisconnect?.error as any)?.output?.statusCode;
+      const isLoggedOut = statusCode === DisconnectReason.loggedOut;
+      const shouldReconnect = !isLoggedOut;
+
+      console.log('Conexão do WhatsApp fechada. Tentando reconectar...', shouldReconnect);
+
+      if (shouldReconnect) {
+        initWhatsApp();
+      } else {
+        console.log('❌ Sessão encerrada no celular. Faça um novo escaneamento.');
+        fs.rmSync('whatsapp_session', { recursive: true, force: true });
+        initWhatsApp();
+      }
+    }
+  });
+}
+
+export async function sendWhatsAppMessage({
+  number,
+  message,
+  isGroup = false
+}: {
+  number: string;
+  message: string;
+  isGroup?: boolean;
+}) {
+  if (!sock) {
+    throw new Error('O WhatsApp ainda não foi inicializado.');
+  }
+
+  const cleanNumber = number.replace(/\D/g, '');
+  const suffix = isGroup ? '@g.us' : '@s.whatsapp.net';
+  const jid = cleanNumber.includes('@') ? cleanNumber : `${cleanNumber}${suffix}`;
+
+  return await sock.sendMessage(jid, { text: message });
+}
