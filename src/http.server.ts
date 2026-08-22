@@ -14,6 +14,7 @@ import { CodeErrors } from '@shared/exceptions';
 import { MultipartMiddleware } from '@middlewares/multipartMiddleware';
 import ajvErrors from 'ajv-errors';
 import cors from '@fastify/cors';
+import { initWhatsApp } from '@config/baileys';
 
 let isShuttingDown = false;
 const GRACEFUL_SHUTDOWN_TIME = envConfig.NODE_ENV === 'production' ? 70 * 1000 : 1;
@@ -100,8 +101,10 @@ export const serverHttp = async (): Promise<void> => {
   const port = envConfig.PORT;
   const fastifyInstance = createServer();
 
+  await initWhatsApp();
+
   await fastifyInstance.register(cors, {
-    origin: [process.env.WEB_DOMAIN, 'http://localhost:3000'],
+    origin: [process.env.WEB_DOMAIN || '', 'http://localhost:3000'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: [
       'Content-Type',
@@ -127,6 +130,7 @@ export const serverHttp = async (): Promise<void> => {
   SecurityMiddleware(fastifyInstance);
   RegisterLogger(fastifyInstance);
   MultipartMiddleware(fastifyInstance);
+
   fastifyInstance.register(routeHealth, { prefix: envConfig.API_PREFIX_ROUTE });
   fastifyInstance.register(routesV1, { prefix: envConfig.API_PREFIX_ROUTE });
 
