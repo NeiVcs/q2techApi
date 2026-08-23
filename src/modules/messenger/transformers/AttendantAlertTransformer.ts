@@ -12,7 +12,7 @@ export class AttendantAlertTransformer {
 
     return {
       table: body?.table || '',
-      company: body?.company || '',
+      companyId: body?.companyId || '',
     };
   }
 

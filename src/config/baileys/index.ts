@@ -22,7 +22,7 @@ export async function initWhatsApp() {
       const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(qr)}`;
 
       console.log('\n================================================--');
-      console.log('📲 ESCANEE O QR CODE NO LINK ABAIXO:');
+      console.log('📲 ESCANEIE O QR CODE NO LINK ABAIXO:');
       console.log(qrImageUrl);
       console.log('================================================--\n');
     }
