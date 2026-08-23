@@ -8,7 +8,7 @@ const schema = createSchema({
   security: [{ ApiKeyAuth: [] }],
   body: {
     type: 'object',
-    required: ['table', 'company'],
+    required: ['table', 'companyId'],
     properties: {
       table: {
         type: 'string',
@@ -18,7 +18,7 @@ const schema = createSchema({
           minLength: 'O número de telefone deve conter no mínimo 10 dígitos.'
         }
       },
-      company: {
+      companyId: {
         type: 'string',
         description: 'Loja.',
         minLength: 1,
