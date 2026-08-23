@@ -1,4 +1,5 @@
 import makeWASocket, { useMultiFileAuthState, DisconnectReason } from '@whiskeysockets/baileys';
+import pino from 'pino';
 import fs from 'fs';
 
 let sock: ReturnType<typeof makeWASocket> | null = null;
@@ -8,6 +9,8 @@ export async function initWhatsApp() {
 
   sock = makeWASocket({
     auth: state,
+    logger: pino({ level: 'silent' }),
+    syncFullHistory: false,
   });
 
   sock.ev.on('creds.update', saveCreds);
@@ -42,20 +45,16 @@ export async function initWhatsApp() {
   });
 }
 
-export async function sendWhatsAppMessage({
-  number,
-  message,
-  isGroup = false
-}: {
+export async function sendWhatsAppMessage({ number, message }: {
   number: string;
   message: string;
-  isGroup?: boolean;
 }) {
   if (!sock) {
     throw new Error('O WhatsApp ainda não foi inicializado.');
   }
 
   const cleanNumber = number.replace(/\D/g, '');
+  const isGroup = false;
   const suffix = isGroup ? '@g.us' : '@s.whatsapp.net';
   const jid = cleanNumber.includes('@') ? cleanNumber : `${cleanNumber}${suffix}`;
 
