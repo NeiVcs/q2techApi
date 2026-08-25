@@ -67,23 +67,12 @@ export const tokenMiddleware = async (request: FastifyRequest, reply: FastifyRep
 
   try {
     const decoded = jwt.verify(token, secret) as any;
-    const currentContext = AsyncHooksContext.getContext();
-    const updatedContext = {
-      ...currentContext,
-      user: {
-        id: decoded.id,
-        companyId: decoded.companyId,
-        name: decoded.name,
-        resource: decoded.resource,
-      }
-    };
 
-    return new Promise((resolve) => {
-      AsyncHooksContext.runWithContext(updatedContext, () => {
-        resolve(undefined);
-      });
+    AsyncHooksContext.setContextValue('user', {
+      id: decoded.id,
+      name: decoded.name,
+      companyDataList: decoded.companyDataList,
     });
-
   } catch (error) {
     throw new AccessDeniedException();
   }

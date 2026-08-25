@@ -43,6 +43,18 @@ const createServer = (): FastifyInstance => {
   fastifyInstance.setErrorHandler(ErrorHandler);
   fastifyInstance.setNotFoundHandler(NotFoundHandler);
 
+  fastifyInstance.addContentTypeParser('application/json', { parseAs: 'string' }, (_request, body, done) => {
+    if (!body) {
+      return done(null, undefined);
+    }
+
+    try {
+      done(null, JSON.parse(body as string));
+    } catch (error) {
+      done(error as Error, undefined);
+    }
+  });
+
   return fastifyInstance;
 };
 

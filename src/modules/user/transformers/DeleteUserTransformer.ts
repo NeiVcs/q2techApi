@@ -8,10 +8,9 @@ import { AsyncHooksContext } from '@shared/asyncHooks';
 export class DeleteUserTransformer {
   public fromApi(request?: FastifyRequest<{ Params: DeleteUserParamsRequest }>): DeleteUserInputDTO {
     const { params } = request;
-    const { id } = AsyncHooksContext.getContext();
-
-    //const secret = process.env.JWT_SECRET;
-    //const decoded = jwt.verify(inputDTO.token, secret) as any;
+    const { user } = AsyncHooksContext.getContext();
+    const { id } = user;
+    console.log(id)
 
     return {
       id: params.id,
