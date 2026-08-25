@@ -1,12 +1,11 @@
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcryptjs';
 import { singleton } from 'tsyringe';
 import { AuthInputDTO } from "@modules/auth/dto/AuthInputDTO";
 import { UserRepository } from '@modules/user/data/UserRepository';
 import { AuthOutputDTO } from "@modules/auth/dto/AuthOutputDTO";
 import { FindByEmailUserOutputDTO } from '@modules/user/dto/FindByEmailUserOutputDTO';
-import { AccessDeniedException } from '@shared/exceptions';
 import { CompanyRepository } from '@modules/company/data/CompanyRepository';
+import { passwordValidation } from '@shared/helpers/passwordValidation';
 
 @singleton()
 export class AuthService {
@@ -17,17 +16,12 @@ export class AuthService {
 
   public async execute(inputDTO: AuthInputDTO): Promise<AuthOutputDTO> {
     const response = await this.storage.findByLogin(inputDTO.email);
-    await this.passwordValidation(inputDTO, response)
+
+    await passwordValidation(inputDTO)
+
     const token = await this.createToken(response)
 
     return token as unknown as AuthOutputDTO;
-  }
-
-  private async passwordValidation(inputDTO: AuthInputDTO, userData: FindByEmailUserOutputDTO): Promise<void> {
-    const isMatch = await bcrypt.compare(inputDTO.password, userData.password);
-    if (!isMatch) {
-      throw new AccessDeniedException();
-    }
   }
 
   private async createToken(inputDTO: FindByEmailUserOutputDTO): Promise<AuthOutputDTO> {

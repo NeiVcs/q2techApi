@@ -101,10 +101,12 @@ export const serverHttp = async (): Promise<void> => {
   const port = envConfig.PORT;
   const fastifyInstance = createServer();
 
-  await initWhatsApp();
+  if (envConfig.WHATS_APP_DISABLED === 'false') {
+    await initWhatsApp();
+  }
 
   await fastifyInstance.register(cors, {
-    origin: [process.env.WEB_DOMAIN || '', 'http://localhost:3000'],
+    origin: [envConfig.WEB_DOMAIN || '', 'http://localhost:3000'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: [
       'Content-Type',
