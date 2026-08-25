@@ -30,6 +30,10 @@ const envSchema = z
 
     ENABLED_SWAGGER: z.string().optional(),
 
+    WHATS_APP_DISABLED: z.string().optional(),
+
+    WEB_DOMAIN: z.string().optional(),
+
     AWS_REGION: z.enum(['us-east-1', 'us-west-2']).default('us-east-1'),
 
     USE_LOCALSTACK: z

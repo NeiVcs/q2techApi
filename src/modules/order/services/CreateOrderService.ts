@@ -22,7 +22,7 @@ export class CreateOrderService {
       await this.getUserId(inputDTO);
     }
 
-    const response = null //await this.orderStorage.save(inputDTO);
+    const response = await this.orderStorage.save(inputDTO);
     this.sendMessage(inputDTO)
 
     return response as unknown as CreateOrderOutputDTO;
@@ -79,7 +79,7 @@ Nome: ${inputDto.userData.name}
 Telefone: ${formatPhone(inputDto.userData.phoneNumber)}
 Endereço: ${inputDto.userData.address.street} nº ${inputDto.userData.address.number} 
 ${inputDto.userData.address.neighborhood}, ${inputDto.userData.address.city} - ${inputDto.userData.address.state}
-CEP ${formatCEP(inputDto.userData.address.zipCode)}
+${inputDto.userData.address?.zipCode && 'CEP ' + formatCEP(inputDto.userData.address.zipCode)}}
 
 Veja o pedido completo no site: https://escolhacertadigital.netlify.app/${companyData.url}/pedidos
     `
