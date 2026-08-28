@@ -63,15 +63,19 @@ export const tokenMiddleware = async (request: FastifyRequest, reply: FastifyRep
   if (!authHeader) throw new AccessDeniedException();
 
   const token = authHeader.replace('Bearer ', '').trim();
-  const secret = process.env.JWT_SECRET as string;
+  const isDeleteRoute = request.routeOptions.url === '/q2tech/v1/user/delete';
+
+  const secret = isDeleteRoute
+    ? (process.env.JWT_DELETE_SECRET as string)
+    : (process.env.JWT_SECRET as string);
 
   try {
     const decoded = jwt.verify(token, secret) as any;
 
     AsyncHooksContext.setContextValue('user', {
       id: decoded.id,
-      name: decoded.name,
-      companyDataList: decoded.companyDataList,
+      name: decoded.name || null,
+      companyDataList: decoded.companyDataList || [],
     });
   } catch (error) {
     throw new AccessDeniedException();

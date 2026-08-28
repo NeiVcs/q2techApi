@@ -14,6 +14,7 @@ export class DeleteUserTransformer {
 
     return {
       id: params.id,
+      //userId: id,
     };
   }
 }
