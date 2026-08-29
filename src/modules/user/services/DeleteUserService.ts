@@ -2,8 +2,6 @@ import { singleton } from 'tsyringe';
 import { DeleteUserInputDTO } from "@modules/user/dto/DeleteUserInputDTO";
 import { UserRepository } from "@modules/user/data/UserRepository";
 import { DeleteCompanyService } from '@modules/company/services/DeleteCompanyService';
-import { passwordValidation } from '@shared/helpers/passwordValidation';
-import { AccessDeniedException } from '@shared/exceptions';
 
 @singleton()
 export class DeleteUserService {
@@ -13,16 +11,18 @@ export class DeleteUserService {
   ) { }
 
   public async execute(inputDTO: DeleteUserInputDTO): Promise<void> {
-    const user = await this.userStorage.findById(inputDTO.id)
+    const isAdmin = inputDTO.id && (inputDTO.id !== inputDTO.userId)
+    const id = isAdmin ? inputDTO.id : inputDTO.userId
 
-    if (user.id !== inputDTO.id) {
-      throw new AccessDeniedException();
-    }
+    const user = await this.userStorage.findById(id)
 
+    await Promise.all(
+      user.companyDataList.map((company) =>
+        this.deleteCompany.execute({ id: company.companyId })
+      )
+    );
 
-    //await this.deleteCompany.execute({ id: user.companyDataList[0].companyId })
-
-    //await this.userStorage.delete(inputDTO.id);
+    await this.userStorage.delete(inputDTO.id);
     return;
   }
 }

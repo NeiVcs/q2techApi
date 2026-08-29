@@ -65,12 +65,24 @@ export const tokenMiddleware = async (request: FastifyRequest, reply: FastifyRep
   const token = authHeader.replace('Bearer ', '').trim();
   const isDeleteRoute = request.routeOptions.url === '/q2tech/v1/user/delete';
 
-  const secret = isDeleteRoute
-    ? (process.env.JWT_DELETE_SECRET as string)
-    : (process.env.JWT_SECRET as string);
+  const getDeletionDecoded = (): any => {
+    try {
+      return jwt.verify(token, process.env.JWT_DELETE_SECRET as string);
+    } catch {
+      const adminDecoded = jwt.verify(token, process.env.JWT_SECRET as string) as any;
+
+      if (adminDecoded?.id === process.env.ADMIN_ID) {
+        return adminDecoded;
+      }
+
+      throw new AccessDeniedException();
+    }
+  };
 
   try {
-    const decoded = jwt.verify(token, secret) as any;
+    const decoded = isDeleteRoute
+      ? getDeletionDecoded()
+      : (jwt.verify(token, process.env.JWT_SECRET as string) as any);
 
     AsyncHooksContext.setContextValue('user', {
       id: decoded.id,

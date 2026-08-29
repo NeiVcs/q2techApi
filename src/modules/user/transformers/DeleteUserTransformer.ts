@@ -10,11 +10,10 @@ export class DeleteUserTransformer {
     const { params } = request;
     const { user } = AsyncHooksContext.getContext();
     const { id } = user;
-    console.log(id)
 
     return {
       id: params.id,
-      //userId: id,
+      userId: id,
     };
   }
 }
