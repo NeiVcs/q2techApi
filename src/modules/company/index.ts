@@ -4,6 +4,7 @@ import { DeleteCompanyController } from "@modules/company/controllers/DeleteComp
 import { FindAllCompanyController } from "@modules/company/controllers/FindAllCompanyController";
 import { FindByIdCompanyController } from "@modules/company/controllers/FindByIdCompanyController";
 import { FindByUrlCompanyController } from "@modules/company/controllers/FindByUrlCompanyController";
+import { RequestUserDeletionController } from "@modules/company/controllers/RequestUserDeletionController";
 import { UpdateCompanyController } from "@modules/company/controllers/UpdateCompanyController";
 
 export * from './private.routes.v1';
@@ -14,4 +15,5 @@ export const deleteCompanyController = () => container.resolve(DeleteCompanyCont
 export const findAllCompanyController = () => container.resolve(FindAllCompanyController);
 export const findByIdCompanyController = () => container.resolve(FindByIdCompanyController);
 export const findByUrlCompanyController = () => container.resolve(FindByUrlCompanyController);
+export const requestUserDeletionController = () => container.resolve(RequestUserDeletionController);
 export const updateCompanyController = () => container.resolve(UpdateCompanyController);

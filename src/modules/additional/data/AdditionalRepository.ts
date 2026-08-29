@@ -63,4 +63,20 @@ export class AdditionalRepository {
       throw new MongoDbErrorException(e);
     }
   }
+
+  public async findByCompanyId(dto: any): Promise<any> {
+    try {
+      const query = Object.fromEntries(Object.entries(dto).filter(([key, value]) => value != null && value !== '' && key !== 'page' && key !== 'pageSize'));
+      const skip = (dto.page - 1) * dto.pageSize;
+      const data = await AdditionalModel.find(query).skip(skip).limit(dto.pageSize).lean();
+
+      const items = data.map((el: IAdditional) => ({ id: el._id.toString(), ...el }));
+      const total = await AdditionalModel.countDocuments();
+
+      return { items: items, pagination: { ...dto, total: total } }
+
+    } catch (e) {
+      throw new MongoDbErrorException(e);
+    }
+  }
 }

@@ -2,24 +2,35 @@ import { DefinitionsExceptionSchema } from '@shared/exceptions';
 import { createSchema } from '@shared/schemas/define';
 
 const schema = createSchema({
-  description: 'Delete a user.',
-  summary: 'Delete a user.',
+  description: 'Request user deletion.',
+  summary: 'Request user deletion.',
   tags: ['User'],
   security: [{ ApiKeyAuth: [] }],
-  params: {
+  body: {
     type: 'object',
+    required: ['password'],
     properties: {
-      id: {
+      password: {
         type: 'string',
-        description: 'MongoDB Id.',
-        pattern: '^[0-9a-fA-F]{24}$',
-        errorMessage: 'Id deve ser um MongoDB Id.'
+        minLength: 6,
+        errorMessage: { minLength: 'A senha deve ter pelo menos 6 caracteres.' }
+      },
+    },
+    errorMessage: {
+      required: {
+        password: 'Senha é um campo obrigatório.',
       }
-    }
+    },
+    examples: [
+      {
+        password: 'senha123',
+      }
+    ]
   },
   response: {
     204: {
-      description: 'Deleted successfully.'
+      description: 'Enviado e-mail de confirmação.',
+      type: 'null'
     },
     400: DefinitionsExceptionSchema.Error400,
     401: DefinitionsExceptionSchema.Error401,
@@ -33,6 +44,6 @@ const schema = createSchema({
   }
 });
 
-export const DeleteUserSchema = schema.raw;
-export type DeleteUserParamsRequest = typeof schema.types.params;
-export type DeleteUserResponse = (typeof schema.types.response)[204];
+export const RequestUserDeletionSchema = schema.raw;
+export type RequestUserDeletionBodyRequest = typeof schema.types.body;
+export type RequestUserDeletionResponse = (typeof schema.types.response)[204];
