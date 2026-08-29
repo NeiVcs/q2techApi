@@ -4,6 +4,7 @@ import { CreateUserController } from "@modules/user/controllers/CreateUserContro
 import { DeleteUserController } from "@modules/user/controllers/DeleteUserController";
 import { FindAllUserController } from "@modules/user/controllers/FindAllUserController";
 import { FindByIdUserController } from "@modules/user/controllers/FindByIdUserController";
+import { RequestUserDeletionController } from "@modules/user/controllers/RequestUserDeletionController";
 import { UpdateUserController } from "@modules/user/controllers/UpdateUserController";
 import { UpdateUserPasswordController } from "@modules/user/controllers/UpdateUserPasswordController";
 
@@ -15,5 +16,6 @@ export const createUserController = () => container.resolve(CreateUserController
 export const deleteUserController = () => container.resolve(DeleteUserController);
 export const findAllUserController = () => container.resolve(FindAllUserController);
 export const findByIdUserController = () => container.resolve(FindByIdUserController);
+export const requestUserDeletionController = () => container.resolve(RequestUserDeletionController);
 export const updateUserController = () => container.resolve(UpdateUserController);
 export const updateUserPasswordController = () => container.resolve(UpdateUserPasswordController);

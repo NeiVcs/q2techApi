@@ -63,27 +63,32 @@ export const tokenMiddleware = async (request: FastifyRequest, reply: FastifyRep
   if (!authHeader) throw new AccessDeniedException();
 
   const token = authHeader.replace('Bearer ', '').trim();
-  const secret = process.env.JWT_SECRET as string;
+  const isDeleteRoute = request.routeOptions.url === '/q2tech/v1/user/delete';
+
+  const getDeletionDecoded = (): any => {
+    try {
+      return jwt.verify(token, process.env.JWT_DELETE_SECRET as string);
+    } catch {
+      const adminDecoded = jwt.verify(token, process.env.JWT_SECRET as string) as any;
+
+      if (adminDecoded?.id === process.env.ADMIN_ID) {
+        return adminDecoded;
+      }
+
+      throw new AccessDeniedException();
+    }
+  };
 
   try {
-    const decoded = jwt.verify(token, secret) as any;
-    const currentContext = AsyncHooksContext.getContext();
-    const updatedContext = {
-      ...currentContext,
-      user: {
-        id: decoded.id,
-        companyId: decoded.companyId,
-        name: decoded.name,
-        resource: decoded.resource,
-      }
-    };
+    const decoded = isDeleteRoute
+      ? getDeletionDecoded()
+      : (jwt.verify(token, process.env.JWT_SECRET as string) as any);
 
-    return new Promise((resolve) => {
-      AsyncHooksContext.runWithContext(updatedContext, () => {
-        resolve(undefined);
-      });
+    AsyncHooksContext.setContextValue('user', {
+      id: decoded.id,
+      name: decoded.name || null,
+      companyDataList: decoded.companyDataList || [],
     });
-
   } catch (error) {
     throw new AccessDeniedException();
   }
