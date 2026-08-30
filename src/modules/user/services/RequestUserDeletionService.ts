@@ -29,17 +29,17 @@ export class RequestUserDeletionService {
   }
 
   private async sendMessage(user: FindByIdUserOutputDTO, deletionToken: RefreshTokenOutputDTO): Promise<void> {
-    await sendWhatsAppMessage({
-      number: user.whatsapp,
+    sendWhatsAppMessage({
+      number: 55 + user.whatsapp,
       message: `
 Ola ${user.name},
 
 Sentimos muito que tenha solicitado a exclusâo da sua conta,
 
 Segue abaixo o link para concluir sua solicitação.
-      
-http://escolhaCertaDigital.netlify.app/excluir-conta/${deletionToken}
-          `,
+
+https://escolhaCertaDigital.netlify.app/excluir-conta/${deletionToken}
+`,
     });
   }
 
