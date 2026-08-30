@@ -63,7 +63,10 @@ export const tokenMiddleware = async (request: FastifyRequest, reply: FastifyRep
   if (!authHeader) throw new AccessDeniedException();
 
   const token = authHeader.replace('Bearer ', '').trim();
-  const isDeleteRoute = request.routeOptions.url === '/q2tech/v1/user/delete';
+
+  const isUserDeleteRoute =
+    request.method === 'DELETE' &&
+    (request.routeOptions.url.endsWith('/user/:id') || request.routeOptions.url.endsWith('/user'));
 
   const getDeletionDecoded = (): any => {
     try {
@@ -80,7 +83,7 @@ export const tokenMiddleware = async (request: FastifyRequest, reply: FastifyRep
   };
 
   try {
-    const decoded = isDeleteRoute
+    const decoded = (isUserDeleteRoute)
       ? getDeletionDecoded()
       : (jwt.verify(token, process.env.JWT_SECRET as string) as any);
 
