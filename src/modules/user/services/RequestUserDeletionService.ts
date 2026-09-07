@@ -44,7 +44,7 @@ https://escolhaCertaDigital.netlify.app/excluir-conta/${deletionToken}
   }
 
   private async genereteToken(user: FindByIdUserOutputDTO): Promise<RefreshTokenOutputDTO> {
-    const secret = process.env.JWT_SECRET;
+    const secret = process.env.JWT_DELETE_SECRET;
     const token = jwt.sign(
       {
         id: user.id,

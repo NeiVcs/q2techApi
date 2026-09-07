@@ -64,27 +64,11 @@ export const tokenMiddleware = async (request: FastifyRequest, reply: FastifyRep
 
   const token = authHeader.replace('Bearer ', '').trim();
 
-  const isUserDeleteRoute =
-    request.method === 'DELETE' &&
-    (request.routeOptions.url.endsWith('/user/:id') || request.routeOptions.url.endsWith('/user'));
-
-  const getDeletionDecoded = (): any => {
-    try {
-      return jwt.verify(token, process.env.JWT_DELETE_SECRET as string);
-    } catch {
-      const adminDecoded = jwt.verify(token, process.env.JWT_SECRET as string) as any;
-
-      if (adminDecoded?.id === process.env.ADMIN_ID) {
-        return adminDecoded;
-      }
-
-      throw new AccessDeniedException();
-    }
-  };
+  const isUserDeleteRoute = request.method === 'DELETE' && request.routeOptions.url.endsWith('/user/:id');
 
   try {
     const decoded = (isUserDeleteRoute)
-      ? getDeletionDecoded()
+      ? getDeletionDecoded(token)
       : (jwt.verify(token, process.env.JWT_SECRET as string) as any);
 
     AsyncHooksContext.setContextValue('user', {
@@ -93,6 +77,20 @@ export const tokenMiddleware = async (request: FastifyRequest, reply: FastifyRep
       companyDataList: decoded.companyDataList || [],
     });
   } catch (error) {
+    throw new AccessDeniedException();
+  }
+};
+
+const getDeletionDecoded = (token: string): any => {
+  try {
+    return jwt.verify(token, process.env.JWT_DELETE_SECRET as string);
+  } catch {
+    const adminDecoded = jwt.verify(token, process.env.JWT_SECRET as string) as any;
+
+    if (adminDecoded?.id === process.env.ADMIN_ID) {
+      return adminDecoded;
+    }
+
     throw new AccessDeniedException();
   }
 };
