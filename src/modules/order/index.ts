@@ -5,6 +5,7 @@ import { FindAllOrderController } from "@modules/order/controllers/FindAllOrderC
 import { FindByCompanyIdOrderController } from "@modules/order/controllers/FindByCompanyIdOrderController";
 import { FindByIdOrderController } from "@modules/order/controllers/FindByIdOrderController";
 import { FindByUserIdOrderController } from "@modules/order/controllers/FindByUserIdOrderController";
+import { FindTablesOrderController } from "@modules/order/controllers/FindTablesOrderController";
 import { UpdateOrderController } from "@modules/order/controllers/UpdateOrderController";
 
 export * from './private.routes.v1';
@@ -16,4 +17,5 @@ export const findAllOrderController = () => container.resolve(FindAllOrderContro
 export const findByCompanyIdOrderController = () => container.resolve(FindByCompanyIdOrderController);
 export const findByIdOrderController = () => container.resolve(FindByIdOrderController);
 export const findByUserIdOrderController = () => container.resolve(FindByUserIdOrderController);
+export const findTablesOrderController = () => container.resolve(FindTablesOrderController);
 export const updateOrderController = () => container.resolve(UpdateOrderController);
