@@ -51,6 +51,10 @@ export class UpdateCompanyTransformer {
           Object.entries(body?.workSchedule).filter(([_, value]) => value !== undefined)
         ) : undefined,
       paymentForms: Array.isArray(body?.paymentForms) ? [...body.paymentForms] : [],
+      tables: Array.isArray(body?.tables) ? body.tables.map(t => ({
+        id: t?.id || '',
+        table: t?.table || '',
+      })) : []
     };
   }
 }

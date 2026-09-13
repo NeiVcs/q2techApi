@@ -49,6 +49,11 @@ export interface ICompanyWorkSchedule {
   7?: string[];
 }
 
+export interface ITables {
+  id: string,
+  table: string
+}
+
 export interface ICompany extends Document {
   id?: string;
   name?: string;
@@ -63,6 +68,7 @@ export interface ICompany extends Document {
   contacts?: ICompanyContacts;
   address?: ICompanyAddress;
   workSchedule?: ICompanyWorkSchedule;
+  tables?: ITables[];
   paymentForms?: string[];
   createdAt?: Date;
   updatedAt?: Date;

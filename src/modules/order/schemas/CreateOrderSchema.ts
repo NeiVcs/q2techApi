@@ -8,7 +8,7 @@ const schema = createSchema({
   security: [{ ApiKeyAuth: [] }],
   body: {
     type: 'object',
-    required: ['companyId', 'paymentForm', 'totalPrice', 'deliveryMode', 'userData', 'orderData'],
+    required: ['companyId', 'totalPrice', 'deliveryMode', 'orderData'],
     properties: {
       companyId: {
         type: 'string',
@@ -19,7 +19,6 @@ const schema = createSchema({
       paymentForm: {
         type: 'string',
         description: 'Forma de pagamento escolhida',
-        minLength: 1,
         errorMessage: { minLength: 'A forma de pagamento deve ser informada.' }
       },
       totalPrice: {
@@ -57,7 +56,6 @@ const schema = createSchema({
       userData: {
         type: 'object',
         description: 'Dados do cliente',
-        required: ['name', 'phoneNumber', 'address'],
         properties: {
           userId: {
             type: 'string',

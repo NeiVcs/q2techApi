@@ -23,7 +23,9 @@ export class CreateOrderService {
     }
 
     const response = await this.orderStorage.save(inputDTO);
-    this.sendMessage(inputDTO)
+    if (inputDTO.deliveryMode !== 'DINE_IN') {
+      this.sendMessage(inputDTO)
+    }
 
     return response as unknown as CreateOrderOutputDTO;
   }

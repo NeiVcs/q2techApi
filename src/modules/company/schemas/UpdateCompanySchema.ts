@@ -313,6 +313,17 @@ const schema = createSchema({
         type: 'array',
         nullable: true,
         items: { type: 'string', minLength: 1 }
+      },
+      tables: {
+        type: 'array',
+        nullable: true,
+        items: {
+          type: 'object',
+          properties: {
+            id: { type: 'string', description: 'Id da mesa.' },
+            table: { type: 'string', description: 'Número/Nome da mesa.' }
+          }
+        }
       }
     },
     errorMessage: {
