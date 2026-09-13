@@ -5,6 +5,7 @@ import { CompanyContactsDTO } from "@modules/company/dto/CompanyContactsDTO";
 import { CompanySocialMediasListDTO } from "@modules/company/dto/CompanySocialMediasListDTO";
 import { CompanyAddressDTO } from "@modules/company/dto/CompanyAddressDTO";
 import { CompanyWorkScheduleDTO } from "@modules/company/dto/CompanyWorkScheduleDTO";
+import { CompanyTablesDTO } from "./CompanyTablesDTO";
 
 export interface FindByIdCompanyOutputDTO {
   id: string;
@@ -22,4 +23,5 @@ export interface FindByIdCompanyOutputDTO {
   address?: CompanyAddressDTO;
   workSchedule?: CompanyWorkScheduleDTO;
   paymentForms?: string[];
+  tables?: CompanyTablesDTO[];
 }

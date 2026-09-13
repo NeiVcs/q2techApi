@@ -2,6 +2,7 @@ import { CompanyAddressDTO } from "./CompanyAddressDTO";
 import { CompanyCategoriesListDTO } from "./CompanyCategoriesListDTO";
 import { CompanyContactsDTO } from "./CompanyContactsDTO";
 import { CompanyStylizationDTO } from "./CompanyStylizationDTO";
+import { CompanyTablesDTO } from "./CompanyTablesDTO";
 import { CompanyWorkScheduleDTO } from "./CompanyWorkScheduleDTO";
 
 export interface FindAllCompanyItemsDTO {
@@ -17,4 +18,5 @@ export interface FindAllCompanyItemsDTO {
   address?: CompanyAddressDTO;
   workSchedule?: CompanyWorkScheduleDTO;
   paymentForms?: string[];
+  tables?: CompanyTablesDTO[];
 }

@@ -69,6 +69,7 @@ export class FindByUrlCompanyTransformer {
         7: outputDTO?.workSchedule?.[7] || null,
       },
       paymentForms: Array.isArray(outputDTO?.paymentForms) ? [...outputDTO.paymentForms] : [],
+      tables: Array.isArray(outputDTO?.tables) ? [...outputDTO.paymentForms] : [],
     };
   }
 
@@ -126,6 +127,12 @@ export class FindByUrlCompanyTransformer {
         7: request?.workSchedule?.[7] || null,
       },
       paymentForms: request.paymentForms || [],
+      tables: request.tables
+        ? request.tables.map((item) => ({
+          id: item.id,
+          table: item.table,
+        }))
+        : undefined,
     };
   }
 }

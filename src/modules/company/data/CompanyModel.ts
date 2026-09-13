@@ -48,6 +48,10 @@ const CompanySchema: Schema = new Schema({
     6: { type: [String] },
     7: { type: [String] },
   },
+  tables: [{
+    id: { type: String },
+    table: { type: String }
+  }],
   paymentForms: [{ type: String }]
 });
 

@@ -4,6 +4,7 @@ import { CompanyStylizationDTO } from "@modules/company/dto/CompanyStylizationDT
 import { CompanyContactsDTO } from "@modules/company/dto/CompanyContactsDTO";
 import { CompanyAddressDTO } from "@modules/company/dto/CompanyAddressDTO";
 import { CompanyWorkScheduleDTO } from "@modules/company/dto/CompanyWorkScheduleDTO";
+import { CompanyTablesDTO } from "./CompanyTablesDTO";
 
 export interface UpdateCompanyInputDTO {
   id: string;
@@ -20,4 +21,5 @@ export interface UpdateCompanyInputDTO {
   address?: CompanyAddressDTO;
   workSchedule?: CompanyWorkScheduleDTO;
   paymentForms?: string[];
+  tables?: CompanyTablesDTO[];
 }
