@@ -17,7 +17,6 @@ export class FindTablesOrderTransformer {
 
   public toApi(outputDTO: FindTablesOrderOutputDTO): FindTablesOrderResponse {
     const tables = outputDTO.tables
-    console.log(tables)
     return {
       items: Array.isArray(tables) ? tables.map(f => ({
         id: f?.id ?? '',
