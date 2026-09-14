@@ -29,15 +29,11 @@ const schema = createSchema({
             type: 'object',
             properties: {
               id: { type: 'string', description: 'ID do pedido' },
+              tableId: { type: 'string', description: 'Id da Mesa' },
+              tableName: { type: 'string', description: 'Nome da Mesa' },
               status: { type: 'string', description: 'Status atual da mesa' },
               totalPrice: { type: 'number', description: 'Preço total' },
               createdAt: { type: 'string', format: 'date-time' },
-              userData: {
-                type: 'object',
-                properties: {
-                  userId: { type: 'string' },
-                }
-              },
               orderData: {
                 type: 'array',
                 items: {

@@ -31,7 +31,7 @@ export class FindTablesOrderService {
     const getOrderByTable = async (table: string) => await this.orderStorage.findByUserId({ userId: table });
     const response = await Promise.all(tableList.map((table: { id: string }) => getOrderByTable(table.id)));
 
-    const tables = response.map((el, idx) => { return { ...el.items[0], userData: { userId: tableList[idx].id } } })
+    const tables = response.map((el, idx) => { return { ...el.items[0], tableId: tableList[idx].id, tableName: tableList[idx].table } })
     const pendingTables = await this.tableStatusStorage.findByCompanyId({ companyId: companyId })
 
     return { tables, pendingTables }

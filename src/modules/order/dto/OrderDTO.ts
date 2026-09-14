@@ -3,6 +3,8 @@ import { OrderUserDataDTO } from "./OrderUserDataDTO";
 
 export interface OrderDTO {
   id?: string;
+  tableId?: string;
+  tableName?: string;
   companyId?: string;
   paymentForm?: string;
   totalPrice?: number;
