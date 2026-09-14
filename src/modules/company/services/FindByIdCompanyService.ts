@@ -5,11 +5,10 @@ import { FindByIdCompanyOutputDTO } from "@modules/company/dto/FindByIdCompanyOu
 
 @singleton()
 export class FindByIdCompanyService {
-  constructor( private storage: CompanyRepository ) { }
-  
+  constructor(private storage: CompanyRepository) { }
+
   public async execute(inputDTO: FindByIdCompanyInputDTO): Promise<FindByIdCompanyOutputDTO> {
     const response = await this.storage.findById(inputDTO.id);
     return response as unknown as FindByIdCompanyOutputDTO;
   }
 }
-  

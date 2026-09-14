@@ -69,7 +69,7 @@ export class FindByIdCompanyTransformer {
         7: outputDTO?.workSchedule?.[7] || null,
       },
       paymentForms: Array.isArray(outputDTO?.paymentForms) ? [...outputDTO.paymentForms] : [],
-      tables: Array.isArray(outputDTO?.tables) ? [...outputDTO.paymentForms] : [],
+      tables: Array.isArray(outputDTO?.tables) ? [...outputDTO.tables] : [],
     };
   }
 

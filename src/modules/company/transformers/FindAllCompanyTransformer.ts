@@ -34,8 +34,7 @@ export class FindAllCompanyTransformer {
         contacts: f?.contacts ?? undefined,
         address: f?.address ?? undefined,
         workSchedule: f?.workSchedule ?? {},
-        paymentForms: f?.paymentForms ?? [],
-        tables: f?.tables ?? [],
+        paymentForms: Array.isArray(f?.paymentForms) ? [...f.paymentForms] : [],
       })) : [],
     };
   }
