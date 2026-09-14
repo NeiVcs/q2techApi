@@ -129,6 +129,18 @@ const schema = createSchema({
           type: 'array',
           nullable: true,
           items: { type: 'string' }
+        },
+        tables: {
+          description: 'Lista de mesas',
+          type: 'array',
+          nullable: true,
+          items: {
+            type: 'object',
+            properties: {
+              id: { type: 'string', description: 'id.' },
+              table: { type: 'string', description: 'mesa.' }
+            }
+          }
         }
       }
     },

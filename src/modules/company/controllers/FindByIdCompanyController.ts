@@ -9,12 +9,12 @@ export class FindByIdCompanyController {
   constructor(
     private readonly transformer: FindByIdCompanyTransformer,
     private readonly service: FindByIdCompanyService
-  ) {}
+  ) { }
 
   handler = async (request: FastifyRequest<{ Params: FindByIdCompanyParamsRequest }>, reply: FastifyReply): Promise<FindByIdCompanyResponse> => {
     const inputDTO = this.transformer.fromApi(request);
     const outputDTO = await this.service.execute(inputDTO);
     reply.code(200);
     return this.transformer.toApi(outputDTO);
-  }  
+  }
 }
