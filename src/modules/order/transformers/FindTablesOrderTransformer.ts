@@ -20,10 +20,11 @@ export class FindTablesOrderTransformer {
     return {
       items: Array.isArray(tables) ? tables.map(f => ({
         id: f?.id ?? '',
+        tableId: f?.tableId ?? '',
+        tableName: f?.tableName ?? '',
         status: this.getStatus({ table: f, pendingTables: outputDTO.pendingTables }),
         totalPrice: f?.totalPrice ?? 0,
         createdAt: f?.createdAt ?? '',
-        userData: f?.userData ?? undefined,
         orderData: f?.orderData ?? [],
       })) : [],
     };
